@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{19C64625-0F99-4534-B90A-A0654C8C4FAE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Basics6</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;BOILER;WINDOWS_TARGET_PLATFORM="$(TargetPlatformVersion)";SOLUTION_DIR=R"($(SolutionDir))";TOOLS_VERSION=R"($(VCToolsVersion))";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <TreatWarningAsError>true</TreatWarningAsError>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
+      <AdditionalIncludeDirectories>$(SolutionDir)Framework;$(SolutionDir)Test;$(SolutionDir)Basics7;$(SolutionDir)Basics7_ReadOnly;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>
+      </DisableSpecificWarnings>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ForcedIncludeFiles>Framework.h</ForcedIncludeFiles>
+      <WarningVersion>
+      </WarningVersion>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Basics7\_UnitTestConfiguration.h" />
+    <ClInclude Include="..\Basics7_ReadOnly\A.h" />
+    <ClInclude Include="..\Basics7_ReadOnly\C.h" />
+    <ClInclude Include="..\Basics7_ReadOnly\E.h" />
+    <ClInclude Include="..\Basics7_ReadOnly\M.h" />
+    <ClInclude Include="..\Basics7_ReadOnly\vTableQuestions.h" />
+    <ClInclude Include="..\Framework\Framework.h" />
+    <ClInclude Include="..\Test\answerRegistry.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Basics7\vTableQuestions_A.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_B.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_C.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_D.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_E.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_F.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_G.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_M.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_N.cpp" />
+    <ClCompile Include="..\Basics7\vTableQuestions_O.cpp" />
+    <ClCompile Include="..\Basics7_ReadOnly\main.cpp" />
+    <ClCompile Include="..\Test\answerRegistry.cpp" />
+    <ClCompile Include="..\Test\vTableUnitTests.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Basics7\ClassDiagram.cd" />
+    <None Include="..\Framework\__DO NOT MODIFY__" />
+    <None Include="..\Test\__DO NOT MODIFY__" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

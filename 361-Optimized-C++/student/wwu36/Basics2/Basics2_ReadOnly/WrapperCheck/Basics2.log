@@ -1,0 +1,60 @@
+﻿  A.cpp
+  D.cpp
+  F.cpp
+  G.cpp
+  N.cpp
+  O.cpp
+  P.cpp
+  Wrapper.cpp
+  1_publicInheritanceTests.cpp
+  2_publicInheritanceTests.cpp
+  3_publicInheritanceTests.cpp
+  4_publicInheritanceTests.cpp
+  5_privateInheritanceTests.cpp
+  B.cpp
+  C.cpp
+  E.cpp
+  H.cpp
+  M.cpp
+  main.cpp
+  MiddlewareNative.cpp
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(146,7): error C2664: 'void GameVect::getX(float &)': cannot convert argument 1 from 'int' to 'float &'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(52,7): message : see declaration of 'GameVect::getX' (compiling source file ..\Test\5_privateInheritanceTests.cpp)
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(146,7): message : while trying to match the argument list '(int)'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(149,14): error C2660: 'GameVect::getX': function does not take 0 arguments
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(52,7): message : see declaration of 'GameVect::getX' (compiling source file ..\Test\5_privateInheritanceTests.cpp)
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(149,14): message : while trying to match the argument list '()'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(152,7): error C2664: 'void GameVect::getY(float &)': cannot convert argument 1 from 'int' to 'float &'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(53,7): message : see declaration of 'GameVect::getY' (compiling source file ..\Test\5_privateInheritanceTests.cpp)
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(152,7): message : while trying to match the argument list '(int)'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(155,14): error C2660: 'GameVect::getY': function does not take 0 arguments
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(53,7): message : see declaration of 'GameVect::getY' (compiling source file ..\Test\5_privateInheritanceTests.cpp)
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(155,14): message : while trying to match the argument list '()'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(158,18): error C2247: 'Vect2D_Native::setID' not accessible because 'GameVect' uses 'private' to inherit from 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(56,7): message : see declaration of 'Vect2D_Native::setID'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(45,7): message : see declaration of 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(158,18): error C2248: 'Vect2D_Native::setID': cannot access private member declared in class 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(56,7): message : see declaration of 'Vect2D_Native::setID'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(161,21): error C2247: 'Vect2D_Native::getID' not accessible because 'GameVect' uses 'private' to inherit from 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(57,6): message : see declaration of 'Vect2D_Native::getID'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(45,7): message : see declaration of 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(161,21): error C2248: 'Vect2D_Native::getID': cannot access private member declared in class 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(57,6): message : see declaration of 'Vect2D_Native::getID'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(164,7): error C2247: 'Vect2D_Native::x' not accessible because 'GameVect' uses 'private' to inherit from 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(61,8): message : see declaration of 'Vect2D_Native::x'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(45,7): message : see declaration of 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(164,7): error C2248: 'Vect2D_Native::x': cannot access private member declared in class 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(61,8): message : see declaration of 'Vect2D_Native::x'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(167,7): error C2247: 'Vect2D_Native::y' not accessible because 'GameVect' uses 'private' to inherit from 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(62,8): message : see declaration of 'Vect2D_Native::y'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(45,7): message : see declaration of 'Vect2D_Native'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Test\5_privateInheritanceTests.cpp(167,7): error C2248: 'Vect2D_Native::y': cannot access private member declared in class 'GameVect'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2_ReadOnly\MiddlewareNative.h(62,8): message : see declaration of 'Vect2D_Native::y'
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics2\Basics2\Wrapper.h(48,7): message : see declaration of 'GameVect'

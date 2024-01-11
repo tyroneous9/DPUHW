@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="_Framework">
+      <UniqueIdentifier>{fbc57e9c-dc71-431f-a371-4710e366d9f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Test">
+      <UniqueIdentifier>{87f5eea6-4cad-45df-917a-dcc838b9df51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Unit Test Configuration %28Enable Tests here%29">
+      <UniqueIdentifier>{1365d749-8266-4b11-8459-23b18eb01715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Do NOT Modify">
+      <UniqueIdentifier>{f1fcb46b-73c8-4b17-933d-c754532bf5df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Refactor %28Do not Add or Delete Files%29">
+      <UniqueIdentifier>{0991109f-7f85-4ca5-b7c7-b2e611da669a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="B.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="C.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="E.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="H.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="M.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="MiddlewareNative.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\A.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\D.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\F.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\G.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\N.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\O.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\P.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics2\Wrapper.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\1_publicInheritanceTests.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\2_publicInheritanceTests.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\3_publicInheritanceTests.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\4_publicInheritanceTests.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\5_privateInheritanceTests.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="B.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="C.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="E.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="H.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="MiddlewareNative.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="M.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Test\UnitTestBufferManager.h">
+      <Filter>_Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Framework\Framework.h">
+      <Filter>_Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\A.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\D.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\F.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\G.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\N.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\O.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\P.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\Wrapper.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics2\_UnitTestConfiguration.h">
+      <Filter>Source Files\Unit Test Configuration %28Enable Tests here%29</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Test\__DO NOT MODIFY__">
+      <Filter>_Test</Filter>
+    </None>
+    <None Include="..\Framework\__DO NOT MODIFY__">
+      <Filter>_Framework</Filter>
+    </None>
+    <None Include="..\Basics2\ClassDiagrams.cd">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

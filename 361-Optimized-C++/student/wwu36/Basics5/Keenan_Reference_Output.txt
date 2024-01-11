@@ -1,0 +1,380 @@
+To generate this file:
+
+Start the Basics5DebugX86.sln
+--> Clean and build all
+--> RunDebugTest.bat
+See score 
+--> Output.txt
+
+testPass: 10
+  
+---A--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_A_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 6
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---B--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_B_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 5
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---C--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_C_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 10
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---D--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_D_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 10
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---E--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_E_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 5
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---F--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_F_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 5
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---G--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_G_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 14
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---H--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_H_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 5
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---I--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_I_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 5
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  
+---J--- 
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+ PASSED: Test_J_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 7
+         Mode: x86 Debug 
+
+-----------------
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+  

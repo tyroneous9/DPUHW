@@ -1,0 +1,102 @@
+Table RENTAL dropped.
+
+
+Table MOVIE dropped.
+
+
+Table DIRECTOR dropped.
+
+
+Table CUSTOMER dropped.
+
+
+Table DIRECTOR created.
+
+
+Table MOVIE created.
+
+
+Table CUSTOMER created.
+
+
+Table RENTAL created.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+DID       D_FNAME                                            D_LNAME                                            D_DOB     D_EMAIL                                            PRO
+--------- -------------------------------------------------- -------------------------------------------------- --------- -------------------------------------------------- ---
+000000001 John                                               Doe                                                20-JAN-23 johnd@gmail.com                                    001
+000000002 Jane                                               Doe                                                20-JAN-23 janed@gmail.com                                    001
+000000003 Herman                                             Hermit                                             20-JAN-95 hermanh@myspace.com                                002
+
+
+CID       C_FNAME                                            C_LNAME                                            C_DOB     C_EMAIL                                           
+--------- -------------------------------------------------- -------------------------------------------------- --------- --------------------------------------------------
+000000001 Harry                                              Pots                                               12-DEC-00 harryp@gmail.com                                  
+000000002 George                                             Washed                                             23-DEC-01 georgew@gmail.com                                 
+000000003 Mundane                                            Mann                                               11-NOV-02 mundanem@gmail.com                                
+
+
+MID              TITLE                                              GE DURAT       YEAR DID      
+---------------- -------------------------------------------------- -- ----- ---------- ---------
+USA-2003-HR-0001 The Great Pencil                                   HR 02:32       2003 000000001
+BRA-2001-CM-0001 No Interesting Title                               CM 04:06       2001 000000002
+CAN-1950-AD-0001 Beetle Adventures                                  AC 33:12       1950 000000001
+USA-1999-AC-0001 Picnic of Doom                                     AC 10:10       1999 000000003
+
+
+MID              CID       RENTED    DUEDATE   NUM_RENTALS
+---------------- --------- --------- --------- -----------
+USA-2003-HR-0001 000000001 01-JAN-23 30-DEC-23           1
+BRA-2001-CM-0001 000000002 01-JUN-22 30-SEP-23           1
+CAN-1950-AD-0001 000000003 20-FEB-22 25-MAR-22           2
+CAN-1950-AD-0001 000000001 15-MAY-22 20-MAY-22           2
+USA-1999-AC-0001 000000002 10-JAN-22 15-JAN-22           1
+
+
+Commit complete.
+

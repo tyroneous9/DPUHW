@@ -1,0 +1,28 @@
+﻿  Align.cpp
+  AlignData.cpp
+  Bloated_FindKey.cpp
+  ColdNode.cpp
+  HotCold.cpp
+  HotNode.cpp
+  JediColdNode.cpp
+  JediHotCold.cpp
+  JediHotNode.cpp
+  JediRedirect.cpp
+  Matrix.cpp
+  Vect.cpp
+  AlignmentPrint_Tests.cpp
+  AlignmentRework_Tests.cpp
+  BloatedFindKey_Tests.cpp
+  HotColdConvert_Tests.cpp
+  HotColdLink_Tests.cpp
+  HotColdTiming_Tests.cpp
+  JediHotColdConvert_Tests.cpp
+  JediHotColdTiming_Tests.cpp
+  Bloated.cpp
+  main.cpp
+  Node.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 209 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  PA2.vcxproj -> C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA2\Release\PA2.exe

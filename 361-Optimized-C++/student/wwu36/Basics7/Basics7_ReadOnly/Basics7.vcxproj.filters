@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="_Framework">
+      <UniqueIdentifier>{e43391da-348d-40a0-bd28-78ff5679b689}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Test">
+      <UniqueIdentifier>{f72bf30a-185d-450e-8258-45b22eb55f03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Do NOT Modify">
+      <UniqueIdentifier>{ba4fabe5-296f-4515-9e7f-8650cdb3e403}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Unit Test Configuration %28Enable Tests here%29">
+      <UniqueIdentifier>{04969c46-e4de-4f69-a329-cf3f58348d95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Refactor %28Do not Add or Delete Files%29">
+      <UniqueIdentifier>{e40f2a2a-2d42-48d4-94d0-a55e758e9d4b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Framework\Framework.h">
+      <Filter>_Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics7_ReadOnly\A.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics7_ReadOnly\C.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics7_ReadOnly\E.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics7_ReadOnly\M.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics7_ReadOnly\vTableQuestions.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Test\answerRegistry.h">
+      <Filter>_Test</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Basics7\_UnitTestConfiguration.h">
+      <Filter>Source Files\Unit Test Configuration %28Enable Tests here%29</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Test\vTableUnitTests.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7_ReadOnly\main.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_A.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_B.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_C.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_D.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_E.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_F.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_G.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_M.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_N.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Basics7\vTableQuestions_O.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\answerRegistry.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Framework\__DO NOT MODIFY__">
+      <Filter>_Framework</Filter>
+    </None>
+    <None Include="..\Test\__DO NOT MODIFY__">
+      <Filter>_Test</Filter>
+    </None>
+    <None Include="..\Basics7\ClassDiagram.cd">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+﻿  Free.cpp
+  Heap.cpp
+  Mem.cpp
+  Used.cpp
+  main.cpp
+  MemReadOnly.cpp
+  Mem_Test_01.cpp
+  Mem_Test_02.cpp
+  Mem_Test_03.cpp
+  Mem_Test_04.cpp
+  Mem_Test_05.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 147 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  PA3.vcxproj -> C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA3\Release\PA3.exe

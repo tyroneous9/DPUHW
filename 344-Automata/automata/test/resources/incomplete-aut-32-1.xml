@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<automaton alphabet="ab">
+  <state name="q31">
+    <transition label="b" to="q9"/>
+    <transition label="a" to="q9"/>
+  </state>
+  <state name="q30">
+    <transition label="a" to="q31"/>
+    <transition label="b" to="q15"/>
+  </state>
+  <state name="q11">
+    <transition label="b" to="q13"/>
+  </state>
+  <state name="q10">
+    <transition label="a" to="q8"/>
+    <transition label="b" to="q17"/>
+  </state>
+  <state name="q13">
+    <transition label="b" to="q25"/>
+    <transition label="a" to="q16"/>
+  </state>
+  <state name="q12">
+    <transition label="a" to="q21"/>
+    <transition label="b" to="q19"/>
+  </state>
+  <state final="true" name="q15">
+    <transition label="a" to="q30"/>
+    <transition label="b" to="q26"/>
+  </state>
+  <state name="q14">
+    <transition label="a" to="q27"/>
+  </state>
+  <state name="q17">
+    <transition label="a" to="q20"/>
+    <transition label="b" to="q19"/>
+  </state>
+  <state name="q16">
+    <transition label="b" to="q11"/>
+    <transition label="a" to="q8"/>
+  </state>
+  <state name="q19">
+    <transition label="b" to="q21"/>
+    <transition label="a" to="q25"/>
+  </state>
+  <state name="q18">
+    <transition label="a" to="q1"/>
+    <transition label="b" to="q4"/>
+  </state>
+  <state final="true" initial="true" name="q0">
+    <transition label="a" to="q24"/>
+    <transition label="b" to="q15"/>
+  </state>
+  <state final="true" name="q1">
+    <transition label="b" to="q15"/>
+    <transition label="a" to="q25"/>
+  </state>
+  <state name="q2">
+    <transition label="a" to="q22"/>
+    <transition label="b" to="q11"/>
+  </state>
+  <state name="q3">
+    <transition label="a" to="q31"/>
+    <transition label="b" to="q7"/>
+  </state>
+  <state name="q4">
+    <transition label="b" to="q24"/>
+    <transition label="a" to="q8"/>
+  </state>
+  <state final="true" name="q5">
+    <transition label="a" to="q21"/>
+    <transition label="b" to="q16"/>
+  </state>
+  <state name="q6">
+    <transition label="b" to="q5"/>
+    <transition label="a" to="q19"/>
+  </state>
+  <state name="q7">
+    <transition label="a" to="q0"/>
+    <transition label="b" to="q7"/>
+  </state>
+  <state final="true" name="q8">
+    <transition label="a" to="q26"/>
+    <transition label="b" to="q6"/>
+  </state>
+  <state final="true" name="q9">
+    <transition label="a" to="q5"/>
+  </state>
+  <state name="q20">
+    <transition label="a" to="q13"/>
+  </state>
+  <state name="q22">
+    <transition label="b" to="q25"/>
+    <transition label="a" to="q16"/>
+  </state>
+  <state name="q21">
+    <transition label="a" to="q1"/>
+    <transition label="b" to="q23"/>
+  </state>
+  <state name="q24">
+    <transition label="a" to="q24"/>
+    <transition label="b" to="q8"/>
+  </state>
+  <state name="q23">
+    <transition label="a" to="q24"/>
+    <transition label="b" to="q17"/>
+  </state>
+  <state name="q26">
+    <transition label="b" to="q30"/>
+    <transition label="a" to="q19"/>
+  </state>
+  <state name="q25">
+    <transition label="b" to="q7"/>
+    <transition label="a" to="q8"/>
+  </state>
+  <state final="true" name="q28">
+    <transition label="b" to="q24"/>
+    <transition label="a" to="q5"/>
+  </state>
+  <state name="q27">
+    <transition label="a" to="q1"/>
+  </state>
+  <state name="q29">
+    <transition label="a" to="q25"/>
+    <transition label="b" to="q7"/>
+  </state>
+</automaton>

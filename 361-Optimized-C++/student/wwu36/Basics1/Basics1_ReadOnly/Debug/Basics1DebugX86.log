@@ -1,0 +1,19 @@
+﻿  Monkey.cpp
+  Nyble.cpp
+  01_Monkey_SimpleCreate_test.cpp
+  02_Monkey_SpecializedConstructor_test.cpp
+  03_Monkey_SpecializedConstuctorWithDefault_test.cpp
+  04_Monkey_NewFunction_test.cpp
+  05_Monkey_Scope_test.cpp
+  06_Monkey_CopyConstructor_test.cpp
+  07_Monkey_AssignmentOp_test.cpp
+  08_Monkey_AssignmentOp2_test.cpp
+  09_Nyble_Simple_test.cpp
+  10_Nyble_AddOp_test.cpp
+  11_Nyble_IncrementOps_test.cpp
+  12_Nyble_BitShift_test.cpp
+  13_Nyble_SpecialOps_test.cpp
+  14_Nyble_SpecialOps2_test.cpp
+  15_Nyble_SpecialOps3_test.cpp
+  main.cpp
+  Basics1DebugX86.vcxproj -> C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\Basics1\Debug\Basics1DebugX86.exe

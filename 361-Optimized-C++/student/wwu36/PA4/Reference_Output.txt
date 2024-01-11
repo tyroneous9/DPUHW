@@ -1,0 +1,148 @@
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: --> DISABLED <--   **
+**           Mode: x86 Debug          **
+****************************************
+
+------ Testing DEBUG ----------
+
+
+      Mem Lib: 4459.616452 ms 
+Custom Memory: 2086.610124 ms 
+ times faster: 2.137254 
+
+ PASSED: Mem_Stress_timing_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 1
+[x86 Debug]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 66
+         Mode: x86 Debug 
+
+-----------------
+
+
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: --> DISABLED <--   **
+**           Mode: x86 Debug          **
+****************************************
+
+------ Testing DEBUG ----------
+
+ PASSED: Mem1_Initialize_Test 
+ PASSED: Mem2_Allocate_Everything_Test 
+ PASSED: Mem3_Allocate_Everything_Free_it_Test 
+ PASSED: Mem4_Partial_allocate_Test 
+ PASSED: Mem5_Partial_allocate_free_Test 
+ PASSED: Mem6_Allocate_3_bottom_up_free_Test 
+ PASSED: Mem7_Allocate_3_Top_down_free_Test 
+ PASSED: Mem8_Allocate_3_middle_up_free_Test 
+ PASSED: Mem9_Allocate_3_middle_down_free_Test 
+ PASSED: Mem10_Allocate_3_100_middle_up_free_Test 
+ PASSED: Mem11_Allocate_3_100_middle_down_free_Test 
+ PASSED: Mem12_Allocate_3_100_bottom_up_free_Test 
+ PASSED: Mem13_Allocate_3_100_Top_Down_free_Test 
+ PASSED: Mem14_combo_1_Test 
+ PASSED: Mem15_combo_2_Test 
+ PASSED: Mem16_Secret_pointers_Test 
+ PASSED: Mem17_Exact_Alloc_Sets_Below_Flag_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 17
+[x86 Debug]  Failed: 0
+
+   Test Count: 17
+ Indiv Checks: 2503
+         Mode: x86 Debug 
+
+-----------------
+
+
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: --> DISABLED <--   **
+**           Mode: x86 Release        **
+****************************************
+
+------------------- Testing RELEASE ----------------------
+
+
+      Mem Lib: 817.776010 ms 
+Custom Memory: 268.010403 ms 
+ times faster: 3.051285 
+
+ PASSED: Mem_Stress_timing_Test 
+
+  --- Tests Results ---    
+
+[x86 Release] Ignored: 0
+[x86 Release]  Passed: 1
+[x86 Release]  Failed: 0
+
+   Test Count: 1
+ Indiv Checks: 66
+         Mode: x86 Release 
+
+-----------------
+
+
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: --> DISABLED <--   **
+**           Mode: x86 Release        **
+****************************************
+
+------------------- Testing RELEASE ----------------------
+
+ PASSED: Mem1_Initialize_Test 
+ PASSED: Mem2_Allocate_Everything_Test 
+ PASSED: Mem3_Allocate_Everything_Free_it_Test 
+ PASSED: Mem4_Partial_allocate_Test 
+ PASSED: Mem5_Partial_allocate_free_Test 
+ PASSED: Mem6_Allocate_3_bottom_up_free_Test 
+ PASSED: Mem7_Allocate_3_Top_down_free_Test 
+ PASSED: Mem8_Allocate_3_middle_up_free_Test 
+ PASSED: Mem9_Allocate_3_middle_down_free_Test 
+ PASSED: Mem10_Allocate_3_100_middle_up_free_Test 
+ PASSED: Mem11_Allocate_3_100_middle_down_free_Test 
+ PASSED: Mem12_Allocate_3_100_bottom_up_free_Test 
+ PASSED: Mem13_Allocate_3_100_Top_Down_free_Test 
+ PASSED: Mem14_combo_1_Test 
+ PASSED: Mem15_combo_2_Test 
+ PASSED: Mem16_Secret_pointers_Test 
+ PASSED: Mem17_Exact_Alloc_Sets_Below_Flag_Test 
+
+  --- Tests Results ---    
+
+[x86 Release] Ignored: 0
+[x86 Release]  Passed: 17
+[x86 Release]  Failed: 0
+
+   Test Count: 17
+ Indiv Checks: 2503
+         Mode: x86 Release 
+
+-----------------

@@ -1,0 +1,32 @@
+Problem B. [30 points] There are many ways to find the maximum element in an array and you have no doubt seen an iterative algorithm for it. The divide-and-conquer approach is to divide an array into two halves (as in merge sort), get the maximum of each half, then compare those two maxima to return the larger.
+
+Write pseudocode using the book's notation expressing the approach just given
+    Implement that algorithm in Java >= 8 or Python >= 3.7. Call the program either DCMaximum.java or dcmaximum.py and write it so that it takes as input a file called numbers.txt. 
+    Please create your own numbers.txt file. The program should print a single line giving the maximum of the values in that file.
+    Write down the recurrence relation that computes the number of comparisons between array elements performed by this algorithm.
+    Solve the recurrence relation using the recursion tree method.
+
+Problem C. [20 points] Complete exercise 39(a) on page 65 of the textbook. This asks you to draw a binary tree given two traversals of it. Note that it is not necesarily a binary search tree!
+
+Place the written answers for the problems into a document (either text or Word) called assignment2.{txt,docx,pdf} and submit it into the D2L slot for it. Submit the program for problem B into its D2L slot.
+
+
+Problem A.
+1. c. English
+2. b. False
+3. b. False
+4. b. False
+5. b. a take-home exam not needing proctoring
+
+Problem B.
+arrayMax(A[0..n]) 
+    if n=1  //Does not count as a comparison
+        return A[n]
+    mid = n/2
+    left = arrayMax(A[0..mid])  //T(n/2)
+    right = arrayMax(A[mid+1..n])   //T(n/2)
+    if left > right //1 comparison per call
+        max = left
+    else 
+        max = right
+    return max

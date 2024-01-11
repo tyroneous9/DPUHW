@@ -1,0 +1,18 @@
+---
+:id: 100812929
+:submitters:
+- :name: Albert Luna
+  :email: aluna27@depaul.edu
+- :name: Wesley Wu
+  :email: wwu36@depaul.edu
+- :name: Claire Ruttencutter
+  :email: crutten1@depaul.edu
+- :name: Christopher Jacobson
+  :email: cjacob20@depaul.edu
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2021-11-17 18:44:28.453752000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2021-11-17 10:44:28.453752000 Z
+:status: processed
+:score: 150.0

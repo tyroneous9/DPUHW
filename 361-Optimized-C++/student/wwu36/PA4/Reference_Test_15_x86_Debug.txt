@@ -1,0 +1,98 @@
+-------------------------------------------------
+
+Log File 
+
+Name: Student_ Test_15
+Mode: x86_Debug
+
+-------------------------------------------------
+
+Test15: 
+
+     Mem mem(Mem::Guard::Type_A);                     
+     mem.initialize();            
+     mem.Print(1);                        
+     void *a = mem.malloc( 0x100 );     
+     void *b = mem.malloc( 0x200 );     
+     void *c = mem.malloc( 0x10 );     
+     void *d = mem.malloc( 0x200 );     
+     mem.Print(2);                        
+     mem.free( d );                     
+     mem.free( b );                     
+     mem.Print(3);                        
+     void *r = mem.malloc( 0x200 );     
+     mem.Print(4);                        
+
+------- Print 1 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x00E4F5B0     
+ pNextFit: 0x00E4F5B0   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+FREE HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4F5BC  e: 00E5BD90                            size: 0xc7d4 
+
+------- Print 2 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00E4F8E4     
+pFreeHead: 0x00E4FAF0     
+ pNextFit: 0x00E4FAF0   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+USED HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00E4F6BC  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4F5BC  e: 00E4F6BC                            size: 0x100 
+USED HDR   s: 00E4F6BC  e: 00E4F6C8  p: 00E4F8C8  n: 00E4F5B0  size: 0xc    AF: 0 
+USED       s: 00E4F6C8  e: 00E4F8C8                            size: 0x200 
+USED HDR   s: 00E4F8C8  e: 00E4F8D4  p: 00E4F8E4  n: 00E4F6BC  size: 0xc    AF: 0 
+USED       s: 00E4F8D4  e: 00E4F8E4                            size: 0x10 
+USED HDR   s: 00E4F8E4  e: 00E4F8F0  p: 00000000  n: 00E4F8C8  size: 0xc    AF: 0 
+USED       s: 00E4F8F0  e: 00E4FAF0                            size: 0x200 
+FREE HDR   s: 00E4FAF0  e: 00E4FAFC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4FAFC  e: 00E5BD90                            size: 0xc294 
+
+------- Print 3 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00E4F8C8     
+pFreeHead: 0x00E4F6BC     
+ pNextFit: 0x00E4F8E4   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+USED HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00E4F8C8  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4F5BC  e: 00E4F6BC                            size: 0x100 
+FREE HDR   s: 00E4F6BC  e: 00E4F6C8  p: 00000000  n: 00E4F8E4  size: 0xc    AF: 0 
+FREE       s: 00E4F6C8  e: 00E4F8C8                            size: 0x200 
+USED HDR   s: 00E4F8C8  e: 00E4F8D4  p: 00000000  n: 00E4F5B0  size: 0xc    AF: 1 
+USED       s: 00E4F8D4  e: 00E4F8E4                            size: 0x10 
+FREE HDR   s: 00E4F8E4  e: 00E4F8F0  p: 00E4F6BC  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4F8F0  e: 00E5BD90                            size: 0xc4a0 
+
+------- Print 4 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00E4F8E4     
+pFreeHead: 0x00E4F6BC     
+ pNextFit: 0x00E4FAF0   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+USED HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00E4F8C8  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4F5BC  e: 00E4F6BC                            size: 0x100 
+FREE HDR   s: 00E4F6BC  e: 00E4F6C8  p: 00000000  n: 00E4FAF0  size: 0xc    AF: 0 
+FREE       s: 00E4F6C8  e: 00E4F8C8                            size: 0x200 
+USED HDR   s: 00E4F8C8  e: 00E4F8D4  p: 00E4F8E4  n: 00E4F5B0  size: 0xc    AF: 1 
+USED       s: 00E4F8D4  e: 00E4F8E4                            size: 0x10 
+USED HDR   s: 00E4F8E4  e: 00E4F8F0  p: 00000000  n: 00E4F8C8  size: 0xc    AF: 0 
+USED       s: 00E4F8F0  e: 00E4FAF0                            size: 0x200 
+FREE HDR   s: 00E4FAF0  e: 00E4FAFC  p: 00E4F6BC  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4FAFC  e: 00E5BD90                            size: 0xc294 

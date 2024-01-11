@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Order">
+    <Position X="3.75" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAMAAAgAABAEAAgAAAIABAEEAIAMAQACAAAgAAABAAA=</HashCode>
+      <FileName>C:\code\keenan2023spring_csc461\instructor\Assignments\PA1\PA1 - Answers\PA1\Order.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="poHead" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="HotDog">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAABAAAAhAAAoAAAEBAIAAAQAAAAAgAAABAAA=</HashCode>
+      <FileName>C:\code\keenan2023spring_csc461\instructor\Assignments\PA1\PA1 - Answers\PA1\HotDog.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stand">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAIAAIAAAAAACAAAAAAABAAABAACEAACAgAgAIAEAAA=</HashCode>
+      <FileName>C:\code\keenan2023spring_csc461\instructor\Assignments\PA1\PA1 - Answers\PA1\Stand.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="poHead" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,23 @@
+﻿  Box_SIMD.cpp
+  Matrix_Col_SIMD.cpp
+  Matrix_Row_SIMD.cpp
+  Sphere_SIMD.cpp
+  Vect_Col_SIMD.cpp
+  Vect_Row_SIMD.cpp
+  Vect4D_SIMD.cpp
+  PerformanceTest.cpp
+  Performance_CollideCPP.cpp
+  Performance_CollideSIMD.cpp
+  Performance_ColMajorCPP.cpp
+  Performance_ColMajorSIMD.cpp
+  Performance_RowMajorCpp.cpp
+  Performance_RowMajorSIMD.cpp
+  Unit_Verify_Collide_Math.cpp
+  Unit_Verify_Col_Math.cpp
+  Unit_Verify_Row_Math.cpp
+  Box.cpp
+  main.cpp
+  Matrix.cpp
+  Sphere.cpp
+  Vect4D.cpp
+  PA7.vcxproj -> C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA7\Debug\SIMD.exe

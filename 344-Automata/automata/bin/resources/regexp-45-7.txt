@@ -1,0 +1,1 @@
+abc:e|c|e*((c)*)e|((a|b|c*|c*)*)*c|aa(b*|(b*)|ec|c*a*(c*)*)

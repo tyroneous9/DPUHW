@@ -1,0 +1,23 @@
+Problem A. [18 points] Use recursion trees to determine closed forms for each of the following recurrence relations. 
+Your answer for each should show the first three and the last level of the tree. Make sure you also write down the closed form.
+
+T(n) = 2T(n/2) + n/2
+T(n) = 2T(n/2) + n^2
+T(n) = 3T(n/2) + n
+
+Problem B. [12 points] In section 2.2, the textbook describes a game played with artificial sweetener packets on an nxn board. 
+We'll call the game Packet.
+Also in the section is a figure with the pseudocode for a method called PlayAnyGame. In the pseudocode, there are two if-statements and a for-loop.
+
+First if-statement: As long as the player moves/jumps perfectly, the current state will result in the player moving all their packets off the board first.
+Second if-statement: No matter how the player moves/jumps unless the opposing player makes a mistake, the current game state will result in the opposing player moving all their packets off the board first.
+For-loop: A list of legal moves would mean a horizontal/vertical step or jump for all packets that are able to move. This excludes packets that have already moved off the board, or if a packet can't jump due to two packets being in the way instead of one.
+
+Problem C. [10 points] As described in section 2.2, the recursive method essentially creates the game tree node by node in a depth-first fashion. 
+For the case where there are two packets for each player (so the game is on a 4x4 board), how many nodes are in the entire game tree?
+
+ 
+
+Problem D. [5 points] Assuming you could see the entire tree, how would you determine whether it is possible for the first player to win?
+
+If there exists at least one node (likely near the bottom of the tree) where the first player has moved all their packets off the board.

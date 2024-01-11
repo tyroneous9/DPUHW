@@ -1,0 +1,208 @@
+-------------------------------------------------
+
+Log File 
+
+Name: Student_ Test_16
+Mode: x86_Debug
+
+-------------------------------------------------
+
+Test16: 
+
+      Mem mem;
+      mem.initialize();
+      mem.Print(1);
+
+      void *a1 = mem.malloc(0x100);
+      void *a2 = mem.malloc(0x20);
+      void *a3 = mem.malloc(0x20);
+      void *a4 = mem.malloc(0x20);
+      void *a5 = mem.malloc(0x20);
+      void *b1 = mem.malloc(0x200);
+      void *c1 = mem.malloc(0x300);
+      void *c2 = mem.malloc(0x30);
+      void *c3 = mem.malloc(0x30);
+      void *c4 = mem.malloc(0x30);
+      void *c5 = mem.malloc(0x30);
+      void *c6 = mem.malloc(0x30);
+      void *c7 = mem.malloc(0x30);
+      void *d1 = mem.malloc(0x200);
+      void *d2 = mem.malloc(0x40);
+      void *d3 = mem.malloc(0x60);
+      void *e1 = mem.malloc(0x100);
+      void *f1 = mem.malloc(0x500);
+      void *g1 = mem.malloc(0x100);
+
+      mem.Print(2);
+
+      mem.free(d1);
+      mem.free(b1);
+      mem.free(f1);
+      mem.free(a1);
+      mem.free(a4);
+      mem.free(c7);
+      mem.free(c5);
+      mem.free(c2);
+
+      mem.Print(3);
+
+      mem1.free(d2);
+      mem1.free(c4);
+      mem1.free(g1);
+
+      mem1.Print(4);
+
+
+------- Print 1 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x00E4F5B0     
+ pNextFit: 0x00E4F5B0   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+FREE HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4F5BC  e: 00E5BD90                            size: 0xc7d4 
+
+------- Print 2 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00E506C8     
+pFreeHead: 0x00E507D4     
+ pNextFit: 0x00E507D4   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+USED HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00E4F6BC  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4F5BC  e: 00E4F6BC                            size: 0x100 
+USED HDR   s: 00E4F6BC  e: 00E4F6C8  p: 00E4F6E8  n: 00E4F5B0  size: 0xc    AF: 0 
+USED       s: 00E4F6C8  e: 00E4F6E8                            size: 0x20 
+USED HDR   s: 00E4F6E8  e: 00E4F6F4  p: 00E4F714  n: 00E4F6BC  size: 0xc    AF: 0 
+USED       s: 00E4F6F4  e: 00E4F714                            size: 0x20 
+USED HDR   s: 00E4F714  e: 00E4F720  p: 00E4F740  n: 00E4F6E8  size: 0xc    AF: 0 
+USED       s: 00E4F720  e: 00E4F740                            size: 0x20 
+USED HDR   s: 00E4F740  e: 00E4F74C  p: 00E4F76C  n: 00E4F714  size: 0xc    AF: 0 
+USED       s: 00E4F74C  e: 00E4F76C                            size: 0x20 
+USED HDR   s: 00E4F76C  e: 00E4F778  p: 00E4F978  n: 00E4F740  size: 0xc    AF: 0 
+USED       s: 00E4F778  e: 00E4F978                            size: 0x200 
+USED HDR   s: 00E4F978  e: 00E4F984  p: 00E4FC84  n: 00E4F76C  size: 0xc    AF: 0 
+USED       s: 00E4F984  e: 00E4FC84                            size: 0x300 
+USED HDR   s: 00E4FC84  e: 00E4FC90  p: 00E4FCC0  n: 00E4F978  size: 0xc    AF: 0 
+USED       s: 00E4FC90  e: 00E4FCC0                            size: 0x30 
+USED HDR   s: 00E4FCC0  e: 00E4FCCC  p: 00E4FCFC  n: 00E4FC84  size: 0xc    AF: 0 
+USED       s: 00E4FCCC  e: 00E4FCFC                            size: 0x30 
+USED HDR   s: 00E4FCFC  e: 00E4FD08  p: 00E4FD38  n: 00E4FCC0  size: 0xc    AF: 0 
+USED       s: 00E4FD08  e: 00E4FD38                            size: 0x30 
+USED HDR   s: 00E4FD38  e: 00E4FD44  p: 00E4FD74  n: 00E4FCFC  size: 0xc    AF: 0 
+USED       s: 00E4FD44  e: 00E4FD74                            size: 0x30 
+USED HDR   s: 00E4FD74  e: 00E4FD80  p: 00E4FDB0  n: 00E4FD38  size: 0xc    AF: 0 
+USED       s: 00E4FD80  e: 00E4FDB0                            size: 0x30 
+USED HDR   s: 00E4FDB0  e: 00E4FDBC  p: 00E4FDEC  n: 00E4FD74  size: 0xc    AF: 0 
+USED       s: 00E4FDBC  e: 00E4FDEC                            size: 0x30 
+USED HDR   s: 00E4FDEC  e: 00E4FDF8  p: 00E4FFF8  n: 00E4FDB0  size: 0xc    AF: 0 
+USED       s: 00E4FDF8  e: 00E4FFF8                            size: 0x200 
+USED HDR   s: 00E4FFF8  e: 00E50004  p: 00E50044  n: 00E4FDEC  size: 0xc    AF: 0 
+USED       s: 00E50004  e: 00E50044                            size: 0x40 
+USED HDR   s: 00E50044  e: 00E50050  p: 00E500B0  n: 00E4FFF8  size: 0xc    AF: 0 
+USED       s: 00E50050  e: 00E500B0                            size: 0x60 
+USED HDR   s: 00E500B0  e: 00E500BC  p: 00E501BC  n: 00E50044  size: 0xc    AF: 0 
+USED       s: 00E500BC  e: 00E501BC                            size: 0x100 
+USED HDR   s: 00E501BC  e: 00E501C8  p: 00E506C8  n: 00E500B0  size: 0xc    AF: 0 
+USED       s: 00E501C8  e: 00E506C8                            size: 0x500 
+USED HDR   s: 00E506C8  e: 00E506D4  p: 00000000  n: 00E501BC  size: 0xc    AF: 0 
+USED       s: 00E506D4  e: 00E507D4                            size: 0x100 
+FREE HDR   s: 00E507D4  e: 00E507E0  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E507E0  e: 00E5BD90                            size: 0xb5b0 
+
+------- Print 3 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00E506C8     
+pFreeHead: 0x00E4F5B0     
+ pNextFit: 0x00E507D4   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+FREE HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00000000  n: 00E4F714  size: 0xc    AF: 0 
+FREE       s: 00E4F5BC  e: 00E4F6BC                            size: 0x100 
+USED HDR   s: 00E4F6BC  e: 00E4F6C8  p: 00E4F6E8  n: 00000000  size: 0xc    AF: 1 
+USED       s: 00E4F6C8  e: 00E4F6E8                            size: 0x20 
+USED HDR   s: 00E4F6E8  e: 00E4F6F4  p: 00E4F740  n: 00E4F6BC  size: 0xc    AF: 0 
+USED       s: 00E4F6F4  e: 00E4F714                            size: 0x20 
+FREE HDR   s: 00E4F714  e: 00E4F720  p: 00E4F5B0  n: 00E4F76C  size: 0xc    AF: 0 
+FREE       s: 00E4F720  e: 00E4F740                            size: 0x20 
+USED HDR   s: 00E4F740  e: 00E4F74C  p: 00E4F978  n: 00E4F6E8  size: 0xc    AF: 1 
+USED       s: 00E4F74C  e: 00E4F76C                            size: 0x20 
+FREE HDR   s: 00E4F76C  e: 00E4F778  p: 00E4F714  n: 00E4FC84  size: 0xc    AF: 0 
+FREE       s: 00E4F778  e: 00E4F978                            size: 0x200 
+USED HDR   s: 00E4F978  e: 00E4F984  p: 00E4FCC0  n: 00E4F740  size: 0xc    AF: 1 
+USED       s: 00E4F984  e: 00E4FC84                            size: 0x300 
+FREE HDR   s: 00E4FC84  e: 00E4FC90  p: 00E4F76C  n: 00E4FD38  size: 0xc    AF: 0 
+FREE       s: 00E4FC90  e: 00E4FCC0                            size: 0x30 
+USED HDR   s: 00E4FCC0  e: 00E4FCCC  p: 00E4FCFC  n: 00E4F978  size: 0xc    AF: 1 
+USED       s: 00E4FCCC  e: 00E4FCFC                            size: 0x30 
+USED HDR   s: 00E4FCFC  e: 00E4FD08  p: 00E4FD74  n: 00E4FCC0  size: 0xc    AF: 0 
+USED       s: 00E4FD08  e: 00E4FD38                            size: 0x30 
+FREE HDR   s: 00E4FD38  e: 00E4FD44  p: 00E4FC84  n: 00E4FDB0  size: 0xc    AF: 0 
+FREE       s: 00E4FD44  e: 00E4FD74                            size: 0x30 
+USED HDR   s: 00E4FD74  e: 00E4FD80  p: 00E4FFF8  n: 00E4FCFC  size: 0xc    AF: 1 
+USED       s: 00E4FD80  e: 00E4FDB0                            size: 0x30 
+FREE HDR   s: 00E4FDB0  e: 00E4FDBC  p: 00E4FD38  n: 00E501BC  size: 0xc    AF: 0 
+FREE       s: 00E4FDBC  e: 00E4FFF8                            size: 0x23c 
+USED HDR   s: 00E4FFF8  e: 00E50004  p: 00E50044  n: 00E4FD74  size: 0xc    AF: 1 
+USED       s: 00E50004  e: 00E50044                            size: 0x40 
+USED HDR   s: 00E50044  e: 00E50050  p: 00E500B0  n: 00E4FFF8  size: 0xc    AF: 0 
+USED       s: 00E50050  e: 00E500B0                            size: 0x60 
+USED HDR   s: 00E500B0  e: 00E500BC  p: 00E506C8  n: 00E50044  size: 0xc    AF: 0 
+USED       s: 00E500BC  e: 00E501BC                            size: 0x100 
+FREE HDR   s: 00E501BC  e: 00E501C8  p: 00E4FDB0  n: 00E507D4  size: 0xc    AF: 0 
+FREE       s: 00E501C8  e: 00E506C8                            size: 0x500 
+USED HDR   s: 00E506C8  e: 00E506D4  p: 00000000  n: 00E500B0  size: 0xc    AF: 1 
+USED       s: 00E506D4  e: 00E507D4                            size: 0x100 
+FREE HDR   s: 00E507D4  e: 00E507E0  p: 00E501BC  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E507E0  e: 00E5BD90                            size: 0xb5b0 
+
+------- Print 4 -------------
+
+heapStart: 0x00E4F590     
+  heapEnd: 0x00E5BD90   
+
+pUsedHead: 0x00E500B0     
+pFreeHead: 0x00E4F5B0     
+ pNextFit: 0x00E501BC   
+
+Heap Hdr   s: 00E4F590  e: 00E4F5B0                            size: 0x20 
+FREE HDR   s: 00E4F5B0  e: 00E4F5BC  p: 00000000  n: 00E4F714  size: 0xc    AF: 0 
+FREE       s: 00E4F5BC  e: 00E4F6BC                            size: 0x100 
+USED HDR   s: 00E4F6BC  e: 00E4F6C8  p: 00E4F6E8  n: 00000000  size: 0xc    AF: 1 
+USED       s: 00E4F6C8  e: 00E4F6E8                            size: 0x20 
+USED HDR   s: 00E4F6E8  e: 00E4F6F4  p: 00E4F740  n: 00E4F6BC  size: 0xc    AF: 0 
+USED       s: 00E4F6F4  e: 00E4F714                            size: 0x20 
+FREE HDR   s: 00E4F714  e: 00E4F720  p: 00E4F5B0  n: 00E4F76C  size: 0xc    AF: 0 
+FREE       s: 00E4F720  e: 00E4F740                            size: 0x20 
+USED HDR   s: 00E4F740  e: 00E4F74C  p: 00E4F978  n: 00E4F6E8  size: 0xc    AF: 1 
+USED       s: 00E4F74C  e: 00E4F76C                            size: 0x20 
+FREE HDR   s: 00E4F76C  e: 00E4F778  p: 00E4F714  n: 00E4FC84  size: 0xc    AF: 0 
+FREE       s: 00E4F778  e: 00E4F978                            size: 0x200 
+USED HDR   s: 00E4F978  e: 00E4F984  p: 00E4FCC0  n: 00E4F740  size: 0xc    AF: 1 
+USED       s: 00E4F984  e: 00E4FC84                            size: 0x300 
+FREE HDR   s: 00E4FC84  e: 00E4FC90  p: 00E4F76C  n: 00E4FCFC  size: 0xc    AF: 0 
+FREE       s: 00E4FC90  e: 00E4FCC0                            size: 0x30 
+USED HDR   s: 00E4FCC0  e: 00E4FCCC  p: 00E4FD74  n: 00E4F978  size: 0xc    AF: 1 
+USED       s: 00E4FCCC  e: 00E4FCFC                            size: 0x30 
+FREE HDR   s: 00E4FCFC  e: 00E4FD08  p: 00E4FC84  n: 00E4FDB0  size: 0xc    AF: 0 
+FREE       s: 00E4FD08  e: 00E4FD74                            size: 0x6c 
+USED HDR   s: 00E4FD74  e: 00E4FD80  p: 00E50044  n: 00E4FCC0  size: 0xc    AF: 1 
+USED       s: 00E4FD80  e: 00E4FDB0                            size: 0x30 
+FREE HDR   s: 00E4FDB0  e: 00E4FDBC  p: 00E4FCFC  n: 00E501BC  size: 0xc    AF: 0 
+FREE       s: 00E4FDBC  e: 00E50044                            size: 0x288 
+USED HDR   s: 00E50044  e: 00E50050  p: 00E500B0  n: 00E4FD74  size: 0xc    AF: 1 
+USED       s: 00E50050  e: 00E500B0                            size: 0x60 
+USED HDR   s: 00E500B0  e: 00E500BC  p: 00000000  n: 00E50044  size: 0xc    AF: 0 
+USED       s: 00E500BC  e: 00E501BC                            size: 0x100 
+FREE HDR   s: 00E501BC  e: 00E501C8  p: 00E4FDB0  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E501C8  e: 00E5BD90                            size: 0xbbc8 

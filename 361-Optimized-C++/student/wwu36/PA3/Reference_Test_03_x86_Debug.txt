@@ -1,0 +1,60 @@
+-------------------------------------------------
+
+Log File 
+
+Name: Student_ Test_03
+Mode: x86_Debug
+
+-------------------------------------------------
+
+Test3: 
+
+ 1) allocate the biggest Type             
+ 2) free it                                
+                                           
+     Mem mem(Mem::Guard::Type_A); 
+     mem.initialize();                     
+     mem.Print(1);                         
+     void *p = mem.malloc( 0xc7d4 );       
+     mem.Print(2);                         
+     mem.free( p );                        
+     mem.Print(3);                         
+
+------- Print 1 -------------
+
+heapStart: 0x0068DA10     
+  heapEnd: 0x0069A210   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x0068DA30     
+ pNextFit: 0x0068DA30   
+
+Heap Hdr   s: 0068DA10  e: 0068DA30                            size: 0x20 
+FREE HDR   s: 0068DA30  e: 0068DA3C  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 0068DA3C  e: 0069A210                            size: 0xc7d4 
+
+------- Print 2 -------------
+
+heapStart: 0x0068DA10     
+  heapEnd: 0x0069A210   
+
+pUsedHead: 0x0068DA30     
+pFreeHead: 0x00000000     
+ pNextFit: 0x00000000   
+
+Heap Hdr   s: 0068DA10  e: 0068DA30                            size: 0x20 
+USED HDR   s: 0068DA30  e: 0068DA3C  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+USED       s: 0068DA3C  e: 0069A210                            size: 0xc7d4 
+
+------- Print 3 -------------
+
+heapStart: 0x0068DA10     
+  heapEnd: 0x0069A210   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x0068DA30     
+ pNextFit: 0x0068DA30   
+
+Heap Hdr   s: 0068DA10  e: 0068DA30                            size: 0x20 
+FREE HDR   s: 0068DA30  e: 0068DA3C  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 0068DA3C  e: 0069A210                            size: 0xc7d4 

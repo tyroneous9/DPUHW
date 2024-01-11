@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ellipsis", "Ellipsis\Ellipsis.vcxproj", "{AA3B692C-47C7-4345-AF89-C10BB7ACCD9F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F66DEBDC-2142-4AB7-8756-C83C1A9BFDF8} = {F66DEBDC-2142-4AB7-8756-C83C1A9BFDF8}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Parse", "Parse\Parse.vcxproj", "{F66DEBDC-2142-4AB7-8756-C83C1A9BFDF8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA3B692C-47C7-4345-AF89-C10BB7ACCD9F}.Debug|x86.ActiveCfg = Debug|Win32
+		{AA3B692C-47C7-4345-AF89-C10BB7ACCD9F}.Debug|x86.Build.0 = Debug|Win32
+		{F66DEBDC-2142-4AB7-8756-C83C1A9BFDF8}.Debug|x86.ActiveCfg = Debug|Win32
+		{F66DEBDC-2142-4AB7-8756-C83C1A9BFDF8}.Debug|x86.Build.0 = Debug|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD5883E5-230F-4474-B0DC-47EFC31034CA}
+	EndGlobalSection
+EndGlobal

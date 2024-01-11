@@ -1,0 +1,119 @@
+--- NOT LOAD in PLACE ---
+
+
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: enabled            **
+**           Mode: x86 Debug          **
+****************************************
+
+--------------------------------
+    Memory Tracking: start()    
+--------------------------------
+
+------ Testing DEBUG ----------
+
+Original linked list---------------------------
+   Finding Key: 0.509600 ms
+ (Proof)   key: 0x7F9E1B10  x:657018931 y:1315507706 z:1847085303 flag:1
+
+ PASSED: CreateList_Test_Enable_Test 
+ PASSED: Insert_Test_Enable_Test 
+ PASSED: Merge_Test_Enable_Test 
+ PASSED: Combo_Test_Enable_Test 
+ PASSED: WriteToFile_Test_Enable_Test 
+ PASSED: ReadFromFile_Test_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Debug] Ignored: 0
+[x86 Debug]  Passed: 5
+[x86 Debug]  Failed: 0
+
+   Test Count: 5
+ Indiv Checks: 73
+         Mode: x86 Debug 
+
+-----------------
+
+Creation of original List: 15.297100 ms
+
+       Insertion Time: 1759.853821 ms
+           Merge Time: 6.480800 ms
+
+Merge_Vs_Insert Ratio: 271.548859 faster
+
+           Combo Time: 5.276400 ms   Cutoff length: 96
+
+ Combo_Vs_Merge Ratio: 1.228262 faster
+
+    Time to create File: 6.600800 ms  
+  Time to recreate list: 4.754700 ms  
+
+  Verify Time: 0.659100 ms  Result: 1
+
+--------------------------------
+    Memory Tracking: passed 
+--------------------------------
+    Memory Tracking: end()      
+--------------------------------
+
+
+
+
+
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: --> DISABLED <--   **
+**           Mode: x86 Release        **
+****************************************
+
+------------------- Testing RELEASE ----------------------
+
+Original linked list---------------------------
+   Finding Key: 0.168800 ms
+ (Proof)   key: 0x7F9E1B10  x:657018931 y:1315507706 z:1847085303 flag:1
+
+ PASSED: CreateList_Test_Enable_Test 
+ PASSED: Insert_Test_Enable_Test 
+ PASSED: Merge_Test_Enable_Test 
+ PASSED: Combo_Test_Enable_Test 
+ PASSED: WriteToFile_Test_Enable_Test 
+ PASSED: ReadFromFile_Test_Enable_Test 
+
+  --- Tests Results ---    
+
+[x86 Release] Ignored: 0
+[x86 Release]  Passed: 5
+[x86 Release]  Failed: 0
+
+   Test Count: 5
+ Indiv Checks: 73
+         Mode: x86 Release 
+
+-----------------
+
+Creation of original List: 4.899200 ms
+
+       Insertion Time: 1314.261815 ms
+           Merge Time: 4.209600 ms
+
+Merge_Vs_Insert Ratio: 312.205872 faster
+
+           Combo Time: 3.464200 ms   Cutoff length: 96
+
+ Combo_Vs_Merge Ratio: 1.215172 faster
+
+    Time to create File: 4.304300 ms  
+  Time to recreate list: 3.119800 ms  
+
+  Verify Time: 0.305400 ms  Result: 1
+

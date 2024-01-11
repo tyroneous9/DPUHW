@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<automaton alphabet="ab">
+  <state final="true" name="q1">
+    <transition label="b" to="q0"/>
+    <transition label="a" to="q1"/>
+  </state>
+  <state initial="true" name="q0">
+    <transition label="b" to="q0"/>
+    <transition label="a" to="q1"/>
+  </state>
+</automaton>

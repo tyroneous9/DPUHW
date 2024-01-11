@@ -1,0 +1,118 @@
+-------------------------------------------------
+
+Log File 
+
+Name: Student_ Test_17
+Mode: x86_Debug
+
+-------------------------------------------------
+
+
+------- Print 1 -------------
+
+heapStart: 0x011C2080     
+  heapEnd: 0x011CE880   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x011C20A0     
+ pNextFit: 0x011C20A0   
+
+Heap Hdr   s: 011C2080  e: 011C20A0                            size: 0x20 
+FREE HDR   s: 011C20A0  e: 011C20AC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 011C20AC  e: 011CE880                            size: 0xc7d4 
+
+------- Print 2 -------------
+
+heapStart: 0x011C2080     
+  heapEnd: 0x011CE880   
+
+pUsedHead: 0x011CA5E4     
+pFreeHead: 0x00000000     
+ pNextFit: 0x00000000   
+
+Heap Hdr   s: 011C2080  e: 011C20A0                            size: 0x20 
+USED HDR   s: 011C20A0  e: 011C20AC  p: 011C633C  n: 00000000  size: 0xc    AF: 0 
+USED       s: 011C20AC  e: 011C633C                            size: 0x4290 
+USED HDR   s: 011C633C  e: 011C6348  p: 011CA5E4  n: 011C20A0  size: 0xc    AF: 0 
+USED       s: 011C6348  e: 011CA5E4                            size: 0x429c 
+USED HDR   s: 011CA5E4  e: 011CA5F0  p: 00000000  n: 011C633C  size: 0xc    AF: 0 
+USED       s: 011CA5F0  e: 011CE880                            size: 0x4290 
+
+------- Print 3 -------------
+
+heapStart: 0x011C2080     
+  heapEnd: 0x011CE880   
+
+pUsedHead: 0x011CA5E4     
+pFreeHead: 0x011C633C     
+ pNextFit: 0x011C633C   
+
+Heap Hdr   s: 011C2080  e: 011C20A0                            size: 0x20 
+USED HDR   s: 011C20A0  e: 011C20AC  p: 011CA5E4  n: 00000000  size: 0xc    AF: 0 
+USED       s: 011C20AC  e: 011C633C                            size: 0x4290 
+FREE HDR   s: 011C633C  e: 011C6348  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 011C6348  e: 011CA5E4                            size: 0x429c 
+USED HDR   s: 011CA5E4  e: 011CA5F0  p: 00000000  n: 011C20A0  size: 0xc    AF: 1 
+USED       s: 011CA5F0  e: 011CE880                            size: 0x4290 
+
+------- Print 4 -------------
+
+heapStart: 0x011C2080     
+  heapEnd: 0x011CE880   
+
+pUsedHead: 0x011C633C     
+pFreeHead: 0x00000000     
+ pNextFit: 0x00000000   
+
+Heap Hdr   s: 011C2080  e: 011C20A0                            size: 0x20 
+USED HDR   s: 011C20A0  e: 011C20AC  p: 011CA5E4  n: 00000000  size: 0xc    AF: 0 
+USED       s: 011C20AC  e: 011C633C                            size: 0x4290 
+USED HDR   s: 011C633C  e: 011C6348  p: 00000000  n: 011CA5E4  size: 0xc    AF: 0 
+USED       s: 011C6348  e: 011CA5E4                            size: 0x429c 
+USED HDR   s: 011CA5E4  e: 011CA5F0  p: 011C633C  n: 011C20A0  size: 0xc    AF: 0 
+USED       s: 011CA5F0  e: 011CE880                            size: 0x4290 
+
+------- Print 4 -------------
+
+heapStart: 0x011C2080     
+  heapEnd: 0x011CE880   
+
+pUsedHead: 0x011CA5E4     
+pFreeHead: 0x011C633C     
+ pNextFit: 0x011C633C   
+
+Heap Hdr   s: 011C2080  e: 011C20A0                            size: 0x20 
+USED HDR   s: 011C20A0  e: 011C20AC  p: 011CA5E4  n: 00000000  size: 0xc    AF: 0 
+USED       s: 011C20AC  e: 011C633C                            size: 0x4290 
+FREE HDR   s: 011C633C  e: 011C6348  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 011C6348  e: 011CA5E4                            size: 0x429c 
+USED HDR   s: 011CA5E4  e: 011CA5F0  p: 00000000  n: 011C20A0  size: 0xc    AF: 1 
+USED       s: 011CA5F0  e: 011CE880                            size: 0x4290 
+
+------- Print 5 -------------
+
+heapStart: 0x011C2080     
+  heapEnd: 0x011CE880   
+
+pUsedHead: 0x011CA5E4     
+pFreeHead: 0x011C20A0     
+ pNextFit: 0x011C20A0   
+
+Heap Hdr   s: 011C2080  e: 011C20A0                            size: 0x20 
+FREE HDR   s: 011C20A0  e: 011C20AC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 011C20AC  e: 011CA5E4                            size: 0x8538 
+USED HDR   s: 011CA5E4  e: 011CA5F0  p: 00000000  n: 00000000  size: 0xc    AF: 1 
+USED       s: 011CA5F0  e: 011CE880                            size: 0x4290 
+
+------- Print 6 -------------
+
+heapStart: 0x011C2080     
+  heapEnd: 0x011CE880   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x011C20A0     
+ pNextFit: 0x011C20A0   
+
+Heap Hdr   s: 011C2080  e: 011C20A0                            size: 0x20 
+FREE HDR   s: 011C20A0  e: 011C20AC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 011C20AC  e: 011CE880                            size: 0xc7d4 

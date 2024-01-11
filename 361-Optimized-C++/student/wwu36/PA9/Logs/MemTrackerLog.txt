@@ -1,0 +1,31 @@
+
+****************************************
+
+  MemTrackerLog 
+
+       Jun  3 2023  
+       02:08:56  
+
+****************************************
+
+External Libs: 
+
+
+Memory Tracking Stats:
+
+     Application files: 
+                num of leaks: 1 
+          total bytes leaked: 24 
+          largest individual: Leak(0) size: 24 
+
+     External Libs: 
+                num of leaks: 0 
+          total bytes leaked: 0 
+
+CRT Debug Stats: 
+
+    0 bytes in 0 Free Blocks 
+    24 bytes in 1 Normal Blocks 
+    19064 bytes in 75 CRT Blocks 
+    0 bytes in 0 Ignore Blocks 
+    0 bytes in 0 Client Blocks 

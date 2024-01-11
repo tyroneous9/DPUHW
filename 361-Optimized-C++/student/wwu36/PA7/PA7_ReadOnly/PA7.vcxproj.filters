@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="..\Framework\Framework.h">
+      <Filter>_Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="Vect4D.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\_UnitTestConfiguration.h">
+      <Filter>Source Files\Unit Test Configuration %28Enable Tests here%29</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\Matrix_Col_SIMD.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Col_Major</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\Matrix_Row_SIMD.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Row_Major</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\Vect_Col_SIMD.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Col_Major</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\Vect_Row_SIMD.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Row_Major</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Test\PerformanceTest.h">
+      <Filter>_Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\Vect4D_SIMD.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Collide</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\Box_SIMD.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Collide</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PA7\Sphere_SIMD.h">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Collide</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="_Framework">
+      <UniqueIdentifier>{2247e4b8-afde-4487-aae8-ed106c51fa0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="_Test">
+      <UniqueIdentifier>{107099dd-0440-40c2-af8c-fc3c6d6b86d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4564af56-4ffb-4e15-b310-463c2069c999}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Do NOT Modify">
+      <UniqueIdentifier>{66c08a68-c9a6-49d0-9969-ee3f02b38d8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Refactor %28Do not Add or Delete Files%29">
+      <UniqueIdentifier>{e1f8add4-a349-44af-934f-119c18b41ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Refactor %28Do not Add or Delete Files%29\Row_Major">
+      <UniqueIdentifier>{8319777b-9c3d-40a6-9c64-230943c07af4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Refactor %28Do not Add or Delete Files%29\Col_Major">
+      <UniqueIdentifier>{94784c7d-c415-4854-a91a-8bc849de0449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Unit Test Configuration %28Enable Tests here%29">
+      <UniqueIdentifier>{853706f7-dfab-41f1-9af6-8e415778343e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Refactor %28Do not Add or Delete Files%29\Collide">
+      <UniqueIdentifier>{41a975a0-3ffe-4b7b-a6d7-ff7463fff554}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Framework\__DO NOT MODIFY__">
+      <Filter>_Framework</Filter>
+    </None>
+    <None Include="..\Test\__DO NOT MODIFY__">
+      <Filter>_Test</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="Vect4D.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PA7\Matrix_Col_SIMD.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Col_Major</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PA7\Matrix_Row_SIMD.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Row_Major</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PA7\Vect_Col_SIMD.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Col_Major</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PA7\Vect_Row_SIMD.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Row_Major</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Performance_ColMajorCPP.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Performance_ColMajorSIMD.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Performance_RowMajorCpp.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Performance_RowMajorSIMD.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\PerformanceTest.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Unit_Verify_Col_Math.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Unit_Verify_Row_Math.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Source Files\Do NOT Modify</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Performance_CollideCPP.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PA7\Vect4D_SIMD.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Collide</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PA7\Box_SIMD.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Collide</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PA7\Sphere_SIMD.cpp">
+      <Filter>Source Files\Refactor %28Do not Add or Delete Files%29\Collide</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Performance_CollideSIMD.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\Unit_Verify_Collide_Math.cpp">
+      <Filter>_Test</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

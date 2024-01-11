@@ -1,0 +1,106 @@
+<!doctype HTML>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <style>
+    body {font-family: Calibri, Georgia; font-size: 11pt; }
+    h1, h2, h3 {font-family: Cambria, Arial, Helvetica; font-weight: lighter}
+    h1 {color: #4E2A84}
+    h2, h3 {color: #836EAA}
+    h1 {font-size: 26pt; }
+    h2 {font-size: 14pt; }
+    h3 {font-size: 12pt; }
+    pre {font-weight: bold}
+    .code {font-family: Courier New; font-weight: bold; }
+    table {border-radius: 5px; border: 2px solid black; }
+	td, th {border: 1px solid gray; }
+	ul.innerlist {list-style: none; margin: 0; padding: 0}
+  </style>
+  </head>
+
+<body>
+<div id="content">
+<h1>CSC 321/Design and Analysis of Algorithms<br />Take-home final exam</h1>
+<hr />
+<h2>Programming problems</h2>
+<p>
+<strong>Note: </strong> For these problems, your programs must be in Java.
+</p>
+<h3>Divide and conquer: quick selection (12 points)</h3>
+<p>
+Write a program called <code>Select.java</code>.  The input will be a list of numbers in a text file.  Have your program take the name of the file from the command line.  The program will have three methods, as described below.
+</p>
+<p>Implement the QuickSelect method found in figure 1.12 on page 36.   As you can see from that pseudocode, you will have to choose a pivot.  I suggest randomly generating an index <em>p</em> and select <code>A[p]</code>.  You will also have to implement the partition method as well, which you can find in figure 1.8 on page 29.
+</p>
+<p>
+Also implement a main method that:
+<ol>
+<li>Reads the data from the input file into the array A.  This is a list of integers, each separated from the next by one or more whitespace characters.
+<li>Calls the QuickSelect method 3 times, each one taking A and the parameter <em>k</em> set, successively, to 4, n/2, n-1.
+<li>Prints a suitable message with <em>k</em> and the value returned by the quick select method.
+</ol>
+</p>
+<p>
+<strong>Warning</strong> Do NOT sort the array!  Doing so will result in a score of 0.  Sorting requires at least <em>O</em>(<em>n</em> lg <em>n</em>) steps and quick select is supposed to run in linear time.
+</p>
+<p>
+Use the file <a href="feselect.txt">feselect.txt</a> for testing.  If you want to check your answers, sort the numbers separately (not in the program!) and look at the values in positions 4, n/2, and n-1.
+</p>
+<h3>Dynamic programming: LIS (12 points)</h3>
+<p>
+We looked at the Longest Increasing Subsequence (LIS) problem in the textbook (section 3.6).  Using the pseudocode found on page 110, write a program called <code>LIS.java</code> that implements the <code>FastLIS</code> method.  As usual, also implement a main method or section that:
+<ol>
+<li>Declares and initializes an array A with the values 237, 252, 53, 80, 248, 248, 115, 218, 104, 24, 33, 121, 176, 70, 210, 80, 171, 237, 251, 191, 47, 222, 139, 151, 213, 74, 80, 7, 219, 170, 107, 218.
+<li>Calls the LIS method, which takes A as a parameter and returns the length of the longest increasing subsequence.
+<li>Prints the length with a suitable message.
+</ol>
+</p>
+<h3>Greedy method: Minimizing board cuts (12 points)</h3>
+<p>
+You are given a list of allowed lengths for cutting a board of arbitrary length. You need to use the fewest cuts possible to cut the board into pieces of the allowed lengths.  That's done by making a greedy choice: cut as many boards at the longest length as possible, then as many of the second longest length with what remains, and so forth.  For example, if the allowed lengths are [20, 10, 5, 2, 1], you would cut a board of length 22 into a piece of length 20 and a piece of length 2.  If the board is length 19, you would cut it into one length 10 piece, one length 5 piece, and two length 2 pieces.
+</p>
+<p>
+Write a program called <code>CutLengths.java</code> or <code>cutlengths.py</code> to implement the algorithm described above.  Use the list of allowed lengths given above and test your program on (at least) the two boards specified above (length 22 and length 19).  The output should be a list of the allowed lengths and the number of pieces.  For example, for length 19, the output should be:
+<pre>
+Board length 19
+Piece size	Count
+    20		  0
+    10		  1
+     5		  1
+     2		  2
+     1		  0
+</pre>
+</p>
+<h2>Written answers</h2>
+<p>
+<h3>Problem A (6 points)</h3>
+<p>
+Under the (somewhat unreasonable) assumption that the QuickSelect algorithm always chooses a pivot that splits the array into two (almost) equal-sized partitions:
+<ol>
+<li>Write down the recurrence relation the describes how many times a return statement is executed for an array of length n.
+<li>Draw the first three levels and the last level of a recursion tree for this recurrence relation.  For each node, indicate inside the node how many steps are executed by the paritioning step.  Next to each node, indicate the size of the array at that point.
+<li>Use the recursion tree to solve the recurrence relation, that is, write down a big-Oh expression for the running time of this algorithm.
+</ol>
+</p>
+<h3>Problem B (6 points)</h3>
+<p>
+In the cut length problem, the approach described will always result in the fewest number of cuts when using the allowed lengths [20, 10, 5, 2, 1].  Come up with an allowed lengths list containing at least four values for which the greedy algorithm does not result in the fewest number of cuts.  Provide the list and a board length, along with the pieces that the algorithm finds and the optimal solution.
+</p>
+<h3>Problem C (6 points)</h3>
+<p>
+Recall that Dijkstra's algorithm uses a modified breadth-first search (BFS) to find the shortest paths from a given start vertex to every other vertex.  Consider an algorithm using depth-first search (DFS).  We wish to go from the start vertex to some vertex t.  Beginning at the start vertex, select the vertex u that has the lightest edge (the one with the lowest distance) to the start and go to u.  From u, find the lightest edge not going to a vertex already visited, and go there.  Continue in this way until you reach t.  Draw a weighed graph with at least six vertices where this approach fails to output the shortest path.  In the graph, specify which are the start and t vertices and highlight the path it finds and the actual shortest path.
+</p>
+<h2>Hints and guidance</h2>
+<p>
+I will provide hints and more guidance as people begin to work on this and ask questions.  Do not ask vague questions.  Those I won't answer.  Be specific.  An email with the sentence "I can't get my program to work.  Please look at it and give me corrections" will NOT receive a response.
+</p>
+<p>
+Remember, you can always ask me for help.  I may not give it but you should ask.
+</p>
+<h2>Submission instructions</h2>
+<p>
+There are submission slots for each of the parts of this exam, that is, one for each of the programs and one for the written answers.  As usual, submit your source program in the program submission slots and a file called final.docx or final.txt in the written answers slot.  Do NOT submit a PDF.  <strong>Your name must be placed at the top of every file you submit.  Not doing so will cost 2 points for each place it's missing.  This is a total of 8 points.</strong>
+</p>
+</body>
+</html>

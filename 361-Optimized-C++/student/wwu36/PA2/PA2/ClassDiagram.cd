@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HotCold">
+    <Position X="2" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACACAAAIAAkAAAAAIAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA2\PA2\HotCold.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pHotHead" />
+      <Field Name="pColdHead" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="ColdNode">
+    <Position X="5.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAERAAAAAABQgEAAAEAAAAAAAEAAAAAAhgpUEAIAA=</HashCode>
+      <FileName>C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA2\PA2\ColdNode.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotNode">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAEAAAAAIAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA2\PA2\HotNode.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="pCold" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

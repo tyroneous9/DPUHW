@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2023-04-16 Sun 21:37 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSC ¾44: Programming Assignment 1</title>
+<meta name="author" content="Michaël Cadilhac" />
+<meta name="generator" content="Org Mode" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./notes.css" rel="stylesheet" type="text/css" />
+<style>
+#table-of-contents { width: 42%; padding: 0em; padding-left: 1em;}
+body { background: #DDD; }
+table.center { margin: auto; display: table; }
+table.noheader th {font-weight: normal;}
+table.explicithrules td, table.explicithrules th { border-bottom: none; border-top: none; }
+table.explicithrules thead, table.explicithrules tbody { border: 1px solid #CCC; }
+.box { background-color: #EEE; padding: 10px 10px 5px 10px; display: table; width: fit-content; }
+.box-title { border-bottom: 1px solid #CCC; }
+.box-contents { padding-top: 15px; }
+.box p { display: inline; }
+.box ol { margin-top: 0px; }
+</style>
+<style> #table-of-contents { width: 42%; padding: 0em; padding-left: 1em;} </style>
+<style>
+body { background: #DDD; }
+figure {margin: auto; width: fit-content; }
+#table-of-contents { width: 42%; padding: 0em; padding-left: 1em;}
+.note { width: 80%;  margin: auto;  background: beige; padding: 10px; border: grey 1px solid;  font-size: 90%; }
+.machine { background-color: #EEE; padding: 10px 10px 5px 10px; width: fit-content; }
+.machine-title { border-bottom: 1px solid #CCC; }
+.machine-contents { padding-top: 15px; }
+.machine p { display: inline; }
+.machine ol { margin-top: 0px; }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style>
+h2 { position:sticky; top:0em; z-index: 100; margin: 0 }
+h3 { position:sticky; top:0em; z-index: 50;  border-bottom: 1px solid #CCC; padding-top: 40px; margin-top: -40px;}
+h4 { padding-top: 4.2em; margin-top: -4.2em;}
+#table-of-contents h2 { position: relative; background: unset; }
+#content { padding: 20px; background: #FFF; overflow: unset; }
+body { overflow-y: unset !important; }
+#fader { position: fixed; top: 0; right: 0; width: 100%; height: 4.2em; z-index: 25}
+</style>
+<base target="_blank"/>
+<style>.src {background-color: #222222 !important; color: white !important;}.src code {background-color: #222222 !important; color: white !important;}</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<header>
+<h1 class="title">CSC ¾44: Programming Assignment 1</h1>
+<p class="subtitle" role="doc-subtitle">(Last modified: 2023-04-16 21:37)</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org79990d1">1. Files &amp; Deliverables</a>
+<ul>
+<li><a href="#org1969e6b">1.1. Importing and running using Eclipse</a></li>
+<li><a href="#orgb9f7ac5">1.2. Submission and testing</a></li>
+</ul>
+</li>
+<li><a href="#org75aa776">2. Implementing <code>DetAutomaton</code> (26 LLOC/30 pts)</a></li>
+<li><a href="#orge8fb4d0">3. Bonus: <code>complete</code> (13 LLOC/7 pts)</a></li>
+</ul>
+</div>
+</nav>
+<p>
+<div id="fader"></div>
+</p>
+
+<script>
+  $(function() {
+      $(window).scroll(function(){
+          var el = null;
+          var nth = 0;
+          var elnth = -1;
+          var mindist = 99999; 
+          $('h2').each (function () {
+              if ($(this).parent().prop('nodeName') == 'NAV') // Skip the h2 of toc
+                  return
+              nth++;
+              var dist = $(this).offset ().top - $(document).scrollTop () + $(this).height ();
+              if (dist >= 0 && dist < mindist) {
+                  if (el !== null)
+                    el.css ({background: "unset"})
+                  el = $(this)
+                  mindist = dist
+                  elnth = nth
+              }
+              else {
+                 $(this).css ({background: "unset"})
+              }
+          });
+          if (el === null)
+              return
+          var h3siblings = el.parent ().find ("h3");
+          if (h3siblings.length) {
+                var v = $(h3siblings[0]).offset ().top - $(document).scrollTop () - 10
+                if (v < 0) v = 0
+                if (v > 20) v = 20
+                v = 2.6 - (v - 20) / 20 * 1.7
+                $('#fader').height (v + "em")
+          }
+          else
+                $('#fader').height ("2.6em")
+          percent = 100 * (mindist - el.height () - $('#fader').height() / 2) / el.height ();
+          if (percent > 100) percent = 100
+          if (percent < 0) percent = 0
+          col = percent * 0.56 + 200
+          if (mindist <= el.height ())
+              el.css ({background: `rgba(${col}, ${col}, ${col}, ${1-percent/100})`})
+          else
+             el.css ({background: "unset"})
+          // $(this).css({background: `rgb(${col}, ${col}, ${col})`})
+          $('#fader').css ({background: `rgba(${col}, ${col}, ${col}, ${1-percent/100})`})
+      });
+  });
+</script>
+<p>
+This assignment will have you implement the basic methods of a class for
+deterministic automata.  You should not require more than 50 lines of code to
+complete this assignment, however it may take some time for you to get
+comfortable with the structure of the project (the documentation of which is
+provided <a href="https://mc.cdm.depaul.edu/automata/index.html">here</a>).
+</p>
+
+<p>
+The next programming assignments <i>will build on your own code</i>; in other words,
+there is no skipping this assignment.
+</p>
+
+<div id="outline-container-org79990d1" class="outline-2">
+<h2 id="org79990d1"><span class="section-number-2">1.</span> Files &amp; Deliverables</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+All the files are packaged in that <a href="https://mc.cdm.depaul.edu/automata/automata-handout.tar.bz2">tarball</a>.  It contains a folder <code>automata/</code> with
+the following files relevant to this assignment:
+</p>
+<ul class="org-ul">
+<li><code>src/automata/Pair.java</code>: Convenience class to hold a pair of variables.</li>
+<li><code>src/automata/DetAutomaton.java</code>: Implementation of deterministic automata (<i>Your work file</i>).</li>
+<li><code>src/automata/Automaton.java</code>: Abstract class for automata.</li>
+<li><code>src/automata/XML.java</code>: XML import/export utility functions for automata.</li>
+<li><code>test/automata/TestPA1.java</code>: Tests for this assignment.</li>
+<li><code>test/automata/Test.java</code>: Testing utility functions.</li>
+<li><code>test/resources/...</code>: Lots of test files.</li>
+</ul>
+</div>
+
+<div id="outline-container-org1969e6b" class="outline-3">
+<h3 id="org1969e6b"><span class="section-number-3">1.1.</span> Importing and running using Eclipse</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Extract the <a href="https://mc.cdm.depaul.edu/automata/automata-handout.tar.bz2">tarball</a> somewhere, then use <i>File &gt; Import &gt; General &gt; Existing
+Projects into Workspace</i>.  Select the <code>automata</code> folder as the root directory,
+then click <i>Finish</i>.  To run the tests, navigate to <i>automata &gt; test &gt; automata
+&gt; TestPA1.java</i>, then select <i>Run &gt; Run as&#x2026; &gt; Java Application</i>.  The following
+should appear in the <i>Console</i>:
+</p>
+
+<pre class="example" id="org25c92bf">
+[KO] aut-99-2.xml: word daccbbbbaccbdccdbd wrongly rejected
+...
+[OK] aut-1-0.xml
+BONUS EXERCISE
+  [KO] incomplete-aut-78-1.xml: word ccbcbbacccbcccabccccccccacacbcbccccccbcacbabcaaaaabcbcacaacacacccaacaabcbacacbabbaaccab wrongly rejected
+  ...
+  [KO] incomplete-aut-30-1.xml: word ddbabddbadacddabbaaadacbabcdaabcdccccdbcbadaddbadcbcccdbdbdbbb wrongly rejected
+  [KO] incomplete-aut-30-0.xml: word bbaababbabababbbbabaaabbbbbabababbaabbbbabaaaabbbbbbaabaaabbabbbbaababbbaaaabb wrongly rejected
+SCORE: 33/300
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb9f7ac5" class="outline-3">
+<h3 id="orgb9f7ac5"><span class="section-number-3">1.2.</span> Submission and testing</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+You are to submit the file <code>DetAutomaton.java</code> and only this file on D2L before
+the deadline.  To test your file on the grading computer, go to:
+</p>
+
+<p>
+<a href="https://mc.cdm.depaul.edu/"><code>https://mc.cdm.depaul.edu/automata/upload-pa1.html</code></a> using user: <code>dpu</code>, pass: <code>automata</code>.
+</p>
+
+<p>
+and upload your file over there.  <i>This does not constitute a submission, only
+the file uploaded on D2L counts.</i>
+</p>
+
+<p>
+<b>The behavior of the grading computer is the only correct reference.  If your
+ file compiles on your computer but not on the grading computer, it will not be
+ accepted.</b>
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org75aa776" class="outline-2">
+<h2 id="org75aa776"><span class="section-number-2">2.</span> Implementing <code>DetAutomaton</code> (26 LLOC/30 pts)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+You should implement all the functions with a <code>TODO</code> note in
+<code>DetAutomaton.java</code>, except <code>complete</code>.  These methods are listed and described
+in that <a href="https://mc.cdm.depaul.edu/automata/automata/DetAutomaton.html">documentation</a>.
+</p>
+
+<p>
+Remarks:
+</p>
+<ul class="org-ul">
+<li>States are implemented as <code>String</code> and alphabet letters as <code>Character</code>;</li>
+<li><p>
+It is suggested that you define private variables that match the 5 components
+of the definition of automaton.  In particular, I strongly suggest you use:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #00ffff;">private</span> <span style="color: #98fb98;">Map</span>&lt;<span style="color: #98fb98;">Pair</span>&lt;<span style="color: #98fb98;">String</span>, <span style="color: #98fb98;">Character</span>&gt;, <span style="color: #98fb98;">String</span>&gt; <span style="color: #eedd82;">delta</span>;
+</pre>
+</div>
+<p>
+This corresponds tightly to the mathematical object, since &delta;, the
+transition function, is a function that <i>maps</i> a <i>pair</i> (State, Letter) to a
+State.
+</p></li>
+<li><p>
+Speaking of <code>Pair</code> (documented <a href="https://mc.cdm.depaul.edu/automata/automata/Pair.html">here</a>), this is a standard type that I&rsquo;ve
+imported from <code>javafx</code>.  Given a <code>Pair&lt;T1, T2&gt; pair</code>, you access the first
+element with <code>pair.getKey()</code> and the second with <code>pair.getValue()</code>.  For
+instance:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #98fb98;">Pair</span>&lt;<span style="color: #98fb98;">Integer</span>, <span style="color: #98fb98;">Double</span>&gt; <span style="color: #eedd82;">pair</span> = <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">Pair</span>&lt;&gt; (42, 68.9999);
+</pre>
+</div>
+<p>
+creates a pair, the first element (<code>pair.getKey()</code>) is an integer, the second
+(<code>pair.getValue()</code>) a floating number.
+</p></li>
+<li><p>
+The tests that I provide are comprehensive, but not incremental.  During
+development, it will be a good idea to write simple use cases, using the XML
+functions of <a href="https://mc.cdm.depaul.edu/automata/automata/XML.html"><code>XML</code></a> or not.  For instance, you may want to add this
+to your <code>DetAutomaton.java</code>:
+</p>
+<div class="org-src-container">
+<pre class="src src-java"><span style="color: #00ffff;">static</span> <span style="color: #00ffff;">public</span> <span style="color: #98fb98;">void</span> <span style="color: #87cefa;">main</span> (<span style="color: #98fb98;">String</span>[] <span style="color: #eedd82;">args</span>) {
+<span style="color: #696969;"> </span> <span style="color: #98fb98;">DetAutomaton</span> <span style="color: #eedd82;">A</span> = <span style="color: #00ffff;">new</span> <span style="color: #98fb98;">DetAutomaton</span> (<span style="color: #ffa07a;">"ab"</span>);
+<span style="color: #696969;"> </span> A.addState (<span style="color: #ffa07a;">"q0"</span>);
+<span style="color: #696969;"> </span> A.addState (<span style="color: #ffa07a;">"q1"</span>);
+<span style="color: #696969;"> </span> A.setInitial (<span style="color: #ffa07a;">"q0"</span>);
+<span style="color: #696969;"> </span> A.setFinal (<span style="color: #ffa07a;">"q1"</span>);
+<span style="color: #696969;"> </span> A.addTransition (<span style="color: #ffa07a;">"q0"</span>, <span style="color: #ffa07a;">'a'</span>, <span style="color: #ffa07a;">"q0"</span>);
+<span style="color: #696969;"> </span> A.addTransition (<span style="color: #ffa07a;">"q0"</span>, <span style="color: #ffa07a;">'b'</span>, <span style="color: #ffa07a;">"q1"</span>);
+<span style="color: #696969;"> </span> A.addTransition (<span style="color: #ffa07a;">"q1"</span>, <span style="color: #ffa07a;">'a'</span>, <span style="color: #ffa07a;">"q1"</span>);
+<span style="color: #696969;"> </span> A.addTransition (<span style="color: #ffa07a;">"q1"</span>, <span style="color: #ffa07a;">'b'</span>, <span style="color: #ffa07a;">"q1"</span>);
+<span style="color: #696969;"> </span> System.out.println (<span style="color: #ffa07a;">"A should accept aba: "</span> + A.accepts (<span style="color: #ffa07a;">"aba"</span>));
+<span style="color: #696969;"> </span> System.out.println (<span style="color: #ffa07a;">"A should reject aaa: "</span> + !A.accepts (<span style="color: #ffa07a;">"aaa"</span>));
+}
+</pre>
+</div></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orge8fb4d0" class="outline-2">
+<h2 id="orge8fb4d0"><span class="section-number-2">3.</span> Bonus: <code>complete</code> (13 LLOC/7 pts)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+An automaton is <i>complete</i> if for all states \(q\) and all letters \(a\) in the
+alphabet, there is a transition from \(q\) labeled \(a\).  This may seem strange,
+given that \(\delta\) is a function, so it should always map \((q, a)\) to
+some state; but in general, \(\delta\) is what we call a <i>partial function</i>: there
+may be pairs mapped to nothing.
+</p>
+
+<p>
+However, any incomplete automaton can be made complete by adding one state,
+usually called a <i>sink</i> state.  All missing transitions will point to the sink
+state, and the sink state will have a self-loop on each letter.
+</p>
+
+<p>
+In this bonus exercise, you should write the function <code>complete</code> that completes
+the automaton <i>in place</i> (that means that you are not allowed to create a new
+automaton from scratch in that function).  You should add a state <b>if and only
+if</b> the automaton is not complete.  Be careful when adding a new state, you
+should make sure that the state is actually new.
+</p>
+
+<p>
+<i>Hint:</i> Have a close look at the documentation, in particular, have a look at
+the methods inherited.  You may also gather some ideas from the testing code.
+</p>
+</div>
+</div>
+</div>
+</body>
+</html>

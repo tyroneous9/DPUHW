@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<automaton alphabet="ab">
+  <state name="q71">
+    <transition label="b" to="q52"/>
+    <transition label="a" to="q29"/>
+  </state>
+  <state name="q70">
+    <transition label="b" to="q6"/>
+    <transition label="a" to="q69"/>
+  </state>
+  <state name="q31">
+    <transition label="a" to="q65"/>
+    <transition label="b" to="q38"/>
+  </state>
+  <state name="q30">
+    <transition label="a" to="q62"/>
+    <transition label="b" to="q59"/>
+  </state>
+  <state name="q33">
+    <transition label="b" to="q64"/>
+    <transition label="a" to="q47"/>
+  </state>
+  <state name="q32">
+    <transition label="b" to="q43"/>
+    <transition label="a" to="q4"/>
+  </state>
+  <state name="q35">
+    <transition label="a" to="q50"/>
+    <transition label="b" to="q11"/>
+  </state>
+  <state name="q34">
+    <transition label="b" to="q36"/>
+    <transition label="a" to="q19"/>
+  </state>
+  <state name="q37">
+    <transition label="a" to="q62"/>
+    <transition label="b" to="q32"/>
+  </state>
+  <state final="true" name="q36">
+    <transition label="b" to="q0"/>
+    <transition label="a" to="q3"/>
+  </state>
+  <state name="q39">
+    <transition label="a" to="q58"/>
+    <transition label="b" to="q29"/>
+  </state>
+  <state name="q38">
+    <transition label="b" to="q22"/>
+    <transition label="a" to="q14"/>
+  </state>
+  <state name="q40">
+    <transition label="b" to="q31"/>
+    <transition label="a" to="q2"/>
+  </state>
+  <state name="q42">
+    <transition label="b" to="q41"/>
+    <transition label="a" to="q9"/>
+  </state>
+  <state name="q41">
+    <transition label="a" to="q1"/>
+    <transition label="b" to="q9"/>
+  </state>
+  <state name="q44">
+    <transition label="a" to="q55"/>
+    <transition label="b" to="q17"/>
+  </state>
+  <state name="q43">
+    <transition label="b" to="q71"/>
+    <transition label="a" to="q52"/>
+  </state>
+  <state name="q46">
+    <transition label="a" to="q24"/>
+    <transition label="b" to="q69"/>
+  </state>
+  <state name="q45">
+    <transition label="b" to="q60"/>
+    <transition label="a" to="q29"/>
+  </state>
+  <state name="q48">
+    <transition label="a" to="q52"/>
+    <transition label="b" to="q23"/>
+  </state>
+  <state final="true" name="q47">
+    <transition label="a" to="q50"/>
+    <transition label="b" to="q43"/>
+  </state>
+  <state name="q49">
+    <transition label="b" to="q40"/>
+    <transition label="a" to="q69"/>
+  </state>
+  <state name="q51">
+    <transition label="a" to="q44"/>
+    <transition label="b" to="q58"/>
+  </state>
+  <state name="q50">
+    <transition label="b" to="q14"/>
+    <transition label="a" to="q49"/>
+  </state>
+  <state final="true" name="q53">
+    <transition label="b" to="q57"/>
+    <transition label="a" to="q9"/>
+  </state>
+  <state name="q52">
+    <transition label="a" to="q50"/>
+    <transition label="b" to="q23"/>
+  </state>
+  <state name="q11">
+    <transition label="b" to="q40"/>
+    <transition label="a" to="q63"/>
+  </state>
+  <state name="q55">
+    <transition label="a" to="q32"/>
+    <transition label="b" to="q46"/>
+  </state>
+  <state name="q10">
+    <transition label="a" to="q40"/>
+    <transition label="b" to="q62"/>
+  </state>
+  <state name="q54">
+    <transition label="b" to="q33"/>
+    <transition label="a" to="q25"/>
+  </state>
+  <state name="q13">
+    <transition label="b" to="q32"/>
+    <transition label="a" to="q12"/>
+  </state>
+  <state name="q57">
+    <transition label="b" to="q34"/>
+    <transition label="a" to="q8"/>
+  </state>
+  <state final="true" name="q12">
+    <transition label="a" to="q40"/>
+    <transition label="b" to="q54"/>
+  </state>
+  <state final="true" name="q56">
+    <transition label="b" to="q13"/>
+    <transition label="a" to="q6"/>
+  </state>
+  <state name="q15">
+    <transition label="a" to="q57"/>
+    <transition label="b" to="q7"/>
+  </state>
+  <state final="true" name="q59">
+    <transition label="b" to="q47"/>
+    <transition label="a" to="q16"/>
+  </state>
+  <state final="true" name="q14">
+    <transition label="a" to="q63"/>
+    <transition label="b" to="q5"/>
+  </state>
+  <state name="q58">
+    <transition label="a" to="q51"/>
+    <transition label="b" to="q20"/>
+  </state>
+  <state name="q17">
+    <transition label="a" to="q5"/>
+    <transition label="b" to="q15"/>
+  </state>
+  <state name="q16">
+    <transition label="a" to="q13"/>
+    <transition label="b" to="q49"/>
+  </state>
+  <state name="q19">
+    <transition label="a" to="q30"/>
+    <transition label="b" to="q44"/>
+  </state>
+  <state final="true" name="q18">
+    <transition label="a" to="q61"/>
+    <transition label="b" to="q7"/>
+  </state>
+  <state initial="true" name="q0">
+    <transition label="b" to="q11"/>
+    <transition label="a" to="q19"/>
+  </state>
+  <state name="q1">
+    <transition label="b" to="q56"/>
+    <transition label="a" to="q18"/>
+  </state>
+  <state name="q2">
+    <transition label="b" to="q28"/>
+    <transition label="a" to="q18"/>
+  </state>
+  <state name="q3">
+    <transition label="b" to="q0"/>
+    <transition label="a" to="q5"/>
+  </state>
+  <state name="q4">
+    <transition label="a" to="q42"/>
+    <transition label="b" to="q21"/>
+  </state>
+  <state name="q5">
+    <transition label="a" to="q71"/>
+    <transition label="b" to="q8"/>
+  </state>
+  <state name="q6">
+    <transition label="a" to="q58"/>
+    <transition label="b" to="q17"/>
+  </state>
+  <state final="true" name="q7">
+    <transition label="b" to="q61"/>
+    <transition label="a" to="q29"/>
+  </state>
+  <state name="q8">
+    <transition label="a" to="q31"/>
+    <transition label="b" to="q48"/>
+  </state>
+  <state name="q9">
+    <transition label="b" to="q62"/>
+    <transition label="a" to="q64"/>
+  </state>
+  <state final="true" name="q60">
+    <transition label="b" to="q66"/>
+    <transition label="a" to="q6"/>
+  </state>
+  <state name="q62">
+    <transition label="b" to="q41"/>
+    <transition label="a" to="q65"/>
+  </state>
+  <state final="true" name="q61">
+    <transition label="a" to="q56"/>
+    <transition label="b" to="q19"/>
+  </state>
+  <state name="q20">
+    <transition label="a" to="q49"/>
+    <transition label="b" to="q19"/>
+  </state>
+  <state name="q64">
+    <transition label="b" to="q1"/>
+    <transition label="a" to="q66"/>
+  </state>
+  <state name="q63">
+    <transition label="b" to="q66"/>
+    <transition label="a" to="q9"/>
+  </state>
+  <state final="true" name="q22">
+    <transition label="a" to="q32"/>
+    <transition label="b" to="q18"/>
+  </state>
+  <state name="q66">
+    <transition label="a" to="q10"/>
+    <transition label="b" to="q26"/>
+  </state>
+  <state name="q21">
+    <transition label="b" to="q14"/>
+    <transition label="a" to="q28"/>
+  </state>
+  <state name="q65">
+    <transition label="a" to="q10"/>
+    <transition label="b" to="q11"/>
+  </state>
+  <state name="q24">
+    <transition label="a" to="q41"/>
+    <transition label="b" to="q68"/>
+  </state>
+  <state name="q68">
+    <transition label="b" to="q12"/>
+    <transition label="a" to="q37"/>
+  </state>
+  <state name="q23">
+    <transition label="a" to="q24"/>
+    <transition label="b" to="q59"/>
+  </state>
+  <state name="q67">
+    <transition label="a" to="q0"/>
+    <transition label="b" to="q35"/>
+  </state>
+  <state name="q26">
+    <transition label="b" to="q14"/>
+    <transition label="a" to="q34"/>
+  </state>
+  <state final="true" name="q25">
+    <transition label="b" to="q1"/>
+    <transition label="a" to="q23"/>
+  </state>
+  <state name="q69">
+    <transition label="a" to="q57"/>
+    <transition label="b" to="q38"/>
+  </state>
+  <state name="q28">
+    <transition label="a" to="q33"/>
+    <transition label="b" to="q67"/>
+  </state>
+  <state name="q27">
+    <transition label="a" to="q64"/>
+    <transition label="b" to="q57"/>
+  </state>
+  <state name="q29">
+    <transition label="a" to="q61"/>
+    <transition label="b" to="q55"/>
+  </state>
+</automaton>

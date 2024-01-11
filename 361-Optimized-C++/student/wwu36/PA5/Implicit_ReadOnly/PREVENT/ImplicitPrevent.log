@@ -1,0 +1,30 @@
+﻿  Implicit_Prevention_Test.cpp
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(29,9): error C2220: the following warning is treated as an error
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(29,9): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(30,9): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(31,9): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(41,9): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(42,9): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(43,9): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(45,29): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(45,19): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(45,9): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(46,29): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(47,29): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(47,19): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(47,9): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(48,19): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(49,19): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(49,9): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(53,28): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(53,18): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(53,8): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(54,28): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(55,28): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(55,18): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(55,8): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(56,18): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(57,18): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA5\Test\Implicit_Prevention_Test.cpp(57,8): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+  No_Implicit.cpp
+  Generating Code...

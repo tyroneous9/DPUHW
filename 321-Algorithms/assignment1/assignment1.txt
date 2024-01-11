@@ -1,0 +1,63 @@
+Problem A. Rewrite Karatsuba's algorithm given on page 41 of the textbook where by replacing every occurrence of the numeral 10 by the numeral 2. 
+With this change, the variable n will stand for the number of bits in the integers x and y and not the number of base 10 digits. Also, replace multiplication by a power of 10 with a left bit shift. For example, multiplying a variable x by 2^n is the same as left bit shifting x: x << n.
+
+    FastMultiply(x, y, n)
+        if n = 1
+            return x · y
+        else
+            m ← ceiling(n >> m)
+            a ← floor(x >> m); b ← x mod 2^m 〈〈x = a << m + b〉〉
+            c ← floor(y >> m); d ← y mod 2m 〈〈y = c << m + d〉〉
+            e ← FastMultiply(a, c, m)
+            f ← FastMultiply(b, d, m)
+            g ← FastMultiply(a − b, c − d, m)
+            return e << (1 << (m << 1)) + (e + f − g) << m + f
+
+Problem C. Complete exercise 13 from chapter 1 of the textbook (page 51 in the PDF), which asks for an algorithm that counts the number of inversions in an array of length n in O(n log n) steps. 
+As suggested there, modify the merge sort algorithm to do this. Specify this in pseudocode.
+
+    mergeSort(array) 
+        return mergeSort(array, 0, array.length)
+
+    mergeSort(array, left, right) 
+        if (right>left)
+            mid = (right+left)/2;
+            inversions += mergeSort(array, left, mid);
+            inversions += mergeSort(array, mid+1, r);
+            inversions += merge(array, left, mid+1, r);
+        return inversions
+
+    merge(array, left, mid, right) 
+        while (left <= mid && right > mid+1)
+            if (array[left] < array[right])
+                mergedArr[mergedIndex] = array[left]
+                left++
+            else
+                mergedArr[mergedIndex] = array[right]
+                left++
+                inversions += mid-left;
+            mergedIndex++
+        while (left <= mid)
+            mergedArr[mergedIndex++] = array[left++];
+        while (mid <= right)
+            mergedArr[mergedIndex++] = array[mid++];
+        for (0 to mergedIndex)
+            array[i] = mergedArr[i]
+        return inversions
+
+Problem E. Complete exercise 27(a) from chapter 1 of the textbook (page 59 in the PDF). You may describe the algorithm in either pseudocode or plain English.
+
+    maxHeap() {
+        heap node: a linked list of delegates in the same party
+        heap max: the linked list with the greatest number of nodes
+        insert: traverses through the entire heap and checks the first delegate of each list for agreeableness. 
+                if no such list is found, create a new list with the delegate
+    }
+
+    findMajority() {
+        for each delegate:
+            if the delegate agrees with current majority (the heap max)
+                add the delegate to the node (a linked list of delegates)
+            else
+                traverse through the other parties and add if they agree (insert into the heap)
+    }

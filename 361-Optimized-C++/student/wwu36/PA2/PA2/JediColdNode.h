@@ -1,0 +1,40 @@
+//-----------------------------------------------------------------------------
+// Copyright 2023, Ed Keenan, all rights reserved.
+//----------------------------------------------------------------------------- 
+
+#ifndef JEDI_COLD_NODE_H
+#define JEDI_COLD_NODE_H
+
+class Node;
+
+class JediColdNode
+{
+public:
+	JediColdNode& operator = (const Node& r);
+	// You CANNOT add additional data to this class
+	int    key;
+	char   aa;
+	char   bb;
+	char   cc;
+	char   dd;
+	float	x;
+	float	y;
+	float	z;
+	float   w;
+	Vect	A;
+	Vect	B;
+	Vect	C;
+	Vect    D;
+	Matrix	MA;
+	Matrix	MB;
+	Matrix	MC;
+	Matrix	MD;
+	Matrix  ME;
+	char	name[Node::NAME_SIZE];
+};
+
+
+#endif
+
+// ---  End of File ---
+

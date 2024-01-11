@@ -1,0 +1,1 @@
+ab:a*|a*|e|ba*|a*ea*a(b*b*a*(e*|e)*e*|(a*|b*(e))*)*

@@ -1,0 +1,51 @@
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193532216          **
+**  Tools Version: 14.35.32215        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: --> DISABLED <--   **
+**           Mode: x86 Release        **
+****************************************
+
+------------------- Testing RELEASE ----------------------
+
+ PASSED: Collide_Tests_Test 
+ PASSED: Col_Tests_Test 
+ PASSED: Row_Tests_Test 
+
+  --- Tests Results ---    
+
+[x86 Release] Ignored: 0
+[x86 Release]  Passed: 3
+[x86 Release]  Failed: 0
+
+   Test Count: 3
+ Indiv Checks: 324
+         Mode: x86 Release 
+
+-----------------
+
+Performance tests: 
+    Begin()
+
+---------- Collide ----------------
+        collide Orig: 4.304692 s   :66462247
+                SIMD: 1.077718 s   :66462247
+        collide SIMD: 1.077718 s ---> Unit Test Passed 
+               Ratio: 3.994264
+
+---------- rowMajor ----------------
+       rowMajor Orig: 3.690784 s   :2.688214 2.448029 4.739550 0.747000
+                SIMD: 2.001987 s   :2.688214 2.448029 4.739550 0.747000
+       rowMajor SIMD: 2.001987 s ---> Unit Test Passed 
+               Ratio: 1.843560
+
+---------- colMajor ----------------
+       colMajor Orig: 9.382048 s    :1.334378 2.824099 4.656515 1.313000
+                SIMD: 1.970074 s    :1.334379 2.824100 4.656515 1.313000
+       colMajor SIMD: 1.970074 s ---> Unit Test Passed
+               Ratio: 4.762281
+
+Performance tests: done() 
+

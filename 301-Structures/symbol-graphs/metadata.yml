@@ -1,0 +1,12 @@
+---
+:id: 94330647
+:submitters:
+- :name: Wesley Wu
+  :email: wwu36@depaul.edu
+:created_at: !ruby/object:ActiveSupport::TimeWithZone
+  utc: 2021-10-17 19:27:27.005742000 Z
+  zone: !ruby/object:ActiveSupport::TimeZone
+    name: America/Los_Angeles
+  time: 2021-10-17 12:27:27.005742000 Z
+:status: processed
+:score: 20.0

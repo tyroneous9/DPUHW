@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<automaton alphabet="ab">
+  <state name="q1">
+    <transition label="b" to="q1"/>
+    <transition label="a" to="q2"/>
+  </state>
+  <state name="q2">
+    <transition label="b" to="q3"/>
+    <transition label="a" to="q4"/>
+  </state>
+  <state name="q3">
+    <transition label="b" to="q2"/>
+    <transition label="a" to="q1"/>
+  </state>
+  <state name="q4">
+    <transition label="b" to="q1"/>
+    <transition label="a" to="q1"/>
+  </state>
+  <state initial="true" name="q0">
+    <transition label="b" to="q2"/>
+    <transition label="a" to="q2"/>
+  </state>
+</automaton>

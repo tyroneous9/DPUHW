@@ -1,0 +1,116 @@
+
+****************************************
+**      Framework: 3.81               **
+**   C++ Compiler: 193431937          **
+**  Tools Version: 14.34.31933        **
+**    Windows SDK: 10.0.20348.0       **
+**   Mem Tracking: --> DISABLED <--   **
+**           Mode: x86 Release        **
+****************************************
+
+------------------- Testing RELEASE ----------------------
+
+data A:
+  0x00: 00 00 00 00 
+  0x04: 00 aa aa aa 
+------------------------
+size : 8  padding : 3 
+
+data B:
+  0x00: 00 00 00 00 
+  0x04: 00 00 00 00 
+  0x08: 00 aa aa aa 
+  0x0c: 00 00 00 00 
+------------------------
+size : 16  padding : 3 
+
+data C:
+  0x00: 00 aa aa aa 
+  0x04: aa aa aa aa 
+  0x08: 00 00 00 00 
+  0x0c: 00 00 00 00 
+  0x10: 00 aa aa aa 
+  0x14: aa aa aa aa 
+------------------------
+size : 24  padding : 14 
+
+data D:
+  0x00: 00 00 00 00 
+  0x04: 00 aa aa aa 
+  0x08: 00 00 00 00 
+  0x0c: 00 00 00 00 
+  0x10: 00 00 00 00 
+  0x14: 00 00 00 00 
+  0x18: 00 aa aa aa 
+  0x1c: 00 00 00 00 
+  0x20: 00 aa aa aa 
+  0x24: aa aa aa aa 
+  0x28: 00 aa aa aa 
+  0x2c: aa aa aa aa 
+  0x30: 00 00 00 00 
+  0x34: 00 00 00 00 
+  0x38: 00 aa aa aa 
+  0x3c: aa aa aa aa 
+------------------------
+size : 64  padding : 27 
+
+data E:
+  0x00: 00 00 00 00 
+  0x04: 00 aa aa aa 
+  0x08: 00 aa aa aa 
+  0x0c: aa aa aa aa 
+  0x10: 00 00 00 00 
+  0x14: 00 00 00 00 
+  0x18: 00 aa aa aa 
+  0x1c: aa aa aa aa 
+  0x20: 00 aa aa aa 
+  0x24: 00 00 00 00 
+  0x28: 00 00 00 00 
+  0x2c: 00 aa aa aa 
+  0x30: 00 00 00 00 
+  0x34: aa aa aa aa 
+------------------------
+size : 56  padding : 27 
+
+ PASSED: Print_Alignment_Test 
+ PASSED: Rework_Alignment_Test 
+ PASSED: FindKey_Bloated_Test 
+ PASSED: Convert_HotCold_Test 
+ PASSED: Link_HotCold_Test 
+
+ --- HotCold Problem ------------------
+
+  Bloated List create: 2.113994 s
+      HotCold convert: 59.462201 ms
+
+         Bloated find: 9.196000 ms
+         HotCold find: 0.574700 ms
+
+                Ratio: 16.001392 
+
+ PASSED: Timing_HotCold_Test 
+ PASSED: Jedi_Convert_HotCold_Test 
+
+ --- JEDI Problem ------------------
+
+  Jedi Bloated List create: 1.978690 s
+      Jedi HotCold convert: 59.938101 ms
+
+         Jedi Bloated find: 8.694300 ms
+         Jedi HotCold find: 0.182600 ms
+
+                Jedi Ratio: 47.613910 
+
+ PASSED: Jedi_Timing_HotCold_Test 
+
+  --- Tests Results ---    
+
+[x86 Release] Ignored: 0
+[x86 Release]  Passed: 8
+[x86 Release]  Failed: 0
+
+   Test Count: 8
+ Indiv Checks: 4672
+         Mode: x86 Release 
+
+-----------------

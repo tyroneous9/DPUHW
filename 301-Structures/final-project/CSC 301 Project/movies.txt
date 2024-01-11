@@ -1,0 +1,201 @@
+200
+Avatar	2847246203	
+Avengers: Endgame	2797501328	
+Titanic	2201647264	
+Star Wars: Episode VII - The Force Awakens	2069521700	
+Avengers: Infinity War	2048359754	
+Jurassic World	1670516444	
+The Lion King	1667635327	
+The Avengers	1518815515	
+Furious 7	1515341399	
+Frozen II	1450026933	
+Avengers: Age of Ultron	1402809540	
+Black Panther	1347597973	
+Harry Potter and the Deathly Hallows: Part 2	1342321665	
+Star Wars: Episode VIII - The Last Jedi	1332698830	
+Jurassic World: Fallen Kingdom	1310466296	
+Frozen	1281508100	
+Beauty and the Beast	1273576220	
+Incredibles 2	1244639527	
+The Fate of the Furious	1236005118	
+Iron Man 3	1214811252	
+Minions	1159444662	
+Captain America: Civil War	1153337496	
+Aquaman	1148485886	
+The Lord of the Rings: The Return of the King	1146030912	
+Spider-Man: Far from Home	1131927996	
+Captain Marvel	1128462972	
+Transformers: Dark of the Moon	1123794079	
+Skyfall	1108569499	
+Transformers: Age of Extinction	1104054072	
+The Dark Knight Rises	1081142612	
+Star Wars: Episode IX - The Rise of Skywalker	1078232589	
+Joker	1074419384	
+Toy Story 4	1073394593	
+Toy Story 3	1066970811	
+Pirates of the Caribbean: Dead Man's Chest	1066179747	
+The Lion King	1063611805	
+Rogue One: A Star Wars Story	1056057720	
+Aladdin	1050693953	
+Pirates of the Caribbean: On Stranger Tides	1045713802	
+Despicable Me 3	1034800131	
+Jurassic Park	1033928303	
+Finding Dory	1028570942	
+Star Wars: Episode I - The Phantom Menace	1027082707	
+Alice in Wonderland	1025468216	
+Zootopia	1024121104	
+The Hobbit: An Unexpected Journey	1017003568	
+Harry Potter and the Sorcerer's Stone	1009472460	
+The Dark Knight	1005973645	
+Harry Potter and the Deathly Hallows: Part 1	977043483	
+Despicable Me 2	970766005	
+The Jungle Book	966554929	
+Jumanji: Welcome to the Jungle	962542945	
+The Hobbit: The Battle of the Five Armies	962182865	
+Pirates of the Caribbean: At World's End	960996492	
+The Hobbit: The Desolation of Smaug	959007513	
+The Lord of the Rings: The Two Towers	947495095	
+Harry Potter and the Order of the Phoenix	942172396	
+Finding Nemo	940352645	
+Harry Potter and the Half-Blood Prince	934454096	
+Shrek 2	928760770	
+Bohemian Rhapsody	911100727	
+The Lord of the Rings: The Fellowship of the Ring	897690072	
+Harry Potter and the Goblet of Fire	896678241	
+Spider-Man 3	894983373	
+Ice Age: Dawn of the Dinosaurs	886686817	
+Spectre	880681519	
+Spider-Man: Homecoming	880166924	
+Harry Potter and the Chamber of Secrets	879602366	
+Ice Age: Continental Drift	877244782	
+The Secret Life of Pets	875458631	
+Batman v Superman: Dawn of Justice	873637528	
+Wolf Warrior 2	870325439	
+Star Wars: Episode III - Revenge of the Sith	868390560	
+The Hunger Games: Catching Fire	865011746	
+Guardians of the Galaxy Vol. 2	863756051	
+Inside Out	858848019	
+Venom	856085151	
+Thor: Ragnarok	853983911	
+Inception	836836967	
+Transformers: Revenge of the Fallen	836303693	
+The Twilight Saga: Breaking Dawn - Part 2	829747654	
+The Battle at Lake Changjin	828100000	
+Spider-Man	825025036	
+Wonder Woman	822824522	
+Hi, Mom	822009764	
+Independence Day	817400891	
+Fantastic Beasts and Where to Find Them	814044001	
+Shrek the Third	813367380	
+Coco	807817888	
+Jumanji: The Next Level	800059707	
+Harry Potter and the Prisoner of Azkaban	797361618	
+Pirates of the Caribbean: Dead Men Tell No Tales	794881442	
+E.T. the Extra-Terrestrial	792910554	
+Mission: Impossible - Fallout	791657398	
+2012	791217826	
+Indiana Jones and the Kingdom of the Crystal Skull	790653942	
+Spider-Man 2	788976453	
+Fast & Furious 6	788680968	
+Deadpool 2	786470484	
+Deadpool	782836791	
+Star Wars: Episode IV - A New Hope	775398007	
+Guardians of the Galaxy	773350147	
+The Da Vinci Code	760006945	
+Fast & Furious Presents: Hobbs & Shaw	759056935	
+Maleficent	758411779	
+The Amazing Spider-Man	757930663	
+The Hunger Games: Mockingjay - Part 1	755356711	
+Shrek Forever After	752600867	
+Madagascar 3: Europe's Most Wanted	746921274	
+Suicide Squad	746846894	
+X-Men: Days of Future Past	746045700	
+The Chronicles of Narnia: The Lion, the Witch and the Wardrobe	745013115	
+Monsters University	743559645	
+The Matrix Reloaded	741847937	
+Up	735099102	
+Ne Zha	726264074	
+Gravity	723192705	
+F9: The Fast Saga	721077945	
+Captain America: The Winter Soldier	714421503	
+The Twilight Saga: Breaking Dawn - Part 1	712205856	
+The Twilight Saga: New Moon	711025481	
+Dawn of the Planet of the Apes	710644566	
+Transformers	709709780	
+The Amazing Spider-Man 2	708982323	
+It	701796444	
+Interstellar	701729206	
+The Wandering Earth	699992512	
+The Twilight Saga: Eclipse	698491347	
+Mission: Impossible - Ghost Protocol	694713380	
+The Hunger Games	694394724	
+Detective Chinatown 3	686257563	
+Mission: Impossible - Rogue Nation	682716636	
+Forrest Gump	678226133	
+Doctor Strange	677796076	
+The Sixth Sense	672806432	
+Man of Steel	668045518	
+Ice Age: The Meltdown	667094506	
+Kung Fu Panda 2	665692281	
+The Hunger Games: Mockingjay - Part 2	658344137	
+Justice League	657926987	
+Big Hero 6	657869686	
+Fantastic Beasts: The Crimes of Grindelwald	654855901	
+Pirates of the Caribbean: The Curse of the Black Pearl	654264015	
+Star Wars: Episode II - Attack of the Clones	653779970	
+Thor: The Dark World	644783140	
+Moana	644136488	
+Sing	634208384	
+Kung Fu Panda	631746197	
+The Incredibles	631607053	
+The Martian	630162448	
+Hancock	629443428	
+Fast Five	626137675	
+Men in Black 3	624026776	
+Iron Man 2	623933331	
+Ratatouille	623726085	
+Ant-Man and the Wasp	622674139	
+How to Train Your Dragon 2	621537519	
+Logan	619179950	
+The Lost World: Jurassic Park	618638999	
+Casino Royale	616502912	
+The Passion of the Christ	612054506	
+Mamma Mia!	611257819	
+Life of Pi	609016565	
+Transformers: The Last Knight	605425157	
+Madagascar: Escape 2 Africa	603900354	
+War of the Worlds	603873119	
+Tangled	592462816	
+Quantum of Solace	589580482	
+Men in Black	589390539	
+The Croods	587235983	
+The Hangover Part II	586764305	
+Iron Man	585796247	
+I Am Legend	585410052	
+Ready Player One	582893671	
+Monsters, Inc.	579707738	
+Operation Red Sea	579330426	
+Night at the Museum	574481229	
+Fifty Shades of Grey	569651467	
+Kong: Skull Island	566652812	
+The Smurfs	563749323	
+Cars 2	559852396	
+King Kong	556906378	
+Puss in Boots	554987477	
+The Mermaid	553810228	
+Armageddon	553709788	
+The Day After Tomorrow	552639571	
+Ted	549368315	
+American Sniper	547426372	
+Mission: Impossible II	546388108	
+Detective Chinatown 2	544185156	
+X-Men: Apocalypse	543934105	
+Sherlock Holmes: A Game of Shadows	543848418	
+Despicable Me	543113985	
+Cinderella	542358331	
+Madagascar	542063846	
+World War Z	540455876	
+Brave	538983207	
+Star Wars: Episode V - The Empire Strikes Back	538375067	
+The Simpsons Movie	536414293	
+The Revenant	532950503	

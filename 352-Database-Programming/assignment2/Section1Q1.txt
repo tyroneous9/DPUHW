@@ -1,0 +1,18 @@
+For each declaration below, indicate whether it is legal or not.  Explain if it is not legal. 
+ 
+ v_empno   NUMBER(4); 
+ v_a, v_b, v_c VARCHAR2(10); 
+ v_address  VARCHAR2(30) NOT NULL; 
+ v_in_stock BOOLEAN := 1;
+
+v_empno NUMBER(4);
+legal
+
+v_a, v_b, v_c VARCHAR2(10);
+legal
+
+v_address VARCHAR2(30) NOT NULL;
+legal
+
+v_in_stock BOOLEAN := 1;
+illegal, booleans can only be assigned TRUE, FALSE, or NULL.

@@ -1,0 +1,9 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(517,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (PA4.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Free.cpp
+  Heap.cpp
+  Mem.cpp
+  Used.cpp
+  Mem_Test_Stress.cpp
+  main.cpp
+  MemReadOnly.cpp
+  PA4_Stress.vcxproj -> C:\Users\Wesley\Documents\GitHub\DPUHW\361-Optimized-C++\student\wwu36\PA4\Debug\PA4_Stress.exe

@@ -1,0 +1,1 @@
+abc:be*|e|e*|b|(e|ea|b|ba*b*c|e|ba*|c*((ccb*)*))*|c(e*|(e|((c*|e))*))

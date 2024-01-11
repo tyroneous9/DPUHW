@@ -1,0 +1,138 @@
+-------------------------------------------------
+
+Log File 
+
+Name: Student_ Test_10
+Mode: x86_Debug
+
+-------------------------------------------------
+
+Test10: 
+
+ 1) used                                              
+ 2) used                                              
+ 3) used     (make sure it's consumes 100 percent of heap)             
+ 4) middle up   
+
+     Mem mem(Mem::Guard::Type_A);                     
+     mem.initialize();            
+     mem.Print(1);                        
+     void *a = mem.malloc( 0x4290 );       
+     mem.Print(2);                        
+     void *b = mem.malloc( 0x4290 );       
+     mem.Print(3);                        
+     void *c = mem.malloc( 0x429c );       
+     mem.Print(4);                        
+     mem.free( b );                     
+     mem.Print(5);                        
+     mem.free( a );                     
+     mem.Print(6);                        
+     mem.free( c );                     
+     mem.Print(7);                        
+
+------- Print 1 -------------
+
+heapStart: 0x00E4ED80     
+  heapEnd: 0x00E5B580   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x00E4EDA0     
+ pNextFit: 0x00E4EDA0   
+
+Heap Hdr   s: 00E4ED80  e: 00E4EDA0                            size: 0x20 
+FREE HDR   s: 00E4EDA0  e: 00E4EDAC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4EDAC  e: 00E5B580                            size: 0xc7d4 
+
+------- Print 2 -------------
+
+heapStart: 0x00E4ED80     
+  heapEnd: 0x00E5B580   
+
+pUsedHead: 0x00E4EDA0     
+pFreeHead: 0x00E5303C     
+ pNextFit: 0x00E5303C   
+
+Heap Hdr   s: 00E4ED80  e: 00E4EDA0                            size: 0x20 
+USED HDR   s: 00E4EDA0  e: 00E4EDAC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4EDAC  e: 00E5303C                            size: 0x4290 
+FREE HDR   s: 00E5303C  e: 00E53048  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E53048  e: 00E5B580                            size: 0x8538 
+
+------- Print 3 -------------
+
+heapStart: 0x00E4ED80     
+  heapEnd: 0x00E5B580   
+
+pUsedHead: 0x00E5303C     
+pFreeHead: 0x00E572D8     
+ pNextFit: 0x00E572D8   
+
+Heap Hdr   s: 00E4ED80  e: 00E4EDA0                            size: 0x20 
+USED HDR   s: 00E4EDA0  e: 00E4EDAC  p: 00E5303C  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4EDAC  e: 00E5303C                            size: 0x4290 
+USED HDR   s: 00E5303C  e: 00E53048  p: 00000000  n: 00E4EDA0  size: 0xc    AF: 0 
+USED       s: 00E53048  e: 00E572D8                            size: 0x4290 
+FREE HDR   s: 00E572D8  e: 00E572E4  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E572E4  e: 00E5B580                            size: 0x429c 
+
+------- Print 4 -------------
+
+heapStart: 0x00E4ED80     
+  heapEnd: 0x00E5B580   
+
+pUsedHead: 0x00E572D8     
+pFreeHead: 0x00000000     
+ pNextFit: 0x00000000   
+
+Heap Hdr   s: 00E4ED80  e: 00E4EDA0                            size: 0x20 
+USED HDR   s: 00E4EDA0  e: 00E4EDAC  p: 00E5303C  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4EDAC  e: 00E5303C                            size: 0x4290 
+USED HDR   s: 00E5303C  e: 00E53048  p: 00E572D8  n: 00E4EDA0  size: 0xc    AF: 0 
+USED       s: 00E53048  e: 00E572D8                            size: 0x4290 
+USED HDR   s: 00E572D8  e: 00E572E4  p: 00000000  n: 00E5303C  size: 0xc    AF: 0 
+USED       s: 00E572E4  e: 00E5B580                            size: 0x429c 
+
+------- Print 5 -------------
+
+heapStart: 0x00E4ED80     
+  heapEnd: 0x00E5B580   
+
+pUsedHead: 0x00E572D8     
+pFreeHead: 0x00E5303C     
+ pNextFit: 0x00E5303C   
+
+Heap Hdr   s: 00E4ED80  e: 00E4EDA0                            size: 0x20 
+USED HDR   s: 00E4EDA0  e: 00E4EDAC  p: 00E572D8  n: 00000000  size: 0xc    AF: 0 
+USED       s: 00E4EDAC  e: 00E5303C                            size: 0x4290 
+FREE HDR   s: 00E5303C  e: 00E53048  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E53048  e: 00E572D8                            size: 0x4290 
+USED HDR   s: 00E572D8  e: 00E572E4  p: 00000000  n: 00E4EDA0  size: 0xc    AF: 1 
+USED       s: 00E572E4  e: 00E5B580                            size: 0x429c 
+
+------- Print 6 -------------
+
+heapStart: 0x00E4ED80     
+  heapEnd: 0x00E5B580   
+
+pUsedHead: 0x00E572D8     
+pFreeHead: 0x00E4EDA0     
+ pNextFit: 0x00E4EDA0   
+
+Heap Hdr   s: 00E4ED80  e: 00E4EDA0                            size: 0x20 
+FREE HDR   s: 00E4EDA0  e: 00E4EDAC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4EDAC  e: 00E572D8                            size: 0x852c 
+USED HDR   s: 00E572D8  e: 00E572E4  p: 00000000  n: 00000000  size: 0xc    AF: 1 
+USED       s: 00E572E4  e: 00E5B580                            size: 0x429c 
+
+------- Print 7 -------------
+
+heapStart: 0x00E4ED80     
+  heapEnd: 0x00E5B580   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x00E4EDA0     
+ pNextFit: 0x00E4EDA0   
+
+Heap Hdr   s: 00E4ED80  e: 00E4EDA0                            size: 0x20 
+FREE HDR   s: 00E4EDA0  e: 00E4EDAC  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 00E4EDAC  e: 00E5B580                            size: 0xc7d4 

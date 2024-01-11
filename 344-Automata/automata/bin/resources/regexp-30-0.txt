@@ -1,0 +1,1 @@
+abcd:a*|d*|(bb*ebea|(be*)*)*|db*d|((a*))

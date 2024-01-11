@@ -1,0 +1,305 @@
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                     SALARY DEPARTMENT_NAME               
+----------- -------------------- ------------------------- ---------- ------------------------------
+        109 Daniel               Faviet                          9000 Finance                       
+        110 John                 Chen                            8200 Finance                       
+        113 Luis                 Popp                            6900 Finance                       
+        112 Jose Manuel          Urman                           7800 Finance                       
+        111 Ismael               Sciarra                         7700 Finance                       
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID GR        MIN        MAX
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- ------------- -- ---------- ----------
+        100 Steven               King                      SKING                     515.123.4567         17-JUN-03 AD_PRES         24000                                      90 G5      10001      99999
+        101 Neena                Kochhar                   NKOCHHAR                  515.123.4568         21-SEP-05 AD_VP           17000                       100            90 G5      10001      99999
+        102 Lex                  De Haan                   LDEHAAN                   515.123.4569         13-JAN-01 AD_VP           17000                       100            90 G5      10001      99999
+        103 Alexander            Hunold                    AHUNOLD                   590.423.4567         03-JAN-06 IT_PROG          9000                       102            60 G4       7001      10000
+        108 Nancy                Greenberg                 NGREENBE                  515.124.4569         17-AUG-02 FI_MGR          12008                       101           100 G5      10001      99999
+        109 Daniel               Faviet                    DFAVIET                   515.124.4169         16-AUG-02 FI_ACCOUNT       9000                       108           100 G4       7001      10000
+        110 John                 Chen                      JCHEN                     515.124.4269         28-SEP-05 FI_ACCOUNT       8200                       108           100 G4       7001      10000
+        111 Ismael               Sciarra                   ISCIARRA                  515.124.4369         30-SEP-05 FI_ACCOUNT       7700                       108           100 G4       7001      10000
+        112 Jose Manuel          Urman                     JMURMAN                   515.124.4469         07-MAR-06 FI_ACCOUNT       7800                       108           100 G4       7001      10000
+        114 Den                  Raphaely                  DRAPHEAL                  515.127.4561         07-DEC-02 PU_MAN          11000                       100            30 G5      10001      99999
+        120 Matthew              Weiss                     MWEISS                    650.123.1234         18-JUL-04 ST_MAN           8000                       100            50 G4       7001      10000
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID GR        MIN        MAX
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- ------------- -- ---------- ----------
+        121 Adam                 Fripp                     AFRIPP                    650.123.2234         10-APR-05 ST_MAN           8200                       100            50 G4       7001      10000
+        122 Payam                Kaufling                  PKAUFLIN                  650.123.3234         01-MAY-03 ST_MAN           7900                       100            50 G4       7001      10000
+        145 John                 Russell                   JRUSSEL                   011.44.1344.429268   01-OCT-04 SA_MAN          14000             .4        100            80 G5      10001      99999
+        146 Karen                Partners                  KPARTNER                  011.44.1344.467268   05-JAN-05 SA_MAN          13500             .3        100            80 G5      10001      99999
+        147 Alberto              Errazuriz                 AERRAZUR                  011.44.1344.429278   10-MAR-05 SA_MAN          12000             .3        100            80 G5      10001      99999
+        148 Gerald               Cambrault                 GCAMBRAU                  011.44.1344.619268   15-OCT-07 SA_MAN          11000             .3        100            80 G5      10001      99999
+        149 Eleni                Zlotkey                   EZLOTKEY                  011.44.1344.429018   29-JAN-08 SA_MAN          10500             .2        100            80 G5      10001      99999
+        150 Peter                Tucker                    PTUCKER                   011.44.1344.129268   30-JAN-05 SA_REP          10000             .3        145            80 G4       7001      10000
+        151 David                Bernstein                 DBERNSTE                  011.44.1344.345268   24-MAR-05 SA_REP           9500            .25        145            80 G4       7001      10000
+        152 Peter                Hall                      PHALL                     011.44.1344.478968   20-AUG-05 SA_REP           9000            .25        145            80 G4       7001      10000
+        153 Christopher          Olsen                     COLSEN                    011.44.1344.498718   30-MAR-06 SA_REP           8000             .2        145            80 G4       7001      10000
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID GR        MIN        MAX
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- ------------- -- ---------- ----------
+        154 Nanette              Cambrault                 NCAMBRAU                  011.44.1344.987668   09-DEC-06 SA_REP           7500             .2        145            80 G4       7001      10000
+        156 Janette              King                      JKING                     011.44.1345.429268   30-JAN-04 SA_REP          10000            .35        146            80 G4       7001      10000
+        157 Patrick              Sully                     PSULLY                    011.44.1345.929268   04-MAR-04 SA_REP           9500            .35        146            80 G4       7001      10000
+        158 Allan                McEwen                    AMCEWEN                   011.44.1345.829268   01-AUG-04 SA_REP           9000            .35        146            80 G4       7001      10000
+        159 Lindsey              Smith                     LSMITH                    011.44.1345.729268   10-MAR-05 SA_REP           8000             .3        146            80 G4       7001      10000
+        160 Louise               Doran                     LDORAN                    011.44.1345.629268   15-DEC-05 SA_REP           7500             .3        146            80 G4       7001      10000
+        162 Clara                Vishney                   CVISHNEY                  011.44.1346.129268   11-NOV-05 SA_REP          10500            .25        147            80 G5      10001      99999
+        163 Danielle             Greene                    DGREENE                   011.44.1346.229268   19-MAR-07 SA_REP           9500            .15        147            80 G4       7001      10000
+        164 Mattea               Marvins                   MMARVINS                  011.44.1346.329268   24-JAN-08 SA_REP           7200             .1        147            80 G4       7001      10000
+        168 Lisa                 Ozer                      LOZER                     011.44.1343.929268   11-MAR-05 SA_REP          11500            .25        148            80 G5      10001      99999
+        169 Harrison             Bloom                     HBLOOM                    011.44.1343.829268   23-MAR-06 SA_REP          10000             .2        148            80 G4       7001      10000
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID GR        MIN        MAX
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- ------------- -- ---------- ----------
+        170 Tayler               Fox                       TFOX                      011.44.1343.729268   24-JAN-06 SA_REP           9600             .2        148            80 G4       7001      10000
+        171 William              Smith                     WSMITH                    011.44.1343.629268   23-FEB-07 SA_REP           7400            .15        148            80 G4       7001      10000
+        172 Elizabeth            Bates                     EBATES                    011.44.1343.529268   24-MAR-07 SA_REP           7300            .15        148            80 G4       7001      10000
+        174 Ellen                Abel                      EABEL                     011.44.1644.429267   11-MAY-04 SA_REP          11000             .3        149            80 G5      10001      99999
+        175 Alyssa               Hutton                    AHUTTON                   011.44.1644.429266   19-MAR-05 SA_REP           8800            .25        149            80 G4       7001      10000
+        176 Jonathon             Taylor                    JTAYLOR                   011.44.1644.429265   24-MAR-06 SA_REP           8600             .2        149            80 G4       7001      10000
+        177 Jack                 Livingston                JLIVINGS                  011.44.1644.429264   23-APR-06 SA_REP           8400             .2        149            80 G4       7001      10000
+        201 Michael              Hartstein                 MHARTSTE                  515.123.5555         17-FEB-04 MK_MAN          13000                       100            20 G5      10001      99999
+        204 Hermann              Baer                      HBAER                     515.123.8888         07-JUN-02 PR_REP          10000                       101            70 G4       7001      10000
+        205 Shelley              Higgins                   SHIGGINS                  515.123.8080         07-JUN-02 AC_MGR          12008                       101           110 G5      10001      99999
+        206 William              Gietz                     WGIETZ                    515.123.8181         07-JUN-02 AC_ACCOUNT       8300                       205           110 G4       7001      10000
+
+44 rows selected. 
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven               King                      SKING                     515.123.4567         17-JUN-03 AD_PRES         24000                                      90
+        101 Neena                Kochhar                   NKOCHHAR                  515.123.4568         21-SEP-05 AD_VP           17000                       100            90
+        102 Lex                  De Haan                   LDEHAAN                   515.123.4569         13-JAN-01 AD_VP           17000                       100            90
+        103 Alexander            Hunold                    AHUNOLD                   590.423.4567         03-JAN-06 IT_PROG          9000                       102            60
+        108 Nancy                Greenberg                 NGREENBE                  515.124.4569         17-AUG-02 FI_MGR          12008                       101           100
+        109 Daniel               Faviet                    DFAVIET                   515.124.4169         16-AUG-02 FI_ACCOUNT       9000                       108           100
+        110 John                 Chen                      JCHEN                     515.124.4269         28-SEP-05 FI_ACCOUNT       8200                       108           100
+        111 Ismael               Sciarra                   ISCIARRA                  515.124.4369         30-SEP-05 FI_ACCOUNT       7700                       108           100
+        112 Jose Manuel          Urman                     JMURMAN                   515.124.4469         07-MAR-06 FI_ACCOUNT       7800                       108           100
+        113 Luis                 Popp                      LPOPP                     515.124.4567         07-DEC-07 FI_ACCOUNT       6900                       108           100
+        114 Den                  Raphaely                  DRAPHEAL                  515.127.4561         07-DEC-02 PU_MAN          11000                       100            30
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        120 Matthew              Weiss                     MWEISS                    650.123.1234         18-JUL-04 ST_MAN           8000                       100            50
+        121 Adam                 Fripp                     AFRIPP                    650.123.2234         10-APR-05 ST_MAN           8200                       100            50
+        122 Payam                Kaufling                  PKAUFLIN                  650.123.3234         01-MAY-03 ST_MAN           7900                       100            50
+        123 Shanta               Vollman                   SVOLLMAN                  650.123.4234         10-OCT-05 ST_MAN           6500                       100            50
+        145 John                 Russell                   JRUSSEL                   011.44.1344.429268   01-OCT-04 SA_MAN          14000             .4        100            80
+        146 Karen                Partners                  KPARTNER                  011.44.1344.467268   05-JAN-05 SA_MAN          13500             .3        100            80
+        147 Alberto              Errazuriz                 AERRAZUR                  011.44.1344.429278   10-MAR-05 SA_MAN          12000             .3        100            80
+        148 Gerald               Cambrault                 GCAMBRAU                  011.44.1344.619268   15-OCT-07 SA_MAN          11000             .3        100            80
+        149 Eleni                Zlotkey                   EZLOTKEY                  011.44.1344.429018   29-JAN-08 SA_MAN          10500             .2        100            80
+        150 Peter                Tucker                    PTUCKER                   011.44.1344.129268   30-JAN-05 SA_REP          10000             .3        145            80
+        151 David                Bernstein                 DBERNSTE                  011.44.1344.345268   24-MAR-05 SA_REP           9500            .25        145            80
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        152 Peter                Hall                      PHALL                     011.44.1344.478968   20-AUG-05 SA_REP           9000            .25        145            80
+        153 Christopher          Olsen                     COLSEN                    011.44.1344.498718   30-MAR-06 SA_REP           8000             .2        145            80
+        154 Nanette              Cambrault                 NCAMBRAU                  011.44.1344.987668   09-DEC-06 SA_REP           7500             .2        145            80
+        155 Oliver               Tuvault                   OTUVAULT                  011.44.1344.486508   23-NOV-07 SA_REP           7000            .15        145            80
+        156 Janette              King                      JKING                     011.44.1345.429268   30-JAN-04 SA_REP          10000            .35        146            80
+        157 Patrick              Sully                     PSULLY                    011.44.1345.929268   04-MAR-04 SA_REP           9500            .35        146            80
+        158 Allan                McEwen                    AMCEWEN                   011.44.1345.829268   01-AUG-04 SA_REP           9000            .35        146            80
+        159 Lindsey              Smith                     LSMITH                    011.44.1345.729268   10-MAR-05 SA_REP           8000             .3        146            80
+        160 Louise               Doran                     LDORAN                    011.44.1345.629268   15-DEC-05 SA_REP           7500             .3        146            80
+        161 Sarath               Sewall                    SSEWALL                   011.44.1345.529268   03-NOV-06 SA_REP           7000            .25        146            80
+        162 Clara                Vishney                   CVISHNEY                  011.44.1346.129268   11-NOV-05 SA_REP          10500            .25        147            80
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        163 Danielle             Greene                    DGREENE                   011.44.1346.229268   19-MAR-07 SA_REP           9500            .15        147            80
+        164 Mattea               Marvins                   MMARVINS                  011.44.1346.329268   24-JAN-08 SA_REP           7200             .1        147            80
+        165 David                Lee                       DLEE                      011.44.1346.529268   23-FEB-08 SA_REP           6800             .1        147            80
+        166 Sundar               Ande                      SANDE                     011.44.1346.629268   24-MAR-08 SA_REP           6400             .1        147            80
+        167 Amit                 Banda                     ABANDA                    011.44.1346.729268   21-APR-08 SA_REP           6200             .1        147            80
+        168 Lisa                 Ozer                      LOZER                     011.44.1343.929268   11-MAR-05 SA_REP          11500            .25        148            80
+        169 Harrison             Bloom                     HBLOOM                    011.44.1343.829268   23-MAR-06 SA_REP          10000             .2        148            80
+        170 Tayler               Fox                       TFOX                      011.44.1343.729268   24-JAN-06 SA_REP           9600             .2        148            80
+        171 William              Smith                     WSMITH                    011.44.1343.629268   23-FEB-07 SA_REP           7400            .15        148            80
+        172 Elizabeth            Bates                     EBATES                    011.44.1343.529268   24-MAR-07 SA_REP           7300            .15        148            80
+        173 Sundita              Kumar                     SKUMAR                    011.44.1343.329268   21-APR-08 SA_REP           6100             .1        148            80
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        174 Ellen                Abel                      EABEL                     011.44.1644.429267   11-MAY-04 SA_REP          11000             .3        149            80
+        175 Alyssa               Hutton                    AHUTTON                   011.44.1644.429266   19-MAR-05 SA_REP           8800            .25        149            80
+        176 Jonathon             Taylor                    JTAYLOR                   011.44.1644.429265   24-MAR-06 SA_REP           8600             .2        149            80
+        177 Jack                 Livingston                JLIVINGS                  011.44.1644.429264   23-APR-06 SA_REP           8400             .2        149            80
+        178 Kimberely            Grant                     KGRANT                    011.44.1644.429263   24-MAY-07 SA_REP           7000            .15        149              
+        179 Charles              Johnson                   CJOHNSON                  011.44.1644.429262   04-JAN-08 SA_REP           6200             .1        149            80
+        201 Michael              Hartstein                 MHARTSTE                  515.123.5555         17-FEB-04 MK_MAN          13000                       100            20
+        203 Susan                Mavris                    SMAVRIS                   515.123.7777         07-JUN-02 HR_REP           6500                       101            40
+        204 Hermann              Baer                      HBAER                     515.123.8888         07-JUN-02 PR_REP          10000                       101            70
+        205 Shelley              Higgins                   SHIGGINS                  515.123.8080         07-JUN-02 AC_MGR          12008                       101           110
+        206 William              Gietz                     WGIETZ                    515.123.8181         07-JUN-02 AC_ACCOUNT       8300                       205           110
+
+55 rows selected. 
+
+
+FIRST_NAME           LAST_NAME                 DEPARTMENT_NAME               
+-------------------- ------------------------- ------------------------------
+Alexander            Hunold                    IT                            
+Bruce                Ernst                     IT                            
+David                Austin                    IT                            
+Valli                Pataballa                 IT                            
+Diana                Lorentz                   IT                            
+Nancy                Greenberg                 Finance                       
+Daniel               Faviet                    Finance                       
+John                 Chen                      Finance                       
+Ismael               Sciarra                   Finance                       
+Jose Manuel          Urman                     Finance                       
+Luis                 Popp                      Finance                       
+
+FIRST_NAME           LAST_NAME                 DEPARTMENT_NAME               
+-------------------- ------------------------- ------------------------------
+Den                  Raphaely                  Purchasing                    
+Alexander            Khoo                      Purchasing                    
+Shelli               Baida                     Purchasing                    
+Sigal                Tobias                    Purchasing                    
+Guy                  Himuro                    Purchasing                    
+Karen                Colmenares                Purchasing                    
+
+17 rows selected. 
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID DEPARTMENT_ID DEPARTMENT_NAME                GR        MIN        MAX
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- ------------- ------------- ------------------------------ -- ---------- ----------
+        120 Matthew              Weiss                     MWEISS                    650.123.1234         18-JUL-04 ST_MAN           8000                       100            50            50 Shipping                       G4       7001      10000
+        122 Payam                Kaufling                  PKAUFLIN                  650.123.3234         01-MAY-03 ST_MAN           7900                       100            50            50 Shipping                       G4       7001      10000
+        150 Peter                Tucker                    PTUCKER                   011.44.1344.129268   30-JAN-05 SA_REP          10000             .3        145            80            80 Sales                          G4       7001      10000
+        156 Janette              King                      JKING                     011.44.1345.429268   30-JAN-04 SA_REP          10000            .35        146            80            80 Sales                          G4       7001      10000
+        157 Patrick              Sully                     PSULLY                    011.44.1345.929268   04-MAR-04 SA_REP           9500            .35        146            80            80 Sales                          G4       7001      10000
+        158 Allan                McEwen                    AMCEWEN                   011.44.1345.829268   01-AUG-04 SA_REP           9000            .35        146            80            80 Sales                          G4       7001      10000
+        184 Nandita              Sarchand                  NSARCHAN                  650.509.1876         27-JAN-04 SH_CLERK         4200                       121            50            50 Shipping                       G3       4001       7000
+        185 Alexis               Bull                      ABULL                     650.509.2876         20-FEB-05 SH_CLERK         4100                       121            50            50 Shipping                       G3       4001       7000
+        192 Sarah                Bell                      SBELL                     650.501.1876         04-FEB-04 SH_CLERK         4000                       123            50            50 Shipping                       G2       3001       4000
+        193 Britney              Everett                   BEVERETT                  650.501.2876         03-MAR-05 SH_CLERK         3900                       123            50            50 Shipping                       G2       3001       4000
+
+10 rows selected. 
+
+
+FIRST_NAME           LAST_NAME                     SALARY HIRE_DATE
+-------------------- ------------------------- ---------- ---------
+Matthew              Weiss                           8000 18-JUL-04
+Adam                 Fripp                           8200 10-APR-05
+Shanta               Vollman                         6500 10-OCT-05
+Kevin                Mourgos                         5800 16-NOV-07
+Irene                Mikkilineni                     2700 28-SEP-06
+Laura                Bissot                          3300 20-AUG-05
+Mozhe                Atkinson                        2800 30-OCT-05
+Michael              Rogers                          2900 26-AUG-06
+Ki                   Gee                             2400 12-DEC-07
+Renske               Ladwig                          3600 14-JUL-03
+Stephen              Stiles                          3200 26-OCT-05
+
+FIRST_NAME           LAST_NAME                     SALARY HIRE_DATE
+-------------------- ------------------------- ---------- ---------
+Trenna               Rajs                            3500 17-OCT-03
+Curtis               Davies                          3100 29-JAN-05
+Randall              Matos                           2600 15-MAR-06
+Winston              Taylor                          3200 24-JAN-06
+Martha               Sullivan                        2500 21-JUN-07
+Girard               Geoni                           2800 03-FEB-08
+Nandita              Sarchand                        4200 27-JAN-04
+Alexis               Bull                            4100 20-FEB-05
+Anthony              Cabrio                          3000 07-FEB-07
+Kelly                Chung                           3800 14-JUN-05
+Timothy              Gates                           2900 11-JUL-06
+
+FIRST_NAME           LAST_NAME                     SALARY HIRE_DATE
+-------------------- ------------------------- ---------- ---------
+Randall              Perkins                         2500 19-DEC-07
+Sarah                Bell                            4000 04-FEB-04
+Britney              Everett                         3900 03-MAR-05
+Samuel               McCain                          3200 01-JUL-06
+Vance                Jones                           2800 17-MAR-07
+Alana                Walsh                           3100 24-APR-06
+Kevin                Feeney                          3000 23-MAY-06
+Donald               OConnell                        2600 21-JUN-07
+Douglas              Grant                           2600 13-JAN-08
+
+31 rows selected. 
+
+
+CID       FNAME                                              LNAME                                              EMAIL                                             
+--------- -------------------------------------------------- -------------------------------------------------- --------------------------------------------------
+000000001 Norman                                             Justice                                            N.Justice_01@movie.com                            
+000000002 Kasimir                                            Kane                                               K.Kane_02@movie.com                               
+000000005 Velma                                              Fleming                                            V.Fleming_05@movie.com                            
+000000008 Remedios                                           Bentley                                            R.Bentley_08@movie.com                            
+000000010 Rinah                                              Barnett                                            R.Barnett_10@movie.com                            
+000000015 Odysseus                                           Lindsey                                            O.Lindsey_15@movie.com                            
+
+6 rows selected. 
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        101 Neena                Kochhar                   NKOCHHAR                  515.123.4568         21-SEP-05 AD_VP           17000                       100            90
+        102 Lex                  De Haan                   LDEHAAN                   515.123.4569         13-JAN-01 AD_VP           17000                       100            90
+        108 Nancy                Greenberg                 NGREENBE                  515.124.4569         17-AUG-02 FI_MGR          12008                       101           100
+        109 Daniel               Faviet                    DFAVIET                   515.124.4169         16-AUG-02 FI_ACCOUNT       9000                       108           100
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        100 Steven               King                      SKING                     515.123.4567         17-JUN-03 AD_PRES         24000                                      90
+        101 Neena                Kochhar                   NKOCHHAR                  515.123.4568         21-SEP-05 AD_VP           17000                       100            90
+        102 Lex                  De Haan                   LDEHAAN                   515.123.4569         13-JAN-01 AD_VP           17000                       100            90
+        103 Alexander            Hunold                    AHUNOLD                   590.423.4567         03-JAN-06 IT_PROG          9000                       102            60
+        108 Nancy                Greenberg                 NGREENBE                  515.124.4569         17-AUG-02 FI_MGR          12008                       101           100
+        109 Daniel               Faviet                    DFAVIET                   515.124.4169         16-AUG-02 FI_ACCOUNT       9000                       108           100
+        110 John                 Chen                      JCHEN                     515.124.4269         28-SEP-05 FI_ACCOUNT       8200                       108           100
+        111 Ismael               Sciarra                   ISCIARRA                  515.124.4369         30-SEP-05 FI_ACCOUNT       7700                       108           100
+        112 Jose Manuel          Urman                     JMURMAN                   515.124.4469         07-MAR-06 FI_ACCOUNT       7800                       108           100
+        113 Luis                 Popp                      LPOPP                     515.124.4567         07-DEC-07 FI_ACCOUNT       6900                       108           100
+        114 Den                  Raphaely                  DRAPHEAL                  515.127.4561         07-DEC-02 PU_MAN          11000                       100            30
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        145 John                 Russell                   JRUSSEL                   011.44.1344.429268   01-OCT-04 SA_MAN          14000             .4        100            80
+        146 Karen                Partners                  KPARTNER                  011.44.1344.467268   05-JAN-05 SA_MAN          13500             .3        100            80
+        147 Alberto              Errazuriz                 AERRAZUR                  011.44.1344.429278   10-MAR-05 SA_MAN          12000             .3        100            80
+        148 Gerald               Cambrault                 GCAMBRAU                  011.44.1344.619268   15-OCT-07 SA_MAN          11000             .3        100            80
+        149 Eleni                Zlotkey                   EZLOTKEY                  011.44.1344.429018   29-JAN-08 SA_MAN          10500             .2        100            80
+        150 Peter                Tucker                    PTUCKER                   011.44.1344.129268   30-JAN-05 SA_REP          10000             .3        145            80
+        151 David                Bernstein                 DBERNSTE                  011.44.1344.345268   24-MAR-05 SA_REP           9500            .25        145            80
+        152 Peter                Hall                      PHALL                     011.44.1344.478968   20-AUG-05 SA_REP           9000            .25        145            80
+        156 Janette              King                      JKING                     011.44.1345.429268   30-JAN-04 SA_REP          10000            .35        146            80
+        157 Patrick              Sully                     PSULLY                    011.44.1345.929268   04-MAR-04 SA_REP           9500            .35        146            80
+        158 Allan                McEwen                    AMCEWEN                   011.44.1345.829268   01-AUG-04 SA_REP           9000            .35        146            80
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID         SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------- ---------- -------------- ---------- -------------
+        162 Clara                Vishney                   CVISHNEY                  011.44.1346.129268   11-NOV-05 SA_REP          10500            .25        147            80
+        163 Danielle             Greene                    DGREENE                   011.44.1346.229268   19-MAR-07 SA_REP           9500            .15        147            80
+        168 Lisa                 Ozer                      LOZER                     011.44.1343.929268   11-MAR-05 SA_REP          11500            .25        148            80
+        169 Harrison             Bloom                     HBLOOM                    011.44.1343.829268   23-MAR-06 SA_REP          10000             .2        148            80
+        170 Tayler               Fox                       TFOX                      011.44.1343.729268   24-JAN-06 SA_REP           9600             .2        148            80
+        174 Ellen                Abel                      EABEL                     011.44.1644.429267   11-MAY-04 SA_REP          11000             .3        149            80
+        201 Michael              Hartstein                 MHARTSTE                  515.123.5555         17-FEB-04 MK_MAN          13000                       100            20
+        204 Hermann              Baer                      HBAER                     515.123.8888         07-JUN-02 PR_REP          10000                       101            70
+        205 Shelley              Higgins                   SHIGGINS                  515.123.8080         07-JUN-02 AC_MGR          12008                       101           110
+
+31 rows selected. 
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                     SALARY
+----------- -------------------- ------------------------- ----------
+        120 Matthew              Weiss                           8000
+        122 Payam                Kaufling                        7900
+        150 Peter                Tucker                         10000
+        156 Janette              King                           10000
+        157 Patrick              Sully                           9500
+        158 Allan                McEwen                          9000
+        184 Nandita              Sarchand                        4200
+        185 Alexis               Bull                            4100
+        192 Sarah                Bell                            4000
+        193 Britney              Everett                         3900
+
+10 rows selected. 
+

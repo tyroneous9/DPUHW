@@ -1,0 +1,43 @@
+-------------------------------------------------
+
+Log File 
+
+Name: Student_ Test_02
+Mode: x86_Debug
+
+-------------------------------------------------
+
+Test2: 
+
+1) allocate the biggest Type                
+     Mem mem(Mem::Guard::Type_A);   
+     mem.initialize();                       
+     mem.Print(1);                           
+     void *p = mem.malloc( 0xc7d4 );         
+     mem.Print(2);                           
+
+------- Print 1 -------------
+
+heapStart: 0x010C1D70     
+  heapEnd: 0x010CE570   
+
+pUsedHead: 0x00000000     
+pFreeHead: 0x010C1D90     
+ pNextFit: 0x010C1D90   
+
+Heap Hdr   s: 010C1D70  e: 010C1D90                            size: 0x20 
+FREE HDR   s: 010C1D90  e: 010C1D9C  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+FREE       s: 010C1D9C  e: 010CE570                            size: 0xc7d4 
+
+------- Print 2 -------------
+
+heapStart: 0x010C1D70     
+  heapEnd: 0x010CE570   
+
+pUsedHead: 0x010C1D90     
+pFreeHead: 0x00000000     
+ pNextFit: 0x00000000   
+
+Heap Hdr   s: 010C1D70  e: 010C1D90                            size: 0x20 
+USED HDR   s: 010C1D90  e: 010C1D9C  p: 00000000  n: 00000000  size: 0xc    AF: 0 
+USED       s: 010C1D9C  e: 010CE570                            size: 0xc7d4 
