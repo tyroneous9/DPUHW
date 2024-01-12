@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8"> 
+    <title>CSC 348/448: Introduction to Compiler Design: 2024 Winter, Assignment #1</title>
+    <style>
+      H2 { text-align: center }
+    </style>
+  </head>
+
+  <body>
+    <h2>
+      CSC 348/448: Introduction to Compiler Design: 2024 Winter<br/>Assignment #1
+    </h2>
+    <p>Last Modified 2024 January 9</p>
+
+    <h3>Purpose:</h3>
+    To go over:
+    <ul>
+      <li>Recursive descent parsers</li>
+    </ul>
+
+    <h3>Overview:</h3>
+    <p>
+      Finish my C++ or Java program that implements a recursive-descent parser
+      of a simple language of trying to get enrolled in a class.
+      The language can handle:
+<pre>
+$ <strong>./enrollStudentLang </strong>
+Expression to compute: <strong>Ace the proficiency exam. Attend the class.</strong>
+Congratulations, you in the class!
+$ <strong>./enrollStudentLang </strong>
+Expression to compute: <strong>Pass the prerequisite. Attend the class.</strong>
+Congratulations, you in the class!
+$ <strong>./enrollStudentLang </strong>
+Expression to compute: <strong>Fail the prereq. Fail the prereq. Pass the prereq. Attend the class.</strong>
+Congratulations, you in the class!
+$ <strong>./enrollStudentLang </strong>
+Expression to compute: <strong>Fail the prereq. Bomb the proficiency exam. Pass the prereq. Attend the class.</strong>
+Congratulations, you in the class!
+</pre>
+      You can see the allowed paragraphs from the grammar,
+      but all paragraphs must end with either
+      <em>Ace the proficiency exam. Attend the class.</em> or
+      <em>Pass the prereq. Attend the class.</em>
+<pre>
+$ <strong>./enrollStudentLang </strong>
+Expression to compute: <strong>Pass the prerequistie. Attend the class.</strong>
+Expected &quot;prerequisite&quot;
+Sorry, you are not enrolled!
+$ <strong>./enrollStudentLang </strong>
+Expression to compute: <strong>Fail the prereq. Fail the prereq. Pass the prereq. Attend class.</strong>
+Expected &quot;the&quot;
+Sorry, you are not enrolled!
+$ <strong>./enrollStudentLang </strong>
+Expression to compute: <strong>Fail the prereq. Fail the prereq. Pass the prereq. Attend class.</strong>
+Expected &quot;the&quot;
+Sorry, you are not enrolled!
+</pre>
+    </p>
+
+    <h3>Assignment:</h3>
+    <ol type="1">
+      <li>
+	<h4>Please copy and paste the following:</h4>
+	<pre>
+/*--------------------------------------------------------------------------*
+ *----									----*
+ *----		enrollStudentLang.cpp					----*
+ *----									----*
+ *----		 (1) Paragraph -&gt; Fail Succeed Attend (endOfInput)	----*
+ *----		 (2) Fail -&gt; fail the prereq . Fail			----*
+ *----		 (3) Fail -&gt; bomb the proficiency exam . Fail		----*
+ *----		 (4) Fail -&gt; 						----*
+ *----		 (5) Succeed -&gt; pass the prereq .			----*
+ *----		 (6) Succeed -&gt; ace the proficiency exam .		----*
+ *----		 (7) Attend -&gt; attend the class .			----*
+ *----									----*
+ *----	----	----	----	----	----	----	----	----	----*
+ *----									----*
+ *----	Version 1.0		2024 January 9		Joseph Phillips	----*
+ *----									----*
+ *--------------------------------------------------------------------------*/
+
+#include	&lt;cstdlib&gt;
+#include	&lt;cstdio&gt;
+#include	&lt;iostream&gt;
+#include	&lt;string&gt;
+#include	&lt;list&gt;
+#include	&lt;map&gt;
+
+
+//  PURPOSE:  To tell the length of a global string.
+const int	TEXT_LEN		= 256;
+
+
+//  PURPOSE:  To represent the different lexemes in the language.
+typedef		enum
+		{
+		  END_OF_INPUT_SYM,
+
+		  FAIL_KEYWORD_SYM,
+		  BOMB_KEYWORD_SYM,
+		  PASS_KEYWORD_SYM,
+		  ACE_KEYWORD_SYM,
+		  ATTEND_KEYWORD_SYM,
+
+		  THE_KEYWORD_SYM,
+		  PROFICIENCY_KEYWORD_SYM,
+
+		  PREREQ_KEYWORD_SYM,
+		  EXAM_KEYWORD_SYM,
+		  CLASS_KEYWORD_SYM,
+
+		  PERIOD_SYM,
+		  NUMBER_SYM,
+		  IDENTIFIER_SYM,
+		  STRING_SYM,
+		  BEGIN_PAREN_SYM,
+		  END_PAREN_SYM,
+		  COMMA_SYM
+		}
+		symbol_ty;
+
+//  PURPOSE:  To represent the string delimitor character.
+const char	QUOTE_CHAR		= 0x22;
+
+
+//  PURPOSE:  To represent the decimal point character.
+const char	DECIMAL_PT_CHAR		= &apos;.&apos;;
+
+
+/*  PURPOSE:  To implement an interface that manages the character source.
+ */
+class	InputCharStream
+{
+  //  I.  Member vars:
+  //  PURPOSE:  To hold the input.
+  std::string		input_;
+
+  //  PURPOSE:  To hold where the cursor is.
+  int			index_;
+
+  //  II.  Disallowed auto-generated methods:
+  
+  //  III.  Protected methods:
+protected :
+
+public:
+  //  IV.  Constructor(s), assignment op(s), factory(s) and destructor:
+  //  PURPOSE:  To
+  InputCharStream	(std::string&amp;	newInput
+  			) :
+			input_(newInput),
+			index_(0)
+			{ }
+
+  //  V.  Accessors:
+
+  //  VI.  Mutators:
+
+  //  VII.  Methods that do main and misc work of class:
+  //  PURPOSE:  To return the current char, or &apos;\0&apos; if there are no more.
+  //	No parameters.
+  char		peek	()
+  			const
+			{ return
+			  ( (index_ &gt;= input_.length())
+			    ? &apos;\0&apos; : input_[index_]
+			  );
+			}
+
+  //  PURPOSE:  To return &apos;true&apos; if at eof-of-input, or &apos;false&apos; otherwise.
+  bool		isAtEnd	()
+  			const
+			{ return(index_ &gt;= input_.length()); }
+
+  //  PURPOSE:  To advance to the next char (if not already at end).  No
+  //	parameters.  No return value.
+  void		advance	()
+			{
+			  if  (index_ &lt; input_.length())  index_++;
+			}
+
+};
+
+
+//  PURPOSE:  To represent a parsed symbol, and any associated data.
+class		Symbol
+{
+  //  I.  Member vars:
+  //  PURPOSE:  To tell the type of symbol that &apos;*this&apos; represents.
+  symbol_ty			symbol_;
+
+  //  PURPOSE:  To hold the address of a string associated with &apos;*this&apos; symbol
+  //	(if there is one).
+  std::string*			stringPtr_;
+
+  //  PURPOSE:  To hold the number associated with &apos;*this&apos; symbol (if there
+  //	is one).
+  double			number_;
+
+  //  II.  Disallowed auto-generated methods:
+  //  No default constructor:
+  Symbol			();
+
+  //  No copy constructor:
+  Symbol			(const Symbol&amp;
+				);
+
+  //  No copy assignment op:
+  Symbol&amp;	operator=	(const Symbol&amp;
+				);
+
+protected :
+  //  III.  Protected methods:
+
+public :
+  //  IV.  Constructor(s), assignment op(s), factory(s) and destructor:
+  //  PURPOSE:  To initialize &apos;*this&apos; to hold symbol &apos;newSymbol&apos;.  No return
+  //	value.
+  Symbol			(symbol_ty	newSymbol
+				) :
+				symbol_(newSymbol),
+				stringPtr_(NULL),
+				number_(0.0)
+				{ }
+
+  //  PURPOSE:  To initialize &apos;*this&apos; to hold string &apos;newString&apos;.  No return
+  //	value.
+  Symbol			(const std::string&amp;	newString
+  				) :
+				symbol_(STRING_SYM),
+				stringPtr_(new std::string(newString)),
+				number_(0.0)
+				{ }
+				
+  //  PURPOSE:  To initialize &apos;*this&apos; to hold number &apos;newNumber&apos;.  No return
+  //	value.
+  Symbol			(double	newNumber
+				) :
+				symbol_(NUMBER_SYM),
+				stringPtr_(NULL),
+				number_(newNumber)
+				{ }
+
+  //  PURPOSE:  To release the resources of &apos;*this&apos;.  No parameters.  No return
+  //	value.
+  ~Symbol			()
+				{
+				  delete(stringPtr_);
+				}
+
+  //  V.  Accessors:
+  //  PURPOSE:  To return the type associated with &apos;*this&apos; Symbol.  No
+  //  	parameters.
+  symbol_ty	getType		()
+				const
+				{ return(symbol_); }
+
+  //  PURPOSE:  To return a reference to the string stored at &apos;*this&apos; Symbol,
+  //	or a reference to the empty string if &apos;*this&apos; is not a string.
+  const std::string&amp;
+		getString	()
+				const
+				{
+				  static std::string	empty(&quot;&quot;);
+
+				  return( (stringPtr_ == NULL)
+				  	  ? empty
+					  : *stringPtr_
+					);
+				}
+
+  //  PURPOSE:  To return the number stored at &apos;*this&apos; Symbol, or &apos;0&apos; if
+  //	&apos;*this&apos; does not represent a number.
+  double	getNumber	()
+				const
+				{ return(number_); }
+
+};
+
+
+//  PURPOSE:  To hold a shared global array of characters.
+char				text[TEXT_LEN];
+
+
+//  PURPOSE:  To implement an interface that gathers characters into lexemes.
+class	TokenStream
+{
+  //  I.  Member vars:
+  //  PURPOSE:  To hold the source of the character input.
+  InputCharStream&amp;	inputCharStream_;
+
+  //  PURPOSE:  To hold the lastest lexeme parsed.
+  Symbol*	   	lastParsedPtr_;
+
+  //  PURPOSE:  To hold the keyword string to symbol_ty mapping.
+  std::map&lt;std::string,symbol_ty&gt;
+			keywordToSymbolTMap_;
+
+  //  II.  Disallowed auto-generated methods:
+  //  No default constructor:
+  TokenStream		();
+
+  //  No copy constructor:
+  TokenStream		(const TokenStream&amp;
+			);
+
+  //  No copy assignment op:
+  TokenStream&amp;		operator=
+			(const TokenStream&amp;
+			);
+
+protected :
+  //  III.  Protected methods:
+  //  PURPOSE:  To return a pointer representing a scanned string constant.
+  //	No parameters.
+  Symbol*	scanString	()
+				{
+				  std::string	lex(&quot;&quot;);
+				  bool		haveFoundEnd	= false;
+
+				  //  Advance past first quote:
+				  inputCharStream_.advance();
+
+				  while  ( !inputCharStream_.isAtEnd() )
+				  {
+				    char	c = inputCharStream_.peek();
+
+				    inputCharStream_.advance();
+
+				    if  (c == QUOTE_CHAR)
+				    {
+				      haveFoundEnd	= true;
+				      break;
+				    }
+
+				    lex	+= c;
+				  }
+
+				  if  (!haveFoundEnd)
+				    throw &quot;Non-terminated string constant&quot;;
+
+				  return(new Symbol(lex));
+				}
+
+  //  PURPOSE:  To return a pointer representing a scanned number.  No
+  //	parameters.
+  Symbol*   	scanNumber	()
+				{
+				  bool		haveSeenDecimalPt	= false;
+				  std::string	lex(&quot;&quot;);
+				  char		c;
+
+				  while  ( c = inputCharStream_.peek(),
+				  	   isdigit(c)
+				  	   || ( (c == DECIMAL_PT_CHAR)
+						&amp;&amp;
+						!haveSeenDecimalPt
+					      )
+				  	 )
+				  {
+				    lex		       += c;
+				    haveSeenDecimalPt	= (c==DECIMAL_PT_CHAR);
+				    inputCharStream_.advance();
+				  }
+
+				  return(new Symbol(atof(lex.c_str())));
+				}
+
+
+  //  PURPOSE:  To return a pointer to a Symbol instance representing an
+  //	address.
+  Symbol*	scanIdentifier	()
+  				{
+				  std::string	lex(&quot;&quot;);
+				  char		c;
+
+				  lex	+= tolower(inputCharStream_.peek());
+				  inputCharStream_.advance();
+
+				  while  (c = inputCharStream_.peek(),
+				  	   isalnum(c) || (c == &apos;_&apos;)
+				  	 )
+				  {
+				    lex		       += tolower(c);
+				    inputCharStream_.advance();
+				  }
+
+				  std::map&lt;std::string,symbol_ty&gt;::iterator
+				    iter = keywordToSymbolTMap_.find(lex);
+
+				  if  (iter != keywordToSymbolTMap_.end())
+				    return(new Symbol(iter-&gt;second));
+
+				  std::string	keywords;
+				  bool		isFirst	= true;
+
+				  return(new Symbol(IDENTIFIER_SYM));
+/*
+				  for  (iter  = keywordToSymbolTMap_.begin();
+				        iter != keywordToSymbolTMap_.end();
+					iter++
+				       )
+				  {
+				    if  (isFirst)
+				      isFirst	 = false;
+				    else
+				      keywords	+= &quot;, &quot;;
+
+				    keywords += iter-&gt;first;
+				  }
+
+				  snprintf
+					(text,TEXT_LEN,
+					 &quot;Expected one of %s, not %s&quot;,
+					 keywords.c_str(),lex.c_str()
+					);
+				  throw text;
+ */
+				}
+
+  //  PURPOSE:  To return a pointer representing a scanned Symbol, or to return
+  //	&apos;new Symbol(END_OF_INPUT_SYM)&apos; if the &apos;*this&apos; is at the end-of-input.
+  //	No parameters.
+  Symbol*	scanner		()
+  				{
+				  while  ( isspace(inputCharStream_.peek()) )
+				    inputCharStream_.advance();
+
+				  if  ( inputCharStream_.isAtEnd() )
+				    return( new Symbol(END_OF_INPUT_SYM) );
+
+				  if  ( inputCharStream_.peek() == QUOTE_CHAR )
+				    return( scanString() );
+
+				  if  ( isdigit(inputCharStream_.peek()) )
+				    return( scanNumber() );
+
+				  if  ( isalpha(inputCharStream_.peek())
+				        || (inputCharStream_.peek() == &apos;_&apos;)
+				      )
+				    return( scanIdentifier() );
+
+				  char	  ch	    = inputCharStream_.peek();
+				  Symbol* symbolPtr = NULL;
+
+				  inputCharStream_.advance();
+
+				  switch  (ch)
+				  {
+				  case &apos;(&apos; :
+				    symbolPtr	= new Symbol(BEGIN_PAREN_SYM);
+				    break;
+
+				  case &apos;)&apos; :
+				    symbolPtr	= new Symbol(END_PAREN_SYM);
+				    break;
+
+				  case &apos;,&apos; :
+				    symbolPtr	= new Symbol(COMMA_SYM);
+				    break;
+
+				  case &apos;.&apos; :
+				    symbolPtr	= new Symbol(PERIOD_SYM);
+				    break;
+
+				  default :
+				    throw &quot;Unexpected character in input&quot;;
+				  }
+
+				  return(symbolPtr);
+				}
+
+public :
+  //  IV.  Constructor(s), assignment op(s), factory(s) and destructor:
+  //  PURPOSE:  To initialize &apos;*this&apos; to tokenize given characters read from
+  //  	&apos;newInputCharStream&apos;.  No parameters.
+  TokenStream			(InputCharStream&amp;	newInputCharStream
+				) :
+				inputCharStream_(newInputCharStream),
+				lastParsedPtr_(NULL)
+				{
+				  keywordToSymbolTMap_[&quot;fail&quot;]
+					= FAIL_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;bomb&quot;]
+					= BOMB_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;pass&quot;]
+					= PASS_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;ace&quot;]
+					= ACE_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;attend&quot;]
+					= ATTEND_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;the&quot;]
+					= THE_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;proficiency&quot;]
+					= PROFICIENCY_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;prereq&quot;]
+					= PREREQ_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;prerequisite&quot;]
+					= PREREQ_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;exam&quot;]
+					= EXAM_KEYWORD_SYM;
+				  keywordToSymbolTMap_[&quot;class&quot;]
+					= CLASS_KEYWORD_SYM;
+				  advance();
+				}
+
+  //  PURPOSE:  To release the resources of &apos;*this&apos;.  No parameters.  No return
+  //	value.
+  ~TokenStream			()
+				{ }
+
+  //  V.  Accessors:
+
+  //  VI.  Mutators:
+
+  //  VII.  Methods that do main and misc work of class:
+  //  PURPOSE:  To return the &apos;symbol_ty&apos; of the &apos;Symbol&apos; instance that is next
+  //	in the symbol stream.  No parameters.
+  symbol_ty   	peek		()
+				{
+				  if  (lastParsedPtr_ == NULL)
+				    lastParsedPtr_	= scanner();
+
+				  return(lastParsedPtr_-&gt;getType());
+				}
+
+  //  PURPOSE:  To return the pointer to the old Symbol at that was at the
+  //	front of the symbol stream, and then to internally advance to the next
+  //	Symbol instance (if not already at the end).  No parameters.
+  Symbol*	advance		()
+				{
+				  Symbol* toReturn	= lastParsedPtr_;
+
+				  lastParsedPtr_	= scanner();
+				  return(toReturn);
+				}
+
+};
+
+
+//  PURPOSE:  To parse non-terminal &apos;Fail&apos; from &apos;tokenizer&apos;.
+void		parseFail	(TokenStream&amp;	tokenizer
+				)
+{
+  //  I.  Application validity check:
+
+  //  II.  Attempt to parse cycle:
+  symbol_ty	peek	= tokenizer.peek();
+
+  if  (peek == FAIL_KEYWORD_SYM)
+  {
+    delete(tokenizer.advance());
+
+    if  (tokenizer.peek() != THE_KEYWORD_SYM)
+    {
+      throw &quot;Expected \&quot;the\&quot;&quot;;
+    }
+
+    delete(tokenizer.advance());
+
+    if  (tokenizer.peek() != PREREQ_KEYWORD_SYM)
+    {
+      throw &quot;Expected \&quot;prerequisite\&quot;&quot;; 
+    }
+
+    delete(tokenizer.advance());
+
+    if  (tokenizer.peek() != PERIOD_SYM)
+    {
+      throw &quot;Expected \&quot;.\&quot;&quot;; 
+    }
+
+    delete(tokenizer.advance());
+
+    parseFail(tokenizer);
+  }
+  else
+  if  (peek == BOMB_KEYWORD_SYM)
+  {
+    <strong>//  YOUR CODE HERE</strong>
+  }
+  else
+  if  ( (peek == PASS_KEYWORD_SYM)  ||  (peek == ACE_KEYWORD_SYM) )
+  {
+    <strong>//  YOUR CODE HERE</strong>
+  }
+  else
+  {
+    throw &quot;Expected \&quot;fail\&quot;, \&quot;bomb\&quot;, \&quot;pass\&quot; or \&quot;ace\&quot;.&quot;;
+  }
+
+  //  III.  Finished:
+}
+
+
+//  PURPOSE:  To parse non-terminal &apos;Succeed&apos; from &apos;tokenizer&apos;.
+void		parseSucceed	(TokenStream&amp;	tokenizer
+				)
+{
+  //  I.  Application validity check:
+
+  //  II.  Attempt to parse cycle:
+  symbol_ty	peek	= tokenizer.peek();
+
+  if  (peek == PASS_KEYWORD_SYM)
+  {
+    <strong>//  YOUR CODE HERE</strong>
+  }
+  else
+  if  (peek == ACE_KEYWORD_SYM)
+  {
+    <strong>//  YOUR CODE HERE</strong>
+  }
+  else
+  {
+    throw &quot;Expected \&quot;pass\&quot; or \&quot;ace\&quot;.&quot;;
+  }
+
+  //  III.  Finished:
+}
+
+
+//  PURPOSE:  To parse non-terminal &apos;Attend&apos; from &apos;tokenizer&apos;.
+void		parseAttend	(TokenStream&amp;	tokenizer
+				)
+{
+  //  I.  Application validity check:
+
+  //  II.  Attempt to parse cycle:
+  <strong>//  YOUR CODE HERE</strong>
+
+  //  III.  Finished:
+}
+
+
+//  PURPOSE:  To parse non-terminal &apos;Paragraph&apos; from &apos;tokenizer&apos;.
+void		parseParagraph	(TokenStream&amp;	tokenizer
+				)
+{
+  //  I.  Application validity check:
+
+  //  II.  Attempt to parse recipe:
+  symbol_ty	peek	= tokenizer.peek();
+
+  if  ( (peek == FAIL_KEYWORD_SYM)	||
+	(peek == BOMB_KEYWORD_SYM)	||
+	(peek == PASS_KEYWORD_SYM)	||
+	(peek == ACE_KEYWORD_SYM)
+      )
+  {
+    parseFail(tokenizer);
+    parseSucceed(tokenizer);
+    parseAttend(tokenizer);
+
+    if  (tokenizer.peek() != END_OF_INPUT_SYM)
+    {
+      throw &quot;Expected end after \&quot;Attend the class .\&quot;&quot;;
+    }
+
+    delete(tokenizer.advance());
+  }
+  else
+  {
+    throw &quot;Expected \&quot;fail\&quot;, \&quot;bomb\&quot;, \&quot;pass\&quot; or \&quot;ace\&quot;.&quot;;
+  }
+
+  //  III.  Finished:
+}
+
+
+//  PURPOSE:  To return a string with the expression to compute, either from
+//	the command line or the keyboard.  &apos;argc&apos; tells how many arguments
+//	were on the command line and &apos;argv[]&apos; points to those arguments.
+std::string	getInput	(int		argc,
+				 char*		argv[]
+				)
+{
+  //  I.  Application validity check:
+
+  //  II.  Get input:
+  //  II.A.  Handle command line input:
+  if  (argc &gt; 1)
+    return(std::string(argv[1]));
+
+  //  II.B.  Handle keyboard input:
+  std::string	input;
+
+  std::cout &lt;&lt; &quot;Expression to compute: &quot;;
+  std::getline(std::cin,input);
+
+  //  III.  Finished:
+  return(input);
+}
+
+
+//  PURPOSE:  To get, and attempt to compute, the expression.  The expression
+//	may either come from the command line or the keyboard.  &apos;argc&apos; tells
+//	how many arguments were on the command line and &apos;argv[]&apos; points to
+//	those arguments.  Returns &apos;EXIT_SUCCESS&apos; if the expression was
+//	successfully parsed and computed or &apos;EXIT_FAILURE&apos; otherwise.
+int		main		(int		argc,
+				 char*		argv[]
+				)
+{
+  std::string		input(getInput(argc,argv));
+  InputCharStream	charStream(input);
+  int			status	= EXIT_SUCCESS;
+
+  try
+  {
+    TokenStream		tokenizer(charStream);
+
+    parseParagraph(tokenizer);
+    std::cout &lt;&lt; &quot;Congratulations, you in the class!&quot; &lt;&lt; std::endl;
+  }
+  catch  (const char*  messageCPtr
+	 )
+  {
+    std::cerr &lt;&lt; messageCPtr &lt;&lt; std::endl;
+    std::cerr &lt;&lt; &quot;Sorry, you are not enrolled!&quot; &lt;&lt; std::endl;
+    status	= EXIT_FAILURE;
+  }
+
+  return(status);
+}
+	</pre>
+      </li>
+      <p/>
+
+      <li>
+	Please note the interface to <code>tokenizer</code>:
+	<table border="1">
+	  <tr>
+	    <th>Method name:</th>
+	    <th>Return type:</th>
+	    <th>Purpose:</th>
+	  </tr>
+	  <tr>
+	    <td><code>tokenizer.peek()</code></td>
+	    <td><code>symbol_ty</code></td>
+	    <td>
+	      Returns the current symbol from the input stream.
+	      It does not do anything to it.
+	      When all of the input it read (using <code>advance()</code>)
+	      this method returns <code>END_OF_INPUT_SYM</code>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td><code>tokenizer.advance()</code></td>
+	    <td><code>Symbol*</code></td>
+	    <td>
+	      Returns the whole token, and then goes on to the next one.
+	      The whole token was made with <code>new</code>, and
+	      we are not going to do anything with these tokens.
+	      So please get rid of them like this.
+	      <pre>delete(tokenizer.advance());</pre>
+	    </td>
+	  </tr>
+	</table>
+      </li>
+      <p/>
+
+      <li>
+	<h4>Please finish <code>parseParagraph()</code>:</h4>
+	<p>
+	  (Already done)
+	</p>
+      </li>
+      <p/>
+
+      <li>
+	<h4>Please finish <code>parseFail()</code>:</h4>
+	<p>
+	  This function should handle the productions:
+	  <pre>Fail -&gt; fail the prereq . Fail
+Fail -&gt; bomb the proficiency exam . Fail
+(empty)</pre>
+	  To do this it should see if the first symbol is <code>FAIL_KEYWORD_SYM</code>,  <code>BOMB_KEYWORD_SYM</code>,  <code>PASS_KEYWORD_SYM</code>,  <code>ACE_KEYWORD_SYM</code>, or something else.
+	  Use <code>tokenizer.peek()</code>
+	</p>
+	<ul>
+	  <li>
+	    If it looks like production <pre>Fail -&gt; fail the prereq . Fail</pre> then <em>check out what I did!</em>
+	    I left this one for you.
+	  </li>
+	  <li>
+	    If it looks like production <pre>Fail -&gt; bomb the proficiency exam . Fail</pre>
+	    If so then:
+	    <ol type="a">
+	      <li>
+		Then it should <code>delete()</code> it
+		and <code>advance()</code> to the next.
+	      </li>
+	      <li>
+		Recognize the symbol <code>THE_KEYWORD_SYM</code>,
+		and <code>delete()</code> it
+		and <code>advance()</code> to the next.
+	      </li>
+	      <li>
+		Recognize the symbol <code>PROFICIENCY_KEYWORD_SYM</code>,
+		and <code>delete()</code> it
+		and <code>advance()</code> to the next.
+	      </li>
+	      <li>
+		Recognize the symbol <code>EXAM_KEYWORD_SYM</code>,
+		and <code>delete()</code> it
+		and <code>advance()</code> to the next.
+	      </li>
+	      <li>
+		Recognize the symbol <code>PERIOD_SYM</code>,
+		and <code>delete()</code> it
+		and <code>advance()</code> to the next.
+	      </li>
+	      <li>
+		Recursively get another <code>Fail</code> non-terminal.
+	      </li>
+	    </ol>
+	  </li>
+	  <li>
+	    Else, if it looks like production <pre>Fail -&gt; </pre> then literally do nothing.
+	    (There is nothing to parse.)
+	  </li>
+	  <li>
+	    Else it an error.
+	    If you detect an error then simply <code>throw</code> a string
+	    that describes the problem.
+	    One of my error messages was:
+	    <pre>throw &quot;Expected \&quot;fail\&quot;, \&quot;bomb\&quot;, \&quot;pass\&quot; or \&quot;ace\&quot;.&quot;;</pre>
+	  </li>
+	</ul>
+      </li>
+      <p/>
+
+      <li>
+	<h4>Please finish <code>parseSucceed()</code>:</h4>
+	<p>
+	  This function should handle the productions <pre>Succeed -&gt; pass the prereq .
+Succeed -&gt; ace the proficiency exam .</pre>
+	</p>
+	<p>
+	  Use <code>tokenizer.peek()</code>.
+	  You should see <code>PASS_KEYWORD_SYM</code> or <code>ACE_KEYWORD_SYM</code>.
+  	  If so, handle like the other productions above.
+	</p>
+	<p>
+	  If you detect an error then simply <code>throw</code> a string
+	  that describes the problem.
+	</p>
+      </li>
+      <p/>
+
+      <li>
+	<h4>Please finish <code>parseAttend()</code>:</h4>
+	<p>
+	  This function should handle production:
+	  <pre>Attend -&gt; attend the class .</pre>
+	  To do this it should see if the first symbol is <code>ATTEND_KEYWORD_SYM</code>.
+	  If so, handle like the other productions above.
+	</p>
+	<p>
+	  If you detect an error then simply <code>throw</code> a string
+	  that describes the problem.
+	</p>
+      </li>
+      <p/>
+
+
+      <li>
+	<p>
+	  <strong>Hints:</strong>
+	  <ol type="a">
+	    <li>
+	      If the same non-terminal is on the right-hand-side,
+	      then that means a recursive call to the same function.
+	    </li>
+	    <p/>
+
+	  </ol>
+	</p>
+
+	The methods you have to help you are:
+	<table border="1">
+	  <tr>
+	    <th>Method:</th>
+	    <th>Function:</th>
+	  </tr>
+
+	  <tr>
+	    <td><code>tokenizer.peek()</code></td>
+	    <td>
+	      It returns the <code>symbol_ty</code> value
+	      for the next symbol on the input stream,
+	      without changing the input stream.
+	      When you reach the end of input it returns the value
+	      <code>END_OF_INPUT_SYM</code>.
+	    </td>
+	  </tr>
+
+	  <tr>
+	    <td><code>tokenizer.advance()</code></td>
+	    <td>
+	      It returns a pointer to the instance of
+	      <code>Symbol</code> that was next in the token stream,
+	      and internally goes to the next symbol.
+	      Once you are thru with them,
+	      all <code>Symbol</code> instances
+	      should be <code>delete()</code>d.
+	    </td>
+	  </tr>
+
+	  <tr>
+	    <td><code>getType()</code> of <code>Symbol</code></td>
+	    <td>
+	      It tells what type of symbol you have,
+	      which is one of the constants of <code>symbol_ty</code>.
+	    </td>
+	  </tr>
+
+	</table>
+      </li>
+      <p/>
+
+    </ol>
+
+  </body>
+</html>
