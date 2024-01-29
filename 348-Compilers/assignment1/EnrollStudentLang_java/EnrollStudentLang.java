@@ -61,19 +61,38 @@ class	EnrollStudentLang
 
       tokenizer.advance();
 
-      parseFail(tokenizer);
     }
-    else
-    if  (peek == Symbol.symbol_ty.BOMB_KEYWORD_SYM)
+    else if  (peek == Symbol.symbol_ty.BOMB_KEYWORD_SYM)
     {
       //  YOUR CODE HERE
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.THE_KEYWORD_SYM) {
+        throw new Exception("Expected \"the\"");
+      }
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.PROFICIENCY_KEYWORD_SYM) {
+        throw new Exception("Expected \"proficiency\"");
+      }
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.EXAM_KEYWORD_SYM) {
+        throw new Exception("Expected \"exam\"");
+      }
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.PERIOD_SYM) {
+        throw new Exception("Expected \".\"");
+      }
+      tokenizer.advance();
     }
-    else
-    if  ( (peek == Symbol.symbol_ty.PASS_KEYWORD_SYM)  ||
+    else if  ( (peek == Symbol.symbol_ty.PASS_KEYWORD_SYM)  ||
     	  (peek == Symbol.symbol_ty.ACE_KEYWORD_SYM)
 	)
     {
       //  YOUR CODE HERE
+      //  do nithing
     }
     else
     {
@@ -99,11 +118,48 @@ class	EnrollStudentLang
     if  (peek == Symbol.symbol_ty.PASS_KEYWORD_SYM)
     {
       //  YOUR CODE HERE
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.THE_KEYWORD_SYM) {
+        throw new Exception("Expected \"the\"");
+      }
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.PREREQ_KEYWORD_SYM) {
+        throw new Exception("Expected \"prerequisite\"");
+      }
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.PERIOD_SYM) {
+        throw new Exception("Expected \".\"");
+      }
+      tokenizer.advance();
     }
     else
     if  (peek == Symbol.symbol_ty.ACE_KEYWORD_SYM)
     {
       //  YOUR CODE HERE
+      tokenizer.advance(); 
+
+      if (tokenizer.peek() != Symbol.symbol_ty.THE_KEYWORD_SYM) {
+        throw new Exception("Expected \"the\"");
+      }
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.PROFICIENCY_KEYWORD_SYM) {
+        throw new Exception("Expected \"proficiency\"");
+      }
+      tokenizer.advance(); 
+
+      if (tokenizer.peek() != Symbol.symbol_ty.EXAM_KEYWORD_SYM) {
+        throw new Exception("Expected \"exam\"");
+      }
+      tokenizer.advance();
+
+      if (tokenizer.peek() != Symbol.symbol_ty.PERIOD_SYM) {
+        throw new Exception("Expected \".\"");
+      }
+      tokenizer.advance();
     }
     else
     {
@@ -125,7 +181,29 @@ class	EnrollStudentLang
 
     //  II.  Attempt to parse cycle:
     //  YOUR CODE HERE
+    Symbol.symbol_ty peek = tokenizer.peek();
 
+    if (peek == Symbol.symbol_ty.ATTEND_KEYWORD_SYM) {
+        tokenizer.advance();
+
+        if (tokenizer.peek() != Symbol.symbol_ty.THE_KEYWORD_SYM) {
+          throw new Exception("Expected \"the\"");
+        }
+        tokenizer.advance();
+
+        if (tokenizer.peek() != Symbol.symbol_ty.CLASS_KEYWORD_SYM) {
+          throw new Exception("Expected \"class\"");
+        }
+        tokenizer.advance();
+
+        if (tokenizer.peek() != Symbol.symbol_ty.PERIOD_SYM) {
+          throw new Exception("Expected \".\"");
+        }
+        tokenizer.advance();
+
+    } else {
+      throw new Exception("Expected \"attend\"");
+    }
     //  III.  Finished:
   }
 
