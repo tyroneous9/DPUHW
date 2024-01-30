@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en_US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <title>CSC 348/448: Introduction to Compiler Design: 2024 Winter, Assignment #2</title>
+    <style>
+      H2 { text-align: center }
+      H3 { text-align: center }
+    </style>
+  </head>
+
+  <body>
+    <h2>
+      CSC 348/448: Introduction to Compiler Design: 2024 Winter<br/>Assignment #2
+    </h2>
+    <p>Last Modified 2024 January 25</p>
+
+    <h3>Purpose:</h3>
+    To go over:
+    <ul>
+      <li>Regular Expressions, Non-deterministic Automata, and Deterministic Automata</li>
+      <li>The Unix tool Lex</li>
+    </ul>
+
+    <h3>Assignment:</h3>
+    <ol type="1">
+      <li>
+	<h4>Regular Expressions and Finite Automata:</h4>
+	<p>
+	  Consider the language over chars
+	  <code>a</code>, <code>b</code> and <code>c</code>
+	  where
+	  <ul>
+	    <li>
+	      there is exactly one <code>a</code>
+	    </li>
+	    <li>
+	      there can be any number of
+	      <code>a</code>s and <code>b</code>s (including 0)
+	    </li>
+	    <li>
+	      there can be any number of
+	      <code>c</code>s (including 0)
+	    </li>
+	    <li>
+	      then there must be precisely one <code>a</code> at the end
+	    </li>
+	  </ul>
+	</p>
+
+	<p>
+	  <strong>Positive examples:</strong>
+	  <table border="1">
+	    <tr>
+	      <th>String(s)</th>
+	      <th>Comment</th>
+	    </tr>
+	    <tr>
+	      <td><code>aa</code></td>
+	      <td>The simplest string in the language</td>
+	    </tr>
+	    <tr>
+	      <td><code>aaa</code></td>
+	      <td>
+		Starts with an <code>a</code>,
+		has one <code>a</code> in the middle,
+		ends with an <code>a</code>.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td><code>aba</code></td>
+	      <td>
+		Starts with an <code>a</code>,
+		has one <code>b</code> in the middle,
+		ends with an <code>a</code>.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td><code>aca</code></td>
+	      <td>
+		Starts with an <code>a</code>,
+		has one <code>c</code> in the middle,
+		ends with an <code>a</code>.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td><code>abca</code></td>
+	      <td>
+		Starts with an <code>a</code>,
+		has one <code>b</code>, followed by one <code>c</code>,
+		ends with an <code>a</code>.
+	      </td>
+	    </tr>
+	    <tr>
+	      <td><code>aabababccca</code></td>
+	      <td>
+		Starts with an <code>a</code>,
+		has 3 <code>ab</code>s, followed by 3 <code>c</code>s,
+		ends with an <code>a</code>.
+	      </td>
+	    </tr>
+	  </table>	  
+	</p>
+	  
+	<p>
+	  <strong>Negative examples:</strong>
+	  <table border="1">
+	    <tr>
+	      <th>String(s)</th>
+	      <th>Comment</th>
+	    </tr>
+	    <tr>
+	      <td><code>ab</code></td>
+	      <td>No ending <code>a</code></td>
+	    </tr>
+	    <tr>
+	      <td><code>bca</code></td>
+	      <td>No beginning <code>a</code></td>
+	    </tr>
+	    <tr>
+	      <td><code>acaa</code></td>
+	      <td><code>c</code>s in the middle must come after middle <code>a</code>s and <code>b</code>s</td>
+	    </tr>
+	  </table>	  
+	</p>
+	  
+	</p>
+	<ol type="a">
+	  <li>
+	    (25 Points)
+	    Write a <em>regular expression</em> to recognize this language.
+	  </li>
+	  <p/>
+
+	  <li>
+	    (25 Points)
+	    Translate your regular expression to a
+	    <em>non-deterministic finite automaton</em>.
+	    (You will need some lambdas, try to use the minimal necessary.)
+	  </li>
+	  <p/>
+
+	  <li>
+	    (25 Points)
+	    ranslate your non-deterministic finite automaton to a
+	    <em>deterministic finite automaton</em>.
+	    <strong>Show your work!</strong>
+	  </li>
+	  <p/>
+
+	</ol>
+      </li>
+      <p/>
+
+      <li>
+	<h4>Lex and Flex:</h4>
+	(25 Points)
+	<p>
+	  Recognize the tokens of the <code>Pascal</code> programming language.
+	</p>
+
+	<p>
+	  Copy and paste the following,
+	  and add rules where the comment reads<br/>
+	  <strong>//  GET RID OF THIS COMMENT AND ADD RULES HERE</strong><br/>
+	  <strong>HINT:</strong> Order your rules from most specific to most general.
+	  <pre>
+%{
+  //  -----------------------------------------------------------------	//
+  //									//
+  //		ourPascal.lex						//
+  //									//
+  //	    This file defines a flex file that defines a C++ program	//
+  //	that outputs the tokens encountered in a Pascal source file.	//
+  //									//
+  //	----	----	----	----	----	----	----	----	//
+  //									//
+  //	Version 1a		2024 January 25		Joseph Phillips	//
+  //									//
+  //  -----------------------------------------------------------------	//
+
+  //  Compile and run with:
+  //    $ flex -o ourPascalTokenizer.cpp ourPascal.lex
+  //    $ g++ ourPascalTokenizer.cpp -o ourPascal
+  //    $ ./ourPascal CS3.PAS
+
+#include	&lt;cstdlib&gt;
+#include	&lt;cstdio&gt;
+#include	&lt;cstring&gt;
+
+
+//  PURPOSE:  To distinguish among the tokens that can be tokenized.
+typedef		enum
+		{
+		  NO_LEX,
+		  INTEGER_LEX,
+		  FLOAT_LEX,
+		  STRING_LEX,
+		  IDENTIFIER_LEX,
+
+		  AND_LEX,
+		  ARRAY_LEX,
+		  BEGIN_LEX,
+		  CASE_LEX,
+		  CONST_LEX,
+
+		  DIV_LEX,
+		  DO_LEX,
+		  DOWNTO_LEX,
+		  ELSE_LEX,
+		  END_LEX,
+
+		  FILE_LEX,
+		  FOR_LEX,
+		  FUNCTION_LEX,
+		  GOTO_LEX,
+		  IF_LEX,
+
+		  IN_LEX,
+		  LABEL_LEX,
+		  MOD_LEX,
+		  NIL_LEX,
+		  NOT_LEX,
+
+		  OF_LEX,
+		  OR_LEX,
+		  PACKED_LEX,
+		  PROCEDURE_LEX,
+		  PROGRAM_LEX,
+
+		  RECORD_LEX,
+		  REPEAT_LEX,
+		  SET_LEX,
+		  THEN_LEX,
+		  TO_LEX,
+
+		  TYPE_LEX,
+		  UNTIL_LEX,
+		  VAR_LEX,
+		  WHILE_LEX,
+		  WITH_LEX,
+
+		  ASSIGN_LEX,
+		  EQUAL_LEX,
+		  LESSER_THAN_LEX,
+		  LESSER_THAN_EQUAL_LEX,
+		  GREATER_THAN_LEX,
+		  GREATER_THAN_EQUAL_LEX,
+		  NOT_EQUAL_LEX,
+		  PLUS_LEX,
+		  MINUS_LEX,
+		  STAR_LEX,
+		  SLASH_LEX,
+		  RANGE_LEX,
+		  CARET_LEX,
+
+		  BEGIN_PAREN_LEX,
+		  END_PAREN_LEX,
+		  BEGIN_BRACKET_LEX,
+		  END_BRACKET_LEX,
+		  COLON_LEX,
+		  COMMA_LEX,
+		  SEMICOLON_LEX,
+		  PERIOD_LEX
+		}
+		lex_ty;
+
+
+//  PURPOSE:  To tell the size of typical buffers.
+const int	BUFFER_LEN		= 4080;
+
+
+//  PURPOSE:  To tell how many spaces are implied by a tab char.
+const int	NUM_SPACES_PER_TAB	= 8;
+
+
+//  PURPOSE:  To keep track of the line number.
+extern int	lineNum;
+
+#undef 		YY_INPUT
+
+#define		YY_INPUT(buffer,numRetChars,bufferLen)	\
+		{ numRetChars = getLexChar(buffer,bufferLen); }
+
+
+//  PURPOSE:  To read the next char from &apos;yyin&apos; and put it into &apos;buffer&apos; of
+//	length &apos;bufferLen&apos;.  Returns &apos;1&apos; to signify that only one char was
+//	obtained on success, or returns &apos;YY_NULL&apos; on EOF error otherwise.
+extern
+int		getLexChar	(char*		buffer,
+       				 int		bufferLen
+				);
+
+%}
+
+<strong>//  GET RID OF THIS COMMENT AND ADD PATTERNS HERE</strong>
+
+%%
+
+<strong>//  GET RID OF THIS COMMENT AND ADD RULES HERE</strong>
+
+%%
+
+//  PURPOSE:  To hold the names of the tokens given in &apos;lex_ty&apos;.
+const char*	lexTypeName[]	= { &quot;not a legal lexeme&quot;,
+				    &quot;INTEGER&quot;,
+				    &quot;FLOAT&quot;,
+				    &quot;STRING&quot;,
+				    &quot;IDENTIFIER&quot;,
+
+				    &quot;AND&quot;,
+				    &quot;ARRAY&quot;,
+				    &quot;BEGIN&quot;,
+				    &quot;CASE&quot;,
+				    &quot;CONST&quot;,
+
+				    &quot;DIV&quot;,
+				    &quot;DO&quot;,
+				    &quot;DOWNTO&quot;,
+				    &quot;ELSE&quot;,
+				    &quot;END&quot;,
+
+				    &quot;FILE&quot;,
+				    &quot;FOR&quot;,
+				    &quot;FUNCTION&quot;,
+				    &quot;GOTO&quot;,
+				    &quot;IF&quot;,
+
+				    &quot;IN&quot;,
+				    &quot;LABEL&quot;,
+				    &quot;MOD&quot;,
+				    &quot;NIL&quot;,
+				    &quot;NOT&quot;,
+
+				    &quot;OF&quot;,
+				    &quot;OR&quot;,
+				    &quot;PACKED&quot;,
+				    &quot;PROCEDURE&quot;,
+				    &quot;PROGRAM&quot;,
+
+				    &quot;RECORD&quot;,
+				    &quot;REPEAT&quot;,
+				    &quot;SET&quot;,
+				    &quot;THEN&quot;,
+				    &quot;TO&quot;,
+
+				    &quot;TYPE&quot;,
+				    &quot;UNTIL&quot;,
+				    &quot;VAR&quot;,
+				    &quot;WHILE&quot;,
+				    &quot;WITH&quot;,
+
+				    &quot;ASSIGN&quot;,
+				    &quot;EQUAL&quot;,
+				    &quot;LESSER_THAN&quot;,
+				    &quot;LESSER_THAN_EQUAL&quot;,
+				    &quot;GREATER_THAN&quot;,
+				    &quot;GREATER_THAN_EQUAL&quot;,
+				    &quot;NOT_EQUAL&quot;,
+				    &quot;PLUS&quot;,
+				    &quot;MINUS&quot;,
+				    &quot;STAR&quot;,
+				    &quot;SLASH&quot;,
+				    &quot;RANGE&quot;,
+				    &quot;CARET&quot;,
+
+				    &quot;BEGIN_PAREN&quot;,
+				    &quot;END_PAREN&quot;,
+				    &quot;BEGIN_BRACKET&quot;,
+				    &quot;END_BRACKET&quot;,
+				    &quot;COLON&quot;,
+				    &quot;COMMA&quot;,
+				    &quot;SEMICOLON&quot;,
+				    &quot;PERIOD&quot;
+				  };
+
+
+//  PURPOSE:  To keep track of the line number.
+int		lineNum		= 0;
+
+//  PURPOSE:  To read the next char from &apos;yyin&apos; and put it into &apos;buffer&apos; of
+//	length &apos;bufferLen&apos;.  Returns &apos;1&apos; to signify that only one char was
+//	obtained on success, or returns &apos;YY_NULL&apos; on EOF error otherwise.
+int		getLexChar	(char*	buffer,
+       				 int	bufferLen
+				)
+{
+  //  PURPOSE:  To hold the chars of the most recently read line:
+  static
+  char		line[BUFFER_LEN];
+
+  //  PURPOSE:  To hold the position of the next char to read in &apos;linePtr&apos;,
+  //	or &apos;line + BUFFER_LEN&apos; if should read a new line.
+  static
+  char*		linePtr	= line + BUFFER_LEN;
+
+
+  //  I.  Application validity check:
+
+  //  II.  Get next char:
+  //  II.A.  If at end of current line then keep reading lines:
+  while  ( (linePtr &gt;= line + BUFFER_LEN)  ||  (*linePtr == &apos;\0&apos;) )
+  {
+    //  II.A.1.  Read next line:
+    if  (fgets(line,BUFFER_LEN,yyin) == NULL)
+    {
+      //  II.A.1.a. Give up if no more lines:
+      return(YY_NULL);
+    }
+
+    //  II.A.2.  Reset &apos;linePtr&apos;:
+    linePtr = line;
+  }
+
+  //  II.B.  Update &apos;buffer&apos;
+  buffer[0]	= *linePtr++;
+  buffer[1]	= &apos;\0&apos;;
+
+  //  III.  Finished:
+  return(1);
+}
+
+
+//  PURPOSE:  To return &apos;0&apos; if tokenizing should continue after reaching feof()
+//	on &apos;yyin&apos;, or &apos;1&apos; otherwise.  No parameters.
+int		yywrap		()
+{
+  //  I.  Application validity check:
+
+  //  II.  Return value:
+  return(1);
+}
+
+
+//  PURPOSE:  To tokenize the Pascal program given as the first argument in
+//	&apos;argv[1]&apos;.  Returns &apos;EXIT_SUCCESS&apos; on success or &apos;EXIT_FAILURE&apos;
+//	otherwise.
+int		main		(int argc, char* argv[])
+{
+  //  I.  Application validity check:
+  if  (argc &lt; 2)
+  {
+    fprintf(stderr,&quot;Usage:\tourPascal <prog.pas>\n&quot;);
+    exit(EXIT_FAILURE);
+  }
+
+  //  II.  Attempt to tokenize file:
+  //  II.A.  Attempt to open file:
+  const char*	filePathCPtr	= argv[1];
+
+  if  ((yyin = fopen(filePathCPtr,&quot;r&quot;)) == NULL)
+  {
+    fprintf(stderr,&quot;Cannot open %s\n&quot;,filePathCPtr);
+    exit(EXIT_FAILURE);
+  }
+
+  //  II.B.  Attempt to tokenize &apos;filePathCPtr&apos;:
+  int	result;
+
+  //  II.B.1.  Each iteration gets and prints the next token:
+  while  ( (result = yylex()) != YY_NULL )
+  {
+    printf(&quot;%s&quot;,lexTypeName[result]);
+
+    switch  (result)
+    {
+    case INTEGER_LEX :
+      printf(&quot;:\t%d&quot;,strtol(yytext,NULL,0));
+      break;
+
+    case FLOAT_LEX :
+      printf(&quot;:\t\t%g&quot;,strtod(yytext,NULL));
+      break;
+
+    case STRING_LEX :
+      printf(&quot;:\t\t%s&quot;,yytext);
+      break;
+
+    case IDENTIFIER_LEX :
+      printf(&quot;:\t%s&quot;,yytext);
+      break;
+
+    default :
+      break;
+    }
+
+    putchar(&apos;\n&apos;);
+  }
+
+  //  II.C.  Clean up:
+  fclose(yyin);
+
+  //  III.  Finished:
+  return(EXIT_SUCCESS);
+}
+	  </pre>
+	</p>
+
+	<p>
+	  When you see the token on the left,
+	  take the corresponding action detailed on the right.
+	</p>
+
+	<table border="1">
+	  <tr>
+	    <th align="center">
+	      Token
+	    </th>
+	    <th align="center">
+	      Action
+	    </th>
+	  </tr>
+	  <tr>
+	    <td>Comments</td>
+	    <td>
+	      Ignore them.
+	      Read past them.<br/>
+	      <em>Note:</em>
+	      In Pascal comments are enclosed in curly braces:<br/>
+	      <code>{ This is a comment }</code>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>integer constants</td>
+	    <td><code>return(INTEGER_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td>floating point constants</td>
+	    <td><code>return(FLOAT_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      string constants<br/>
+	      <em>Note:</em>
+	      In Pascal string constants are enclosed in apostrophes:
+	      <code>&apos;This is a string constant&apos;</code>
+	    </td>
+	    <td><code>return(STRING_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td>
+	      identifiers<br/>
+	      <em>Note:</em>
+	      In Pascal:
+	      <ul>
+		<li>
+		  Begin with a letter or underscore
+		</li>
+		<li>
+		  Continue with zero or more letters, digits and underscores.
+		</li>
+	      </ul>
+	    </td>
+	    <td><code>return(IDENTIFIER_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>:=</code></td>
+	    <td><code>return(ASSIGN_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>=</code></td>
+	    <td><code>return(EQUAL_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>&lt;</code></td>
+	    <td><code>return(LESSER_THAN_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>&lt;=</code></td>
+	    <td><code>return(LESSER_THAN_EQUAL_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>&gt;</code></td>
+	    <td><code>return(GREATER_THAN_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>&gt;=</code></td>
+	    <td><code>return(GREATER_THAN_EQUAL_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>&lt;&gt;</code></td>
+	    <td><code>return(NOT_EQUAL_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>+</code></td>
+	    <td><code>return(PLUS_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>-</code></td>
+	    <td><code>return(MINUS_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>*</code></td>
+	    <td><code>return(STAR_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>/</code></td>
+	    <td><code>return(SLASH_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>..</code></td>
+	    <td><code>return(RANGE_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>^</code></td>
+	    <td><code>return(CARET_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>(</code></td>
+	    <td><code>return(BEGIN_PAREN_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>)</code></td>
+	    <td><code>return(END_PAREN_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>[</code></td>
+	    <td><code>return(BEGIN_BRACKET_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>]</code></td>
+	    <td><code>return(END_BRACKET_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>:</code></td>
+	    <td><code>return(COLON_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>,</code></td>
+	    <td><code>return(COMMA_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>;</code></td>
+	    <td><code>return(SEMICOLON_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td><code>.</code></td>
+	    <td><code>return(PERIOD_LEX)</code></td>
+	  </tr>
+	  <tr>
+	    <td>Newline chars (<code>&apos;\n&apos;</code>)</td>
+	    <td>
+	      Do the following:
+	      <pre>lineNum++;</pre>
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>Space, tab, and \r chars</td>
+	    <td>
+	      Do nothing.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td>
+	      <p>
+		There are 35 reserved words in Pascal:
+		<pre>
+and 	array 	begin 	case 	const
+div 	do 	downto 	else 	end
+file 	for 	function goto 	if
+in 	label 	mod 	nil 	not
+of 	or 	packed 	procedure 	program
+record 	repeat 	set 	then 	to
+type 	until 	var 	while 	with
+		</pre>
+		Please recognize all 35.
+	      </p>
+	      <p>
+		Also, Pascal is <code>not</code> a case-sensitive language.
+		But I have never seen anyone type <code>PrOgRaM</code>,
+		so please just check for lowercase, Capitalize, and UPPERCASE:
+		<code>program|Program|PROGRAM</code>.
+	      </p>
+	    </td>
+	    <td>
+	      <code>return()</code> the corresponding <code>lex_ty</code> value.
+	    </td>
+	</table>
+
+	<p>
+	  <h3>Sample output:</h3>
+	  <table border="1">
+	    <tr>
+	      <th align="center">Pascal program:</th>
+	      <th align="center">Output:</th>
+	    </tr>
+	    <tr>
+	      <td>
+		<h5>cs3.pas</h5>
+<pre>
+{----------------------------------------------------------------------------
+
+The function COMB2 here uses the stack to compute the function non-recursively.
+
+ Rather than drag to sum-to-date around in a separate variable, it is placed
+
+ on the top of the stack and taken off repeatedly.
+
+ ----------------------------------------------------------------------------}
+
+
+PROGRAM  combine;
+
+CONST lo_mem = 1;
+
+      hi_mem = 1000;
+
+TYPE  stack = ARRAY [lo_mem..hi_mem] OF INTEGER;
+
+VAR   x,y,stack_pointer : INTEGER;
+
+
+PROCEDURE  push (number : INTEGER;  VAR s : stack);
+
+    BEGIN
+    stack_pointer    := SUCC(stack_pointer);
+    s[stack_pointer] := number
+    END;
+
+
+FUNCTION   pop	(VAR s : stack) : INTEGER;
+
+    BEGIN
+    pop 	     := s[stack_pointer];
+    s[stack_pointer] := 0;
+    stack_pointer    := PRED(stack_pointer)
+    END;
+
+
+FUNCTION  isempty  (s : stack) : BOOLEAN;
+
+    BEGIN
+    isempty := (stack_pointer = 0)
+    END;
+
+
+PROCEDURE  makeempty  (VAR s : stack);
+
+    VAR  pointer : INTEGER;
+
+    BEGIN
+
+    FOR  pointer := lo_mem  TO	hi_mem	DO
+	s[pointer] := 0;
+
+    stack_pointer := 0
+    END;
+
+
+FUNCTION   comb1  (n,m : INTEGER) : INTEGER;
+
+    VAR    s   : stack;
+
+	   sum : INTEGER;
+
+    BEGIN
+    makeempty(s);
+    push(n,s);
+    push(m,s);
+    sum := 0;
+
+	REPEAT
+	m := pop(s);
+	n := pop(s);
+	push(sum,s);
+
+	IF  (n = 1)  OR  (m = 0)  OR  (m = n)  THEN
+	    BEGIN
+	    sum := pop(s);
+	    push(sum+1,s)
+	    END
+	  ELSE
+	    BEGIN
+	    sum := pop(s);
+	    push(n-1,s);
+	    push(m-1,s);
+	    push(n-1,s);
+	    push(m,s);
+	    push(sum,s)
+	    END;
+
+	sum := pop(s)
+	UNTIL  isempty(s);
+
+    comb1 := sum
+    END;
+
+
+FUNCTION   comb2  (n,m : INTEGER) : INTEGER;
+
+    BEGIN
+
+    IF	(n = 1)  OR  (m = 0)  OR  (m = n)  THEN
+	comb2 := 1
+      ELSE
+	comb2 := comb2(n-1,m) + comb2(n-1,m-1)
+
+    END;
+
+
+BEGIN
+
+    REPEAT
+    WRITE(&apos;n=&apos;);
+    READ(x);
+    WRITE(&apos;   m=&apos;);
+    READ(y);
+
+    IF	(x &lt;&gt; 0)  AND  (y &lt;&gt; 0)  THEN
+	WRITELN(&apos;        &apos;,comb2(x,y),&apos;   &apos;,comb1(x,y))
+
+    UNTIL  (x = 0)  AND  (y = 0)
+
+END.
+</pre>
+	      </td>
+	      <td>
+<pre>
+$ <strong>./ourPascal cs3.pas</strong>
+PROGRAM
+IDENTIFIER:	combine
+SEMICOLON
+CONST
+IDENTIFIER:	lo_mem
+EQUAL
+INTEGER:	1
+SEMICOLON
+IDENTIFIER:	hi_mem
+EQUAL
+INTEGER:	1000
+SEMICOLON
+TYPE
+IDENTIFIER:	stack
+EQUAL
+IDENTIFIER:	ARRAY
+BEGIN_BRACKET
+IDENTIFIER:	lo_mem
+RANGE
+IDENTIFIER:	hi_mem
+END_BRACKET
+OF
+IDENTIFIER:	INTEGER
+SEMICOLON
+VAR
+IDENTIFIER:	x
+COMMA
+IDENTIFIER:	y
+COMMA
+IDENTIFIER:	stack_pointer
+COLON
+IDENTIFIER:	INTEGER
+SEMICOLON
+PROCEDURE
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	number
+COLON
+IDENTIFIER:	INTEGER
+SEMICOLON
+VAR
+IDENTIFIER:	s
+COLON
+IDENTIFIER:	stack
+END_PAREN
+SEMICOLON
+BEGIN
+IDENTIFIER:	stack_pointer
+ASSIGN
+IDENTIFIER:	SUCC
+BEGIN_PAREN
+IDENTIFIER:	stack_pointer
+END_PAREN
+SEMICOLON
+IDENTIFIER:	s
+BEGIN_BRACKET
+IDENTIFIER:	stack_pointer
+END_BRACKET
+ASSIGN
+IDENTIFIER:	number
+END
+SEMICOLON
+FUNCTION
+IDENTIFIER:	pop
+BEGIN_PAREN
+VAR
+IDENTIFIER:	s
+COLON
+IDENTIFIER:	stack
+END_PAREN
+COLON
+IDENTIFIER:	INTEGER
+SEMICOLON
+BEGIN
+IDENTIFIER:	pop
+ASSIGN
+IDENTIFIER:	s
+BEGIN_BRACKET
+IDENTIFIER:	stack_pointer
+END_BRACKET
+SEMICOLON
+IDENTIFIER:	s
+BEGIN_BRACKET
+IDENTIFIER:	stack_pointer
+END_BRACKET
+ASSIGN
+INTEGER:	0
+SEMICOLON
+IDENTIFIER:	stack_pointer
+ASSIGN
+IDENTIFIER:	PRED
+BEGIN_PAREN
+IDENTIFIER:	stack_pointer
+END_PAREN
+END
+SEMICOLON
+FUNCTION
+IDENTIFIER:	isempty
+BEGIN_PAREN
+IDENTIFIER:	s
+COLON
+IDENTIFIER:	stack
+END_PAREN
+COLON
+IDENTIFIER:	BOOLEAN
+SEMICOLON
+BEGIN
+IDENTIFIER:	isempty
+ASSIGN
+BEGIN_PAREN
+IDENTIFIER:	stack_pointer
+EQUAL
+INTEGER:	0
+END_PAREN
+END
+SEMICOLON
+PROCEDURE
+IDENTIFIER:	makeempty
+BEGIN_PAREN
+VAR
+IDENTIFIER:	s
+COLON
+IDENTIFIER:	stack
+END_PAREN
+SEMICOLON
+VAR
+IDENTIFIER:	pointer
+COLON
+IDENTIFIER:	INTEGER
+SEMICOLON
+BEGIN
+FOR
+IDENTIFIER:	pointer
+ASSIGN
+IDENTIFIER:	lo_mem
+TO
+IDENTIFIER:	hi_mem
+DO
+IDENTIFIER:	s
+BEGIN_BRACKET
+IDENTIFIER:	pointer
+END_BRACKET
+ASSIGN
+INTEGER:	0
+SEMICOLON
+IDENTIFIER:	stack_pointer
+ASSIGN
+INTEGER:	0
+END
+SEMICOLON
+FUNCTION
+IDENTIFIER:	comb1
+BEGIN_PAREN
+IDENTIFIER:	n
+COMMA
+IDENTIFIER:	m
+COLON
+IDENTIFIER:	INTEGER
+END_PAREN
+COLON
+IDENTIFIER:	INTEGER
+SEMICOLON
+VAR
+IDENTIFIER:	s
+COLON
+IDENTIFIER:	stack
+SEMICOLON
+IDENTIFIER:	sum
+COLON
+IDENTIFIER:	INTEGER
+SEMICOLON
+BEGIN
+IDENTIFIER:	makeempty
+BEGIN_PAREN
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	n
+COMMA
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	m
+COMMA
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	sum
+ASSIGN
+INTEGER:	0
+SEMICOLON
+REPEAT
+IDENTIFIER:	m
+ASSIGN
+IDENTIFIER:	pop
+BEGIN_PAREN
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	n
+ASSIGN
+IDENTIFIER:	pop
+BEGIN_PAREN
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	sum
+COMMA
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IF
+BEGIN_PAREN
+IDENTIFIER:	n
+EQUAL
+INTEGER:	1
+END_PAREN
+OR
+BEGIN_PAREN
+IDENTIFIER:	m
+EQUAL
+INTEGER:	0
+END_PAREN
+OR
+BEGIN_PAREN
+IDENTIFIER:	m
+EQUAL
+IDENTIFIER:	n
+END_PAREN
+THEN
+BEGIN
+IDENTIFIER:	sum
+ASSIGN
+IDENTIFIER:	pop
+BEGIN_PAREN
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	sum
+INTEGER:	1
+COMMA
+IDENTIFIER:	s
+END_PAREN
+END
+ELSE
+BEGIN
+IDENTIFIER:	sum
+ASSIGN
+IDENTIFIER:	pop
+BEGIN_PAREN
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	n
+INTEGER:	-1
+COMMA
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	m
+INTEGER:	-1
+COMMA
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	n
+INTEGER:	-1
+COMMA
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	m
+COMMA
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	push
+BEGIN_PAREN
+IDENTIFIER:	sum
+COMMA
+IDENTIFIER:	s
+END_PAREN
+END
+SEMICOLON
+IDENTIFIER:	sum
+ASSIGN
+IDENTIFIER:	pop
+BEGIN_PAREN
+IDENTIFIER:	s
+END_PAREN
+UNTIL
+IDENTIFIER:	isempty
+BEGIN_PAREN
+IDENTIFIER:	s
+END_PAREN
+SEMICOLON
+IDENTIFIER:	comb1
+ASSIGN
+IDENTIFIER:	sum
+END
+SEMICOLON
+FUNCTION
+IDENTIFIER:	comb2
+BEGIN_PAREN
+IDENTIFIER:	n
+COMMA
+IDENTIFIER:	m
+COLON
+IDENTIFIER:	INTEGER
+END_PAREN
+COLON
+IDENTIFIER:	INTEGER
+SEMICOLON
+BEGIN
+IF
+BEGIN_PAREN
+IDENTIFIER:	n
+EQUAL
+INTEGER:	1
+END_PAREN
+OR
+BEGIN_PAREN
+IDENTIFIER:	m
+EQUAL
+INTEGER:	0
+END_PAREN
+OR
+BEGIN_PAREN
+IDENTIFIER:	m
+EQUAL
+IDENTIFIER:	n
+END_PAREN
+THEN
+IDENTIFIER:	comb2
+ASSIGN
+INTEGER:	1
+ELSE
+IDENTIFIER:	comb2
+ASSIGN
+IDENTIFIER:	comb2
+BEGIN_PAREN
+IDENTIFIER:	n
+INTEGER:	-1
+COMMA
+IDENTIFIER:	m
+END_PAREN
+PLUS
+IDENTIFIER:	comb2
+BEGIN_PAREN
+IDENTIFIER:	n
+INTEGER:	-1
+COMMA
+IDENTIFIER:	m
+INTEGER:	-1
+END_PAREN
+END
+SEMICOLON
+BEGIN
+REPEAT
+IDENTIFIER:	WRITE
+BEGIN_PAREN
+STRING:		&apos;n=&apos;
+END_PAREN
+SEMICOLON
+IDENTIFIER:	READ
+BEGIN_PAREN
+IDENTIFIER:	x
+END_PAREN
+SEMICOLON
+IDENTIFIER:	WRITE
+BEGIN_PAREN
+STRING:		&apos;   m=&apos;
+END_PAREN
+SEMICOLON
+IDENTIFIER:	READ
+BEGIN_PAREN
+IDENTIFIER:	y
+END_PAREN
+SEMICOLON
+IF
+BEGIN_PAREN
+IDENTIFIER:	x
+NOT_EQUAL
+INTEGER:	0
+END_PAREN
+AND
+BEGIN_PAREN
+IDENTIFIER:	y
+NOT_EQUAL
+INTEGER:	0
+END_PAREN
+THEN
+IDENTIFIER:	WRITELN
+BEGIN_PAREN
+STRING:		&apos;        &apos;
+COMMA
+IDENTIFIER:	comb2
+BEGIN_PAREN
+IDENTIFIER:	x
+COMMA
+IDENTIFIER:	y
+END_PAREN
+COMMA
+STRING:		&apos;   &apos;
+COMMA
+IDENTIFIER:	comb1
+BEGIN_PAREN
+IDENTIFIER:	x
+COMMA
+IDENTIFIER:	y
+END_PAREN
+END_PAREN
+UNTIL
+BEGIN_PAREN
+IDENTIFIER:	x
+EQUAL
+INTEGER:	0
+END_PAREN
+AND
+BEGIN_PAREN
+IDENTIFIER:	y
+EQUAL
+INTEGER:	0
+END_PAREN
+END
+PERIOD
+</pre>
+	      </td>
+	    </tr>
+	  </table>
+	</p>
+
+      </li>
+    </ol>
+  </body>
+</html>
