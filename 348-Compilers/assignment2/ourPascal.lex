@@ -126,12 +126,70 @@ int		getLexChar	(char*		buffer,
 
 %}
 
-//  GET RID OF THIS COMMENT AND ADD PATTERNS HERE
-
 %%
-
-//  GET RID OF THIS COMMENT AND ADD RULES HERE
-
+and|And|AND                     { return AND_LEX; }
+array|Array|ARRAY               { return ARRAY_LEX; }
+begin|Begin|BEGIN               { return BEGIN_LEX; }
+case|Case|CASE                  { return CASE_LEX; }
+const|Const|CONST               { return CONST_LEX; }
+div|Div|DIV                     { return DIV_LEX; }
+do|Do|DO                        { return DO_LEX; }
+downto|Downto|DOWNTO            { return DOWNTO_LEX; }
+else|Else|ELSE                  { return ELSE_LEX; }
+end|End|END                     { return END_LEX; }
+file|File|FILE                  { return FILE_LEX; }
+for|For|FOR                     { return FOR_LEX; }
+function|Function|FUNCTION      { return FUNCTION_LEX; }
+goto|Goto|GOTO                  { return GOTO_LEX; }
+if|If|IF                        { return IF_LEX; }
+in|In|IN                        { return IN_LEX; }
+label|Label|LABEL               { return LABEL_LEX; }
+mod|Mod|MOD                     { return MOD_LEX; }
+nil|Nil|NIL                     { return NIL_LEX; }
+not|Not|NOT                     { return NOT_LEX; }
+of|Of|OF                        { return OF_LEX; }
+or|Or|OR                        { return OR_LEX; }
+packed|Packed|PACKED            { return PACKED_LEX; }
+procedure|Procedure|PROCEDURE   { return PROCEDURE_LEX; }
+program|Program|PROGRAM         { return PROGRAM_LEX; }
+record|Record|RECORD            { return RECORD_LEX; }
+repeat|Repeat|REPEAT            { return REPEAT_LEX; }
+set|Set|SET                     { return SET_LEX; }
+then|Then|THEN                  { return THEN_LEX; }
+to|To|TO                        { return TO_LEX; }
+type|Type|TYPE                  { return TYPE_LEX; }
+until|Until|UNTIL               { return UNTIL_LEX; }
+var|Var|VAR                     { return VAR_LEX; }
+while|While|WHILE               { return WHILE_LEX; }
+with|With|WITH                  { return WITH_LEX; }
+[a-zA-Z_][a-zA-Z0-9_]*          { return IDENTIFIER_LEX; }
+[0-9]+                          { return INTEGER_LEX; }
+[0-9]+\.[0-9]*                  { return FLOAT_LEX; }
+\\'([^\\n\\']|\\\\(.|\\n))*\\'  { return STRING_LEX; }
+":="                            { return ASSIGN_LEX; }
+"="                             { return EQUAL_LEX; }
+"<"                             { return LESSER_THAN_LEX; }
+"<="                            { return LESSER_THAN_EQUAL_LEX; }
+">"                             { return GREATER_THAN_LEX; }
+">="                            { return GREATER_THAN_EQUAL_LEX; }
+"<>"                            { return NOT_EQUAL_LEX; }
+"+"                             { return PLUS_LEX; }
+"-"                             { return MINUS_LEX; }
+"*"                             { return STAR_LEX; }
+"/"                             { return SLASH_LEX; }
+".."                            { return RANGE_LEX; }
+"^"                             { return CARET_LEX; }
+"("                             { return BEGIN_PAREN_LEX; }
+")"                             { return END_PAREN_LEX; }
+"["                             { return BEGIN_BRACKET_LEX; }
+"]"                             { return END_BRACKET_LEX; }
+":"                             { return COLON_LEX; }
+","                             { return COMMA_LEX; }
+";"                             { return SEMICOLON_LEX; }
+"."                             { return PERIOD_LEX; }
+\{[^}]*\}                       { /* comments */ }
+[ \t\r]                         { /* spaces n' tabs */ }
+\n                              { lineNum++; }
 %%
 
 //  PURPOSE:  To hold the names of the tokens given in 'lex_ty'.
