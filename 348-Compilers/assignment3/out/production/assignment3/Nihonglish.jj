@@ -1,0 +1,162 @@
+PARSER_BEGIN(Nihonglish)
+
+import	java.util.*;
+import	java.io.*;
+
+public
+class	Nihonglish
+{
+    public
+    static
+    String	QUIT_CMD	= "";
+
+    static
+    Nihonglish	parser	= null;
+
+    public
+    static
+    Sentence	parse		(String	parseMe
+    				)
+				throws Exception
+    {
+      StringReader	input	= new java.io.StringReader(parseMe);
+
+      if  (parser == null)
+        parser	= new Nihonglish(input);
+      else
+	parser.ReInit(input);
+
+      return(parser.sentence());
+    }
+
+
+    public
+    static
+    void	main(String[] args) throws Exception
+    {
+      String	parseMe;
+      Scanner	input	= new Scanner(System.in);
+
+      while (true)
+      {
+	System.out.print
+		("Sentence to parse or \""	+
+		 QUIT_CMD			+
+		 "\" to quit: "
+		);
+
+	parseMe	= input.nextLine();
+
+	if  ( parseMe.equals(QUIT_CMD) )
+	{
+	  break;
+	}
+
+	try
+	{
+          System.out.println(parse(parseMe));
+        }
+        catch (Exception error)
+        {
+	  System.err.println(error);
+	}
+      }
+    }
+}
+
+PARSER_END(Nihonglish)
+
+SKIP:	{ " " | "\t" | "\n" | "\r" }
+TOKEN : {
+    < I: "I" | "i" >
+  | < YOU: "You" | "you" >
+  | < HOME: "Home" | "home" >
+  | < STORE: "Store" | "store" >
+  | < GOING: "Going" | "going" >
+  | < AS_FOR: "as for" >
+  | < TO: "to" >
+  | < PERIOD: "." >
+  | < QUESTION_MARK: "?" >
+}
+
+
+
+Sentence	sentence	() throws Exception :
+{
+  Sentence	sent;
+  Phrase	phrase;
+  boolean	isQuestion;
+}
+{
+    phrase = postposit_phrase_list()
+    <GOING>
+    (
+        <PERIOD> { isQuestion = false; }
+      | <QUESTION_MARK> { isQuestion = true; }
+    )
+    {
+        sent = new Sentence(phrase, isQuestion);
+        return sent;
+    }
+}
+
+
+Phrase		postposit_phrase_list	() throws Exception :
+{
+  Phrase	phrase1st	= null;
+  Phrase	phraseNth	= null;
+  Phrase currentPhrase = null;
+}
+{
+    {
+        phrase1st = postposit_phrase();
+        currentPhrase = phrase1st;
+    }
+    (
+        phraseNth = postposit_phrase()
+        {
+            currentPhrase.attach(phraseNth);
+            currentPhrase = phraseNth;
+        }
+    )*
+    { return phrase1st; }
+}
+
+Phrase		postposit_phrase	() throws Exception :
+{
+  Phrase	phrase	= null;
+  String	who	= "";
+  String	where	= "";
+}
+{
+    (
+      who = who() <AS_FOR> { phrase = new SubjectPhrase(who); }
+    |
+      where = where() <TO> { phrase = new ToPhrase(where); }
+    )
+    { return phrase; }
+}
+
+
+String		who	() throws Exception :
+{
+  String	s;
+}
+{
+  ( < I > { s = "I"; }
+    | < YOU > { s = "You"; }
+  )
+    { return(s); }
+}
+
+
+String		where	() throws Exception :
+{
+  String	s;
+}
+{
+  ( <HOME> { s = "Home"; }
+    | <STORE> { s = "Store"; }
+  )
+    { return(s); }
+}

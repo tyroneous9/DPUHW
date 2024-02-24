@@ -1,0 +1,1086 @@
+<!doctype html>
+<html lang="en_US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <title>CSC 348/448: Introduction to Compiler Design: 2024 Winter, Assignment #4</title>
+    <style>
+      H2 { text-align: center }
+    </style>
+  </head>
+
+  <body>
+    <h2>CSC 348/448: Introduction to Compiler Design: 2024 Winter<br/>Assignment #4</h2>
+    <p>Last modified 2023 February 22</p>
+
+    <h3>Purpose:</h3>
+    To go over:
+    <ul>
+      <li>The theory bottom-up parsing</li>
+      <li><code>Bison</code>, esp. how it interacts with <code>flex</code></li>
+    </ul>
+    <p/>
+
+    <h3>Assignment:</h3>
+    <p>
+      We will implement a parser for the tree grammar that Gerves requested in class.
+      The grammar is:
+      <ul>
+	<li>S  -&gt; N S</li>
+	<li>S  -&gt;</li>
+ 	<li>N  -&gt; root ( &lt;str&gt; )</li>
+	<li>N  -&gt; node ( &lt;str&gt; , L )</li>
+	<li>L  -&gt; [ ]</li>
+	<li>L  -&gt; [ LL ]</li>
+	<li>LL -&gt; &lt;str&gt;</li>
+	<li>LL -&gt; LL , &lt;str&gt;</li>
+      </ul>
+
+      The tokens are <code>root</code>, <code>node</code>, <code>(</code>, <code>)</code>, <code>[</code>, <code>]</code>, <code>,</code> and  <code>&lt;str&gt;</code> (which stands for and string constant).
+      The non-terminals are <code>S</code>, <code>N</code>, <code>L</code> and <code>LL</code>.
+    </p>
+
+    <h3>You must:</h3>
+    <ol type="1">
+      <li>
+	<h4>Theory of Bottom-Up Parsing (50 Points)</h4>
+	<p>
+	  Consider this subset of the tree grammar:
+	  <ol type="a">
+	    <li>L  -&gt; [ ]</li>
+	    <li>L  -&gt; [ LL ]</li>
+	    <li>LL -&gt; &lt;str&gt;</li>
+	    <li>LL -&gt; LL , &lt;str&gt;</li>
+	  </ol>
+	</p>
+	<p>
+	  Add a brand new starting non-terminal
+	  <pre>S -&gt; L $</pre>
+	  Then:
+	  <ol type="a">
+	    <li>
+	      Define the states for the grammar.
+	    </li>
+	    <li>
+	      Make a table the grammar.
+	    </li>
+	    <li>
+	      Use your table to parse the expression:
+	      <pre>[ &quot;Hello&quot; , &quot;there&quot; ]</pre>
+	    </li>
+	  </ol>
+	</p>
+      </li>
+      <p/>
+
+      <li>
+	<h4>Bison (50 Points)</h4>
+	Finish the program:
+	<ol type="A">
+	  <li>
+	    Copy and paste the following files:
+	    <ol type="1">
+	      <li>
+		<code>Makefile</code>
+		<pre># Makefile for treeParser
+treeParser	: tree.tab.o tree.o
+		g++ -o $@ tree.tab.o tree.o
+
+tree.o		: tree.c tree.tab.h
+		g++ -c tree.c -std=c++11
+
+tree.tab.o	: tree.tab.c tree.tab.h Node.h NodeStore.h
+		g++ -c tree.tab.c -std=c++11
+
+tree.c		: tree.lex
+		flex -o $@ tree.lex
+
+tree.tab.c	: tree.y
+		bison -d tree.y --debug --verbose
+
+tree.tab.h	: tree.y
+		bison -d tree.y --debug --verbose
+
+clean		:
+		rm treeParser *.o tree.tab.h tree.tab.c *.output</pre>
+	      </li>
+	      <li>
+		<code>headers.h</code>
+		<pre>/*-------------------------------------------------------------------------*
+ *---									---*
+ *---		headers.h						---*
+ *---									---*
+ *---	    This file includes headers and defines constants needed by 	---*
+ *---	the tree parsing program.					---*
+ *---									---*
+ *---	----	----	----	----	----	----	----	----	---*
+ *---									---*
+ *---	Version 1A				Joseph Phillips		---*
+ *---									---*
+ *-------------------------------------------------------------------------*/
+
+#include	&lt;cstdlib&gt;
+#include	&lt;cstdio&gt;
+#include	&lt;cstring&gt;
+#include	&lt;string&gt;
+#include	&lt;vector&gt;
+#include	&lt;map&gt;
+
+
+//  PURPOSE:  To tell the default length of C-string arrays.
+const int	MAX_LINE	= 256;
+
+
+#include	&quot;Node.h&quot;
+#include	&quot;NodeStore.h&quot;
+
+
+//  PURPOSE:  To be the file from which to read input.
+extern
+FILE*		yyin;
+
+
+//  PURPOSE:  To keep track of the line number.
+extern
+size_t		lineNum;
+
+
+//  PURPOSE:  To hold an array of space chars.
+extern
+char		spaceCharArray[MAX_LINE+1];
+
+
+//  PURPOSE:  To return the integer token id of the next read token, and
+//	to set a member of &apos;yysval&apos; to the correspond read value (if
+//	 appropriate).  No parameters.
+extern
+int		yylex		();
+
+
+//  PURPOSE:  To tell the user that a syntax error described by &apos;errMsgCPtr&apos;
+//	was found.  Quits program an return &apos;EXIT_FAILURE&apos; to OS.
+extern
+int	    	yyerror		(const char*	errMsgCPtr
+				);</pre>
+
+	      </li>
+	      <li>
+		<code>Node.h</code>
+		<pre>/*-------------------------------------------------------------------------*
+ *---									---*
+ *---		Node.h							---*
+ *---									---*
+ *---	    This file declares a class that implements a node in a	---*
+ *---	tree.								---*
+ *---									---*
+ *---	----	----	----	----	----	----	----	----	---*
+ *---									---*
+ *---	Version 1A				Joseph Phillips		---*
+ *---									---*
+ *-------------------------------------------------------------------------*/
+
+class		Node
+{
+  //  I.  Member vars:
+  //  PURPOSE:  To hold the name of &apos;*this&apos; Node.
+  std::string			name_;
+
+  //  PURPOSE:  To hold the addresses of the children of &apos;*this&apos; Node.
+  std::vector&lt;Node*&gt;		childrenDs_;
+
+  //  II.  Disallowed auto-generated methods:
+  //  No default constructor:
+  Node				()
+				= delete;
+
+  //  No copy constructor:
+  Node				(const Node&amp;)
+				= delete;
+
+  //  No copy assignment op:
+  Node&amp;		operator=	(const Node&amp;)
+				= delete;
+
+protected :
+  //  III.  Protected methods:
+
+public :
+  //  IV.  Constructor(s), assignment op(s), factory(s) and destructor:
+  //  PURPOSE:  To initialize &apos;*this&apos; to have name &apos;newName&apos; and the children
+  //  	named in &apos;childrenNameDsPtr&apos;.  delete()s &apos;childrenNameDsPtr&apos;.
+  //	No return value.
+  Node				(const std::string&amp;		newName,
+				 std::vector&lt;std::string&gt;*	newChildrenDsPtr
+				);
+
+  //  PURPOSE:  To release the resources of &apos;*this&apos;.  No parameters.
+  //	No return value.
+  ~Node				();
+
+  //  V.  Accessors:
+  //  PURPOSE:  To return the name of &apos;*this&apos; Node.  No parameters.
+  const std::string&amp;
+		getName		()
+				const
+				{ return(name_); }
+
+  //  PURPOSE:  To return the name of &apos;*this&apos; Node as a C-string.
+  //	No parameters.
+  const char*	getNameCPtr	()
+				const
+  				{ return(name_.c_str()); }
+
+  //  PURPOSE:  To return the number of children.  No parameters.
+  size_t	getNumChildren	()
+				const
+				{ return(childrenDs_.size()); }
+
+  //  PURPOSE:  To return the address of &apos;n&apos;th child.
+  Node*		getChild	(size_t		n
+				)
+				const
+				{
+				  return( (n &gt;= getNumChildren())
+				  	  ? NULL
+					  : childrenDs_[n]
+					);
+				}
+
+  //  VI.  Mutators:
+
+  //  VII.  Methods that do the main and misc. work of this class:
+  //  PURPOSE:  To print &apos;*this&apos; out to &apos;filePtr&apos;.  &apos;depth&apos; tells the depth
+  //	of &apos;*this&apos; from the root of the tree.  No return value.
+  void		print		(FILE*		filePtr,
+  				 size_t		depth	= 0
+				)
+				const;
+
+};</pre>
+	      </li>
+	      <li>
+		<code>NodeStore.h</code>
+		<pre>/*-------------------------------------------------------------------------*
+ *---									---*
+ *---		NodeStore.h						---*
+ *---									---*
+ *---	    This file declares a class that keeps track of Node		---*
+ *---	instances by their name.					---*
+ *---									---*
+ *---	----	----	----	----	----	----	----	----	---*
+ *---									---*
+ *---	Version 1A				Joseph Phillips		---*
+ *---									---*
+ *-------------------------------------------------------------------------*/
+
+class		NodeStore
+{
+  //  I.  Member vars:
+  //  PURPOSE:  To hold the map of Node names to their addresses.
+  std::map&lt;std::string,Node*&gt;	nameToNodePtrMap_;
+
+  //  II.  Disallowed auto-generated methods:
+  //  No copy constructor:
+  NodeStore			(const NodeStore&amp;)
+				= delete;
+
+  //  No copy assignment op:
+  NodeStore&amp;	operator=	(const NodeStore&amp;)
+				= delete;
+
+protected :
+  //  III.  Protected methods:
+
+public :
+  //  IV.  Constructor(s), assignment op(s), factory(s) and destructor:
+  //  PURPOSE:  To initialize &apos;*this&apos; to an empty store.  No return value.
+  NodeStore			() :
+				nameToNodePtrMap_()
+				{ }
+
+  //  PURPOSE:  To release the resources of &apos;*this&apos;.  No parameters.
+  //	No return value.
+  ~NodeStore			();
+
+  //  V.  Accessors:
+  //  PURPOSE:  To attempt to find the Node named &apos;name&apos;, remove it from
+  //	&apos;*this&apos;, and return its address.  Prints an error message and quits
+  //	if no such Node instance is found.
+  Node*		get		(const std::string&amp;	name
+				);
+
+  //  VI.  Mutators:
+  //  PURPOSE:  To place a new node with address &apos;nodePtr&apos; in &apos;*this&apos; Store.
+  //	Prints an error message and quits if there already is a Node instance
+  //	in &apos;*this&apos; with the same name.
+  void		put		(Node*		nodePtr
+				);
+
+  //  VII.  Methods that do the main and misc. work of this class:
+
+};</pre>
+	      </li>
+	      <li>
+		<code>tree.lex</code>
+		<pre>%{
+
+/*-------------------------------------------------------------------------*
+ *---									---*
+ *---		tree.lex						---*
+ *---									---*
+ *---	    This file defines a tokenizer for a parser that reads the	---*
+ *---	definition of a tree.						---*
+ *---									---*
+ *---	----	----	----	----	----	----	----	----	---*
+ *---									---*
+ *---	Version 1A				Joseph Phillips		---*
+ *---									---*
+ *-------------------------------------------------------------------------*/
+
+#include	&quot;headers.h&quot;
+#include	&quot;tree.tab.h&quot;
+
+%}
+
+%%
+<strong>//  DELETE THIS COMMENT AND PUT YOUR TOKEN RULES HERE</strong>
+%%
+
+//  PURPOSE:  To keep track of the line number.
+size_t		lineNum		= 1;
+
+
+int		yywrap		()
+{
+  return(1);
+}</pre>
+	      </li>
+	      <li>
+		<code>tree.y</code>
+		<pre>%{
+
+/*-------------------------------------------------------------------------*
+ *---									---*
+ *---		tree.y							---*
+ *---									---*
+ *---	    This file defines a parser for grammar that defines a tree,	---*
+ *---	and the high-level functions that run the program.		---*
+ *---									---*
+ *---	    The grammar is:						---*
+ *---		S  -&gt; N S						---*
+ *---		S  -&gt; 							---*
+ *---		N  -&gt; root ( &lt;str&gt; )					---*
+ *---		N  -&gt; node ( &lt;str&gt; , L )				---*
+ *---		L  -&gt; [ ]						---*
+ *---		L  -&gt; [ LL ]						---*
+ *---		LL -&gt; &lt;str&gt;						---*
+ *---		LL -&gt; LL , &lt;str&gt;					---*
+ *---									---*
+ *---	----	----	----	----	----	----	----	----	---*
+ *---									---*
+ *---	Version 1A				Joseph Phillips		---*
+ *---									---*
+ *-------------------------------------------------------------------------*/
+
+#include			&quot;headers.h&quot;
+
+//  PURPOSE:  To store the Node instances until they are incorporated into
+//	parts of the tree.
+extern
+NodeStore	nodeStore;
+
+
+//  PURPOSE:  To hold the root of the tree.
+extern
+Node*		rootPtr;
+
+
+//  PURPOSE:  To create and return the address of a heap-allocated
+//	data-structure that can hold names of Nodes.  No parameters.
+std::vector&lt;std::string&gt;*
+		createNewStringDsPtr
+				();
+
+%}
+
+%union
+{
+  std::string*			strPtr_;
+  std::vector&lt;std::string&gt;*	stringDsPtr_;
+}
+
+%start			<strong>//  REPLACE WITH NAME OF STARTING NON-TERMINAL</strong>
+<strong>//  REPLACE AND DECLARE TOKENS AND NON-TERMINALS WITH MEMBER VARS HERE</strong>
+
+%%
+
+<strong>//  DELETE THIS COMMENT AND PUT YOUR GRAMMAR RULES HERE</strong>
+
+%%
+
+//	----	----	----	Global variables:	----	----	//
+
+//  PURPOSE:  To hold an array of space chars.
+char		spaceCharArray[MAX_LINE+1];
+
+
+//  PURPOSE:  To hold the root of the tree.
+Node*		rootPtr		= NULL;
+
+
+//  PURPOSE:  To store the Node instances until they are incorporated into
+//	parts of the tree.
+NodeStore	nodeStore;
+
+
+
+//	----	----	----	Node methods:	----	----	----	//
+
+//  PURPOSE:  To initialize &apos;*this&apos; to have name &apos;newName&apos; and the children
+//  	named in &apos;childrenNameDsPtr&apos;.  delete()s &apos;childrenNameDsPtr&apos;.
+//	No return value.
+Node::Node			(const std::string&amp;	newName,
+				 std::vector&lt;std::string&gt;*	
+				 			newChildrenDsPtr
+				) :
+				name_(newName),
+				childrenDs_()
+{
+  //  I.  Application validity check:
+  if  (newChildrenDsPtr == NULL)
+  {
+    fprintf(stderr,&quot;NULL ptr to Node constructor\n&quot;);
+    exit(EXIT_FAILURE);
+  }
+
+  //  II.  Initialize &apos;*this&apos;:
+  //  II.A.  Initialize &apos;childrenDs_&apos;:
+  for  (size_t ind = 0;  ind &lt; newChildrenDsPtr-&gt;size();  ind++)
+  {
+    childrenDs_.push_back(nodeStore.get((*newChildrenDsPtr)[ind]));
+  }
+
+  //  III.  Finished:
+  delete(newChildrenDsPtr);
+}
+
+
+//  PURPOSE:  To release the resources of &apos;*this&apos;.  No parameters.
+//	No return value.
+Node::~Node			()
+{
+  //  I.  Application validity check:
+
+  //  II.  Release resources:
+  for  (size_t in = 0;  in &lt; getNumChildren();  in++)
+  {
+    delete(childrenDs_[in]);
+  }
+
+  //  III.   Finished:
+}
+
+
+//  PURPOSE:  To print &apos;*this&apos; out to &apos;filePtr&apos;.  &apos;depth&apos; tells the depth
+//	of &apos;*this&apos; from the root of the tree.  No return value.
+void		Node::print	(FILE*		filePtr,
+				 size_t		depth	// = 0
+				)
+				const
+{
+  //  I.  Application validity check:
+  if  (filePtr == NULL)
+  {
+    fprintf(stderr,&quot;NULL ptr to Node::print()\n&quot;);
+    exit(EXIT_FAILURE);
+  }
+
+  //  II.  Print &apos;*this&apos;:
+  size_t	spacing	= depth * 2;
+
+  fprintf
+	(filePtr,&quot;%s%s\n&quot;,
+	 (spaceCharArray+sizeof(spaceCharArray)-1) - spacing,
+	 getNameCPtr()
+	);
+
+  for  (size_t ind = 0;  ind &lt; getNumChildren();  ind++)
+  {
+    getChild(ind)-&gt;print(filePtr,depth+1);
+  }
+
+  //  III.  Finished:    
+}
+
+
+//	----	----	----	NodeStore methods:	----	----	//
+
+//  PURPOSE:  To release the resources of &apos;*this&apos;.  No parameters.
+//	No return value.
+NodeStore::~NodeStore		()
+{
+  //  I.  Application validity check:
+
+  //  II.  Release resources:
+  if  ( !nameToNodePtrMap_.empty() )
+  {
+    bool	isFirst	= true;
+
+    fprintf
+	(stderr,
+	 &quot;WARNING: These Node instance(s) were not included in the tree.\n&quot;
+	);
+
+    do
+    {
+      auto	iter	= nameToNodePtrMap_.begin();
+      Node*	nodePtr	= iter-&gt;second;
+
+      fprintf
+	    (stderr,&quot;%s%s&quot;,
+	     (isFirst ? &quot;&quot; : &quot;, &quot;), nodePtr-&gt;getNameCPtr()
+	    );
+      nameToNodePtrMap_.erase(iter);
+    }
+    while  ( !nameToNodePtrMap_.empty() );
+
+    fprintf(stderr,&quot;\n&quot;);
+  }
+
+  //  III.  Finished:
+}
+
+
+//  PURPOSE:  To attempt to find the Node named &apos;name&apos;, remove it from
+//	&apos;*this&apos;, and return its address.  Prints an error message and quits
+//	if no such Node instance is found.
+Node*		NodeStore::get	(const std::string&amp;	name
+				)
+{
+  //  I.  Application validity check:
+  Node*	returnMe= NULL;
+  auto	found	= nameToNodePtrMap_.find(name);
+
+  if  (found == nameToNodePtrMap_.end())
+  {
+    fprintf(stderr,&quot;No node \&quot;%s\&quot; defined.\n&quot;,name.c_str());
+    exit(EXIT_FAILURE);
+  }
+
+  //  II.  Attempt to get named node:
+  returnMe	= found-&gt;second;
+  nameToNodePtrMap_.erase(found);
+
+  //  III.  Finished:
+  return(returnMe);
+}
+
+
+//  PURPOSE:  To place a new node with address &apos;nodePtr&apos; in &apos;*this&apos; Store.
+//	Prints an error message and quits if there already is a Node instance
+//	in &apos;*this&apos; with the same name.
+void		NodeStore::put	(Node*		nodePtr
+				)
+{
+  //  I.  Application validity check:
+  std::string	name	= nodePtr-&gt;getName();
+  auto		found	= nameToNodePtrMap_.find(name);
+
+  if  (found != nameToNodePtrMap_.end())
+  {
+    fprintf
+	(stderr,&quot;Attempt to define two or more nodes named \&quot;%s\&quot;.\n&quot;,
+	 name.c_str()
+	);
+    exit(EXIT_FAILURE);
+  }
+
+  //  II.  Attempt to put &apos;*nodePtr&apos; in &apos;*this&apos;:
+  nameToNodePtrMap_[name]	= nodePtr;
+
+  //  III.  Finished:
+}
+
+
+//	----	----	----	Global functions:	----	----	//
+
+//  PURPOSE:  To create and return the address of a heap-allocated
+//	data-structure that can hold names of Nodes.  No parameters.
+std::vector&lt;std::string&gt;*
+		createNewStringDsPtr
+				()
+{
+  return(new std::vector&lt;std::string&gt;);
+}
+
+
+//  PURPOSE:  To tell the user that a syntax error described by &apos;errMsgCPtr&apos;
+//	was found.  Quits program an return &apos;EXIT_FAILURE&apos; to OS.
+int	    	yyerror		(const char*	errMsgCPtr
+				)
+{
+  fprintf
+	(stderr,&quot;Problem found at or before line %ld: %s.\n&quot;,
+  	 lineNum,errMsgCPtr
+	);
+  exit(EXIT_FAILURE);
+}
+
+
+//  PURPOSE:  To return a C-string telling a filepath, either from the command
+//	line or the keyboard.  &apos;argc&apos; tells how many arguments were on the
+//	command line and &apos;argv[]&apos; points to those arguments.
+char*		getFilepath	(int		argc,
+				 char*		argv[]
+				)
+{
+  static
+  char	line[MAX_LINE];
+  char*	cPtr;
+
+  //  I.  Application validity check:
+
+  //  II.  Get input:
+  //  II.A.  Handle command line input:
+  if  (argc &gt; 1)
+  {
+    strncpy(line,argv[1],MAX_LINE);
+    return(line);
+  }
+
+  //  II.B.  Handle keyboard input:
+  printf(&quot;Filepath: &quot;);
+  fgets(line,MAX_LINE,stdin);
+
+  cPtr	= strchr(line,&apos;\n&apos;);
+  if  (cPtr != NULL)
+  {
+    *cPtr	= &apos;\0&apos;;
+  }
+
+  //  III.  Finished:
+  return(line);
+}
+
+
+//  PURPOSE:  To attempt to read and print a tree whose definition may be
+//	given on the command line with &apos;argc&apos; arguments listed in &apos;argv[]&apos;.
+//	Returns &apos;EXIT_SUCCESS&apos; to OS on success or &apos;EXIT_FAILURE&apos; otherwise.
+int		main		(int		argc,
+				 char*		argv[]
+				)
+{
+  //  I.  Application validty check:
+
+  //  II.  Do work:
+  int		returnMe	= EXIT_SUCCESS;
+  const char*	filePathCPtr	= getFilepath(argc,argv);
+
+  yyin				= fopen(filePathCPtr,&quot;r&quot;);
+
+  memset(spaceCharArray,&apos; &apos;,sizeof(spaceCharArray)-1);
+  spaceCharArray[sizeof(spaceCharArray)-1]	= &apos;\0&apos;;
+
+  if  (yyin == NULL)
+  {
+    fprintf(stderr,&quot;Cannot open %s.\n&quot;,filePathCPtr);
+    exit(EXIT_FAILURE);
+  }
+
+  if  (yyparse() == 0)
+  {
+    if  (rootPtr != NULL)
+    {
+      rootPtr-&gt;print(stdout);
+      delete(rootPtr);
+    }
+    else
+    {
+      fprintf(stderr,&quot;Parse valid but no root defined.\n&quot;);
+    }
+  }
+  else
+  {
+    returnMe	= EXIT_FAILURE;
+  }
+
+  //  III.  Finished:
+  return(returnMe);
+}</pre>
+	      </li>
+	    </ol>
+	  </li>
+	  <p/>
+
+	  <li>
+	    <h4>A Quick Overview:</h4>
+	    <em>(NOTE: You only have to modify <code>tree.lex</code> and <code>tree.y</code>)</em><br/>
+	    <table border="1">
+	      <tr>
+		<th align="center">Name:</th>
+		<th align="center">Type:</th>
+		<th align="center">Purpose:</th>
+	      </tr>
+	      <tr>
+		<td><code>rootPtr</code></td>
+		<td><code>Node*</code></td>
+		<td>To hold the root of the tree.</td>
+	      </tr>
+	      <tr>
+		<td><code>nodeStore</code></td>
+		<td><code>NodeStore</code></td>
+		<td>
+		  To hold the Node instances after they have been defined
+		  but before they have been incorporated in the tree.
+		  The relevant methods are:
+		  <ul>
+		    <li>
+		      <code>void put (Node* nodePtr)</code>
+		      which puts a Node instance into the store.
+		    </li>
+		    <li>
+		      <code>Node* get (const std::string&amp; name)</code>
+		      which <code>return()</code>s the address of a Node
+		      instance with the given name.
+		    </li>
+		</td>
+	      </tr>
+	      <tr>
+		<td><code>createNewStringDsPtr()</code></td>
+		<td><code>std::vector&lt;std::string&gt;*</code></td>
+		<td>
+		  To return the address of a heap-allocated data-structure
+		  for storing names (<code>std::string</code> instances).
+		  Values returned by this function can go into the
+		  <code>stringDsPtr_</code> member var.
+		</td>
+	      </tr>
+	    </table>
+	  </li>
+	  <p/>
+
+	  <li>
+	    In <code>tree.y</code>:
+	    First you have to tell Bison about your terminals and non-terminals.
+	    <ol type="1">
+	      <li>
+		Where it says
+		<pre>%start	<strong>//  REPLACE WITH NAME OF STARTING NON-TERMINAL</strong></pre>
+		replace the comment with whatever you will call your starting non-terminal <code>S</code>.
+	      </li>
+	      <li>
+		<p>
+		  Where it says:
+		  <pre><strong>//  REPLACE AND DECLARE TOKENS AND NON-TERMINALS WITH MEMBER VARS HERE</strong></pre>
+		  Delete the comment.<br/>
+		  Define names for the following tokens:
+		  <ul>
+		    <li><code>root</code></li>
+		    <li><code>node</code></li>
+		    <li><code>(</code></li>
+		    <li><code>)</code></li>
+		    <li><code>[</code></li>
+		    <li><code>]</code></li>
+		    <li><code>,</code> (comma)</li>
+		    <li>String constants</li>
+		  </ul>
+		</p>
+		<p>
+		  There are no binary operators, 
+		  so do not worry about precedence among tokens.
+		  <em>However</em> string will have data associated with them.
+		  Therefore, associate member var <code>strPtr_</code> 
+		  with string tokens.
+		</p>
+	      </li>
+	      <li>
+		Declare non-terminals for what I call <code>L</code> and <code>LL</code>.
+		Associate member var <code>stringDsPtr_</code> with both non-terminals.
+	      </li>
+	    </ol>
+	  </li>
+	  <p/>
+
+	  <li>
+	    Now let us go to <code>tree.lex</code>.
+	    Here, write token-recognizing rules that:
+	    <ul>
+	      <li>
+		Read past and ignore <code>//</code> style comments.
+		Read until either seeing newline of <code>EOF</code>.
+		If see newline, then increment <code>lineNum</code>.
+	      </li>
+	      <li>Read past and ignore spaces, tabs (<code>\t</code>), and carriage returns (<code>\r</code>).</li>
+	      <li>
+		Read past and ignore new lines (<code>\n</code>),
+		<em>but</em> increment the global var <code>lineNum</code> each time you see one.
+	      </li>
+	      <li>
+		<code>return()</code> your token for <code>root</code> after reading <code>&quot;root&quot;</code>
+	      </li>
+	      <li>
+		<code>return()</code> your token for <code>node</code> after reading <code>&quot;node&quot;</code>
+	      </li>
+	      <li>
+		<code>return()</code> your token for <code>(</code> after reading <code>&quot;(&quot;</code>
+	      </li>
+	      <li>
+		<code>return()</code> your token for <code>)</code> after reading <code>&quot;)&quot;</code>
+	      </li>
+	      <li>
+		<code>return()</code> your token for <code>[</code> after reading <code>&quot;[&quot;</code>
+	      </li>
+	      <li>
+		<code>return()</code> your token for <code>]</code> after reading <code>&quot;]&quot;</code>
+	      </li>
+	      <li>
+		<code>return()</code> your token for <code>,</code> after reading <code>&quot;,&quot;</code>
+	      </li>
+	      <li>
+		<code>return()</code> your token for strings after reading a double-quote wrapped string.
+		Be sure to remember the string by doing:
+		<pre>yylval.strPtr_ = new std::string(<em>someExpression</em>)</pre>
+		where <code><em>someExpression</em></code> is the string you read,
+		without its double quotes.
+	      </li>
+	      <li>
+		For any other character do the following:
+<pre>fprintf(stderr,&quot;Non-supported char &apos;%c&apos; found on line %ld.\n&quot;,yytext[0],lineNum);
+exit(EXIT_FAILURE);</pre>
+	      </li>
+	    </ul>
+	  </li>
+	  <p/>
+
+	  <li>
+	    Now go back to <code>tree.y</code> to write the grammar rules.
+	    <table border="1">
+	      <tr>
+		<th align="center">Rule:</th>
+		<th align="center">Action:</th>
+	      </tr>
+	      <tr>
+		<td>S  -&gt; N S</td>
+		<td>(Nothing to do)</td>
+	      </tr>
+	      <tr>
+		<td>S  -&gt;</td>
+		<td>(Nothing to do)</td>
+	      </tr>
+	      <tr>
+		<td>N  -&gt; root ( &lt;str&gt; )</td>
+		<td>
+		  <p>
+		    Set global variable <code>rootPtr</code> to
+		    address of the <code>Node</code> instance
+		    whose name is that of the string.
+		    Ask <code>nodeStore</code> for the Node address with:
+		    <pre>Node* NodeStore::get (const std::string&amp; name)</pre>
+		  </p>
+		  <p>
+		    Note that this method wants a string,
+		    not the <em>address</em> of a string.
+		    So, you will have to dereference the string ptr.
+		  </p>
+		  <p>
+		    Also, the string ptr has been allocated from the heap.
+		    Please <code>delete()</code> it when you are thru with it.
+		  </p>
+		</td>
+	      </tr>
+	      <tr>
+		<td>N  -> node ( &lt;str&gt; , L )</td>
+		<td>
+		  <p>
+		    Create a new node using constructor:
+		    <pre>Node (const std::string&amp; newName,std::vector&lt;std::string&gt;* newChildrenDsPtr)</pre>
+		    Then, give the Node ptr to <code>nodeStore</code> using its method:
+		    <pre>void NodeStore::put (Node* nodePtr)</pre>
+		  </p>
+		  <p>
+		    Note that the first argument should be a string,
+		    not the <em>address</em> of a string.
+		    So, you will have to dereference the string ptr.
+		  </p>
+		  <p>
+		    Also, the string ptr has been allocated from the heap.
+		    Please <code>delete()</code> it when you are thru with it.
+		  </p>
+		  <p>
+		    Note also, that the second argument is also a ptr.
+		    Do not worry about <code>delete()</code>ing it though.
+		    The constructor will do that for you.
+		  </p>
+		</td>
+	      </tr>
+	      <tr>
+		<td>L  -> [ ]</td>
+		<td>
+		  The value associated with the left-hand-side should get
+		  the value of a new data-structure for holding strings.
+		  A wrote a function that creates these: call <code>createNewStringDsPtr()</code>.
+		</td>
+	      </tr>
+	      <tr>
+		<td>L  -> [ LL ]</td>
+		<td>
+		  The value associated with the left-hand-side should get
+		  the value associated with <code>LL</code>.
+		</td>
+	      </tr>
+	      <tr>
+		<td>LL -> &lt;str&gt;</td>
+		<td>
+		  <p>
+		    The value associated with the left-hand-side should get
+		    the value of a new data-structure for holding strings.
+		    A wrote a function that creates these: call <code>createNewStringDsPtr()</code>.
+		  </p>
+		  <p>
+		    The value associated with the left-hand-side should also
+		    remember the string on the right-hand-side.
+		    Do this by saying:
+		    <pre>(value)-&gt;push_back(&lt;stringValue&gt;)</pre>
+		    Note that the argument should be a string,
+		    not the <em>address</em> of a string.
+		    So, you will have to dereference the string ptr.
+		  </p>
+		  <p>
+		    Also, the string ptr has been allocated from the heap.
+		    Please <code>delete()</code> it when you are thru with it.
+		  </p>
+		</td>
+	      </tr>
+	      <tr>
+		<td>LL -> LL , &lt;str&gt;</td>
+		<td>
+		  <p>
+		    The value associated with the left-hand-side should get
+		    the value associated with the right-hand-side <code>LL</code>.
+		  </p>
+		  <p>
+		    The value associated with the left-hand-side should also
+		    remember the string on the right-hand-side.
+		    Do this by saying:
+		    <pre>(value)-&gt;push_back(&lt;stringValue&gt;)</pre>
+		    Note that the argument should be a string,
+		    not the <em>address</em> of a string.
+		    So, you will have to dereference the string ptr.
+		  </p>
+		  <p>
+		    Also, the string ptr has been allocated from the heap.
+		    Please <code>delete()</code> it when you are thru with it.
+		  </p>
+		</td>
+	      </tr>
+	      
+	    </table>
+	  </li>
+	  <p/>
+
+	  <li>
+	    <h4>Sample output:</h4>
+	    <ul>
+	      <li>
+		<pre>//  tree0.txt
+node(&quot;leaf0&quot;,[])
+node(&quot;leaf1&quot;,[])
+node(&quot;root&quot;,[&quot;leaf0&quot;,&quot;leaf1&quot;])
+root(&quot;root&quot;)</pre>
+		Should output:
+		<pre>$ <strong>./treeParser tree0.txt </strong>
+root
+  leaf0
+  leaf1</pre>
+	      </li>
+	      <li>
+		<pre>//  tree1.txt
+node(&quot;leaf0&quot;,[])
+node(&quot;leaf1&quot;,[])
+node(&quot;leaf2&quot;,[])
+node(&quot;leaf3&quot;,[])
+node(&quot;internal0&quot;,[&quot;leaf0&quot;,&quot;leaf1&quot;])
+node(&quot;internal1&quot;,[&quot;leaf2&quot;,&quot;leaf3&quot;])
+node(&quot;root&quot;,[&quot;internal0&quot;,&quot;internal1&quot;])
+root(&quot;root&quot;)</pre>
+		Should output:
+		<pre>$ <strong>./treeParser tree1.txt </strong>
+root
+  internal0
+    leaf0
+    leaf1
+  internal1
+    leaf2
+    leaf3</pre>
+	      </li>
+	      <li>
+		<pre>//  tree2.txt
+node(&quot;leaf&quot;,[])
+node(&quot;internal0&quot;,[&quot;leaf&quot;])
+node(&quot;internal1&quot;,[&quot;internal0&quot;])
+node(&quot;internal2&quot;,[&quot;internal1&quot;])
+node(&quot;internal3&quot;,[&quot;internal2&quot;])
+node(&quot;internal4&quot;,[&quot;internal3&quot;])
+node(&quot;internal5&quot;,[&quot;internal4&quot;])
+node(&quot;internal6&quot;,[&quot;internal5&quot;])
+node(&quot;internal7&quot;,[&quot;internal6&quot;])
+node(&quot;internal8&quot;,[&quot;internal7&quot;])
+node(&quot;internal9&quot;,[&quot;internal8&quot;])
+node(&quot;root&quot;,[&quot;internal9&quot;])
+root(&quot;root&quot;)</pre>
+		Should output:
+		<pre>$ <strong>./treeParser tree2.txt </strong>
+root
+  internal9
+    internal8
+      internal7
+        internal6
+          internal5
+            internal4
+              internal3
+                internal2
+                  internal1
+                    internal0
+                      leaf</pre>
+	      </li>
+	      <li>
+		<pre>//  tree_bad0.txt
+node(&quot;hello&quot;)</pre>
+		Should output:
+		<pre>$ <strong>./treeParser tree_bad0.txt </strong>
+Problem found at or before line 2: syntax error.</pre>
+	      </li>
+	      <li>
+		<pre>//  tree_bad1.txt
+node(&quot;hello&quot;,[])</pre>
+		Should output:
+		<pre>$ <strong>./treeParser tree_bad1.txt </strong>
+Parse valid but no root defined.
+WARNING: These Node instance(s) were not included in the tree.
+hello</pre>
+	      </li>
+	      <li>
+		<pre>//  tree_bad2.txt
+node(&quot;hello&quot;,[&quot;goodBye&quot;])</pre>
+		Should output:
+		<pre>$ <strong>./treeParser tree_bad2.txt </strong>
+No node &quot;goodBye&quot; defined.</pre>
+	      </li>
+	      <li>
+		<pre>//  tree_bad3.txt
+node(&quot;hello&quot;,[])
+root(&quot;hello&quot;)
+% // <--  Beware of the random-ass characters!</pre>
+		Should output:
+		<pre>$ <strong>./treeParser tree2.txt </strong>
+Non-supported char &apos;%&apos; found on line 4.</pre>
+	      </li>
+	    </ul>
+	  </li>
+	</ol>
+      </li>
+      <p/>
+ 
+    </ol>
+  </body>
+  
+</html>
