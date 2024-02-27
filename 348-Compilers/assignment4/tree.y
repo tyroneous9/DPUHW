@@ -80,7 +80,33 @@ N: node "(" STRING "," L ")"
     }
 ;
 
+L: "[" "]" 
+    {
+        $$ = createNewStringDsPtr();
+    }
+;
 
+L: "[" LL "]" 
+    {
+        $$ = $2;
+    }
+;
+
+LL: "<str>" 
+    {
+        $$ = createNewStringDsPtr();
+        $$->push_back(*$1);
+        delete $1;
+    }
+;
+
+LL: LL "," "<str>" 
+    {
+        $$ = $1;
+        $$->push_back(*$3);
+        delete $3;
+    }
+;
 
 %%
 
