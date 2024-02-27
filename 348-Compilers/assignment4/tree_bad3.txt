@@ -1,0 +1,4 @@
+//  tree_bad3.txt
+node("hello",[])
+root("hello")
+% // <--  Beware of the random-ass characters!

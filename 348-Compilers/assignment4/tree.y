@@ -52,7 +52,7 @@ std::vector<std::string>*
 
 %start S
 
-%token root node "(" ")" "[" "]" ","
+%token ROOT NODE LPARENTHESES RPARENTHESES LBRACKET RBRACKET COMMA
 
 %token <strPtr_> STRING
 
@@ -65,14 +65,14 @@ S:
     |
     ;
 
-N: root "(" STRING ")"
+N: ROOT LPARENTHESES STRING RPARENTHESES
     {
         rootPtr = nodeStore.get(*$3);
         delete $3;
     }
 ;
 
-N: node "(" STRING "," L ")"
+N: NODE LPARENTHESES STRING COMMA L RPARENTHESES
     {
         Node* newNode = new Node(*$3, $5);
         nodeStore.put(newNode);
@@ -80,19 +80,19 @@ N: node "(" STRING "," L ")"
     }
 ;
 
-L: "[" "]" 
+L: LBRACKET RBRACKET 
     {
         $$ = createNewStringDsPtr();
     }
 ;
 
-L: "[" LL "]" 
+L: LBRACKET LL RBRACKET 
     {
         $$ = $2;
     }
 ;
 
-LL: "<str>" 
+LL: STRING 
     {
         $$ = createNewStringDsPtr();
         $$->push_back(*$1);
@@ -100,7 +100,7 @@ LL: "<str>"
     }
 ;
 
-LL: LL "," "<str>" 
+LL: LL COMMA STRING 
     {
         $$ = $1;
         $$->push_back(*$3);
@@ -109,6 +109,7 @@ LL: LL "," "<str>"
 ;
 
 %%
+
 
 //	----	----	----	Global variables:	----	----	//
 

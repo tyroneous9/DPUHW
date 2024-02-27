@@ -1,0 +1,5 @@
+//  tree0.txt
+node("leaf0",[])
+node("leaf1",[])
+node("root",["leaf0","leaf1"])
+root("root")

@@ -19,28 +19,29 @@
 %}
 
 %%
-"//"          [^\n]*           { /* Ignore // comments */ }
+\/\/[^\n]*    { /* Ignore // comments */ }
 
 [ \t\r]+      { /* Ignore whitespace (spaces, tabs, carriage returns) */ }
 
 \n            { ++lineNum; /* Increment line number for new lines */ }
 
-"root"        { return root; }
+"root"        { return ROOT; }
 
-"node"        { return node; }
+"node"        { return NODE; }
 
-"("           { return '('; }
+"("           { return LPARENTHESES; }
 
-")"           { return ')'; }
+")"           { return RPARENTHESES; }
 
-"["           { return '['; }
+"["           { return LBRACKET; }
 
-"]"           { return ']'; }
+"]"           { return RBRACKET; }
 
-","           { return ','; }
+","           { return COMMA; }
+
 
 \"[^"]*\"     {
-                    yylval.strPtr_ = new std::string(yytext + 1, yylength() - 2);
+                    yylval.strPtr_ = new std::string(yytext + 1, yyleng - 2);
                     return STRING;
               }
 

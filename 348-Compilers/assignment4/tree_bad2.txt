@@ -1,0 +1,2 @@
+//  tree_bad2.txt
+node("hello",["goodBye"])
