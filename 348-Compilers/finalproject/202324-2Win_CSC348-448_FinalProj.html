@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en_US">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"> 
+    <title>CSC 348/448: Introduction to Compiler Design: 2024 Winter, Final Project</title>
+    <style>
+      H2 { text-align: center }
+    </style>
+  </head>
+
+  <body>
+    <h2>CSC 348/448: Introduction to Compiler Design: 2024 Winter<br/>Final Project</h2>
+    <p>Last modified 2023 March 17</p>
+
+
+    <h2>Important:</h2>
+    <p>
+      This is a final project, not final exam.
+      It is open book and open notes.
+      It is open Internet in the sense that you may read about topics (<em>e.g.</em> some particular optimization).
+      <strong>However, you may not submit questions to <em>anyone or any service</em> but me!</strong>
+    </p>
+
+    <p>
+      I will not consider this final project finished until you both:
+      <ul>
+	<li>Submit the project to D2L, and</li>
+	<li>Send me an email. The body of the email must be:
+	<p>
+	<em>
+	For the 2024 Winter quarter Introduction to Compilers final project I promise that I neither received help from, nor gave help to, anyone except Joseph Phillips, the instructor of that course.
+	If I have violated this then I accept a grade of 0 on the project, and I accept a failing grade in the course. (Your name) 
+	</em>
+	</p>
+	</li>
+      </ul>
+    </p>
+
+    <h3>Purpose:</h3>
+    To go over:
+    <ul>
+      <li>Recursive descent parsers</li>
+    </ul>
+
+
+    <h3>Assignment:</h3>
+    <ol type="I">
+      <li>
+	<h4>Download the file <code>202324-2Win_CSC348-448_FinalProject_forStudents.zip</code>:</h4>
+      </li>
+      <p/>
+
+      <li>
+	<h4>Understand these methods:</h4>
+	<table border="1">
+	  <tr>
+	    <th>Return type:</th>
+	    <th>Method:</th>
+	    <th>Purpose:</th>
+	    </tr>
+	  <tr>
+	    <td><code>char</code></td>
+	    <td><code>FileInputCharStream::peek()</code></td>
+	    <td>
+	      To return the current char, or <code>&apos;\0&apos;</code>
+	      if there are no more.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td><code>void</code></td>
+	    <td><code>FileInputCharStream::advance()</code></td>
+	    <td>
+	      Advances past the current charater so that the next call to
+	      <code>FileInputCharStream::peek()</code> will return the next
+	      character.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td><code>JSONValue*</code></td>
+	    <td><code>parseValue(tokenizer)</code></td>
+	    <td>Recursively parses and returns the next parsed thing.</td>
+	  </tr>
+	  <tr>
+	    <td><code>void</code></td>
+	    <td><code>JSONValue::serialize(WriterBuffer&amp; buffer,bool shouldQuoteText)</code></td>
+	    <td>
+	      Builds in &apos;buffer&apos; a representation of the <code>JSONValue</code> being used as <code>*this</code>.
+	      Double quotes are put around strings if <code>shouldQuoteText</code> is <code>true</code>.
+	    </td>
+	  </tr>
+	  <tr>
+	    <td><code>void</code></td>
+	    <td><code>WriterBuffer::clear()</code></td>
+	    <td>Clears the buffer.</td>
+	  </tr>
+	  <tr>
+	    <td><code>const char*</code></td>
+	    <td><code>WriterBuffer::getDataPtr()</code></td>
+	    <td>Returns a pointer to the beginning of the data.</td>
+	  </tr>
+	  <tr>
+	    <td><code>size_t</code></td>
+	    <td><code>WriterBuffer::append(char c)</code></td>
+	    <td>
+	      Appends the single char &apos;c&apos; to the end of the buffer.
+	    </td>
+	  </tr>
+	</table>
+      </lI>
+      <p/>
+
+      <li>
+	<h3>Do the following Final Project:</h3>
+	<p>
+	  This project finishes a C++ program that reads JSON text from a file,
+	  checks it,
+	  and prints it back.
+	</p>
+	<p>
+	  Compile it with:
+	  <pre>g++ JSONValue.cpp WriterBuffer.cpp -std=c++11 -o json</pre>
+	</p>
+	<ol type="1">
+	  <li>
+	    <h4><code>JSONValue::Tokenizer::scanNumber()</code></h4>
+	    <p>
+	      This method should read the characters of a number and
+	      <code>return()</code> the address of a <code>new JSONNumber</code> that represents it.
+	      The first character of the number already has been read
+	      and it has been passed into the method as <code>firstC</code>.
+	    </p>
+	    <p>
+	      If you want, you may use <code>WriterBuffer</code> to collect the characters.
+	      <ul>
+		<li>Use <code>WriterBuffer.append(char)</code> collect chars</li>
+		<li>
+		  Use <code>JSONNumber(const char* newTextCPtr,int64_t newInteger)</code>
+		  as the constructor for integers,
+		  where the first value is the address of the text
+		  and the second value is the integer value.
+		</li>
+		<li>
+		  Use <code>JSONNumber(const char* newTextCPtr,double newFloat)</code>
+		  as the constructor for floating points,
+		  where the first value is the address of the text
+		  and the second value is the floating point value.
+		</li>
+	      </ul>	    
+	    </p>
+	    This method should read <code>firstC</code>
+	  </li>
+	  <p/>
+	  
+	  <li>
+	    <h4><code>JSONValue::parseArray()</code></h4>
+	    <p>
+	      This method handles:
+	      <pre>[lists, like, this]</pre>
+	      It is called when the beginning <code>BEGIN_JSON_ARRAY</code>
+	      character is read.
+	      It already:
+	      <ul>
+		<li>creates a <code>JSONArray</code> instance,</li>
+		<li>puts its address in <code>toReturn</code>, and</li>
+		<li><code>return()</code>s it at the end of the method.</li>
+	      </ul>
+	    </p>
+	    <p>
+	      All <em>you</em> have to do is handle two cases:
+	      <ol type="a">
+		<li>
+		  <h5>The empty list case</h5>
+		  You can detect an empty list when <code>tokenizer.peek()</code>
+		  returns <code>END_JSON_ARRAY</code>.
+		  Just <code>advance()</code> the tokenizer past it.
+		</li>
+		<li>
+		  <h5>The non-empty list case</h5>
+		  <pre>[jv JSON_SEPARATOR]<sup>*</sup> jv END_JSON_ARRAY</pre>
+		  Here:
+		  <ul>
+		    <li>
+		      <p>
+			<code>jv</code> is a non-terminal meaning <code>JSONValue*</code>.
+			Get the <code>JSONValue*</code> by calling
+			<code>parseValue(tokenizer)</code>.
+			Then, do not be silly and just hold on to the thing.
+			Instead, give it to <code>toReturn</code> by using the <code>JSONArray::add(JSONValue*)</code> method.
+		      </p>
+		    </li>
+		    <li>
+		      <p>
+			After that you should see either:
+			<ul>
+			  <li>
+			    the terminal <code>JSON_SEPARATOR</code>,
+			    in which case you should
+			    <code>advance()</code> the <code>tokenizer</code> and
+			    go back to read the next <code>jv</code>, or
+			  </li>
+			  <li>
+			    the terminal <code>END_JSON_ARRAY</code>,
+			    in which case you should
+			    <code>advance()</code> the <code>tokenizer</code> and
+			    stop reading the list because it has ended.
+			  </li>
+			  <li>
+			    If you see anything else then complain.
+			    Perhaps do something like:
+			    <pre>throw &quot;Expected &apos;]&apos; or &apos;,&apos; while parsing JSON&quot;;</pre>
+			  </li>
+			</ul>
+		      </p>
+		    </li>
+		  </ul>
+		</li>
+	      </ol>
+	    </p>
+	  </li>
+	  <p/>
+	  
+	  <li>
+	    <h4><code>JSONValue::parseObject()</code></h4>
+	    <p>
+	      This method handles:
+	      <pre>{maps:like, this: one}</pre>
+	      It is called when the beginning <code>BEGIN_JSON_BRACE</code>
+	      character is read.
+	      It already:
+	      <ul>
+		<li>has an instance of <code>WriterBuffer</code> called <code>key</code>,</li>
+		<li>creates a <code>JSONObject</code> instance,</li>
+		<li>puts its address in <code>toReturn</code>, and</li>
+		<li><code>return()</code>s it at the end of the method.</li>
+	      </ul>
+	    </p>
+	    <p>
+	      All <em>you</em> have to do is handle two cases:
+	      <ol type="a">
+		<li>
+		  <h5>The empty map case</h5>
+		  You can detect an empty map when <code>tokenizer.peek()</code>
+		  returns <code>END_JSON_BRACE</code>.
+		  Just <code>advance()</code> the tokenizer past it.
+		</li>
+		<li>
+		  <h5>The non-empty list case</h5>
+		  <pre>[jv JSON_MAPPER jv JSON_SEPARATOR]<sup>*</sup> jv JSON_MAPPER jv END_JSON_BRACE</pre>
+		  Here:
+		  <ul>
+		    <li>
+		      <p>
+			The <code>jv</code> before <code>JSON_MAPPER</code> is a non-terminal meaning <code>JSONValue*</code>.
+			It will be used as the key.
+			Get the <code>JSONValue*</code> by calling
+			<code>parseValue(tokenizer)</code>.
+		      </p>
+		      <p>
+			Now, however, we do not really wants its value,
+			but only its representation as a string.
+			To get that, use the method <code>JSONValue::serialize(WriterBuffer&,bool)</code>.
+			Use <code>key</code> as the first argument and <code>false</code> as the second.
+			(Call <code>key.clear()</code> before using <code>key</code>.)
+			Then, <code>delete()</code> the pointer to the <code>JSONValue*</code>
+			because you do not need it any more.
+		      </p>
+		    </li>
+		    <li>
+		      Then you had <em>better</em> see a <code>JSON_MAPPER</code>
+		      from the tokenizer.
+		      If you see one then <code>advance()</code> past it.
+		      If not, then complain, perhaps like:
+		      <pre>throw &quot;Expected &apos;:&apos; while reading JSON&quot;;</pre>
+		    </li>
+		    <li>
+		      The <code>jv</code> after <code>JSON_MAPPER</code> is a non-terminal that is the value being mapped to.
+		      Get it, then add it to <code>toReturn</code> using method
+		      <code>JSONArray::add(const char*,JSONValue*)</code>.
+		      The first argument is the key as C-string.
+		      Get it with <code>key.getDataPtr()</code>.
+		      The second argument is the value from the second <code>jv</code> value.
+		    </li>
+		    <li>
+		      After that you should see either:
+		      <ul>
+			<li>
+			  the terminal <code>JSON_SEPARATOR</code>,
+			  in which case you should
+			  <code>advance()</code> the <code>tokenizer</code> and
+			  go back to read the next <code>jv</code>, or
+			</li>
+			<li>
+			  the terminal <code>END_JSON_BRACE</code>,
+			  in which case you should
+			  <code>advance()</code> the <code>tokenizer</code> and
+			  stop reading the list because it has ended.
+			</li>
+			<li>
+			  If you see anything else then complain.
+			  Perhaps do something like:
+			  <pre>throw &quot;Expected &apos;}&apos; or &apos;,&apos; while reading JSON object&quot;;</pre>
+			</li>
+		      </ul>
+		    </li>
+		  </ul>
+		</li>
+	      </ol>
+	    </p>
+	  </li>
+	</ol>
+      </li>
+      <p/>
+
+      <li>
+	<h3>Test it with JSON:</h3>
+	<p>
+	  Use, for example, this which I obtained from <a href="https://en.wikipedia.org/wiki/JSON">https://en.wikipedia.org/wiki/JSON</a>:
+	  <pre>{
+  &quot;first_name&quot;: &quot;John&quot;,
+  &quot;last_name&quot;: &quot;Smith&quot;,
+  &quot;is_alive&quot;: true,
+  &quot;age&quot;: 27,
+  &quot;address&quot;: {
+    &quot;street_address&quot;: &quot;21 2nd Street&quot;,
+    &quot;city&quot;: &quot;New York&quot;,
+    &quot;state&quot;: &quot;NY&quot;,
+    &quot;postal_code&quot;: &quot;10021-3100&quot;
+  },
+  &quot;phone_numbers&quot;: [
+    {
+      &quot;type&quot;: &quot;home&quot;,
+      &quot;number&quot;: &quot;212 555-1234&quot;
+    },
+    {
+      &quot;type&quot;: &quot;office&quot;,
+      &quot;number&quot;: &quot;646 555-4567&quot;
+    }
+  ],
+  &quot;children&quot;: [
+    &quot;Catherine&quot;,
+    &quot;Thomas&quot;,
+    &quot;Trevor&quot;
+  ],
+  &quot;spouse&quot;: null
+}</pre>
+	  Upon doing:<pre>$ ./json 0.json 0.out</pre>
+	  My output in <code>0.out</code> was:
+	  <pre>{&quot;address&quot;:{&quot;city&quot;:&quot;New York&quot;,&quot;postal_code&quot;:&quot;10021-3100&quot;,&quot;state&quot;:&quot;NY&quot;,&quot;street_ad
+dress&quot;:&quot;21 2nd Street&quot;},&quot;age&quot;:27,&quot;children&quot;:[&quot;Catherine&quot;,&quot;Thomas&quot;,&quot;Trevor&quot;],&quot;fir
+st_name&quot;:&quot;John&quot;,&quot;is_alive&quot;:&quot;true&quot;,&quot;last_name&quot;:&quot;Smith&quot;,&quot;phone_numbers&quot;:[{&quot;number&quot;
+:&quot;212 555-1234&quot;,&quot;type&quot;:&quot;home&quot;},{&quot;number&quot;:&quot;646 555-4567&quot;,&quot;type&quot;:&quot;office&quot;}],&quot;spous
+e&quot;:&quot;null&quot;}</pre>
+      </li>
+    </ol>
+  </body>
+</html>
