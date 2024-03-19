@@ -76,9 +76,31 @@ char		commonCArray[COMMON_ARRAY_LEN];
     WriterBuffer	text;
 
     //  YOUR CODE HERE
+    text.append(firstC);
+      bool hasDecimal = (firstC == '.');
+      bool hasExponent = false;
 
-    //  III.  Finished:
-    return( NULL );	//  CHANGE THAN NULL!
+      while (!inputStream_.isAtEnd()) {
+        char c = inputStream_.peek();
+
+        if (isdigit(c) || (!hasDecimal && c == '.') || (!hasExponent && (c == 'e' || c == 'E'))) {
+          if (c == '.') hasDecimal = true;
+          if (c == 'e' || c == 'E') hasExponent = true;
+
+          text.append(c);
+          inputStream_.advance();
+        } else {
+          break;
+        }
+      }
+
+      if (hasDecimal || hasExponent) {
+        double floatValue = std::stod(text.getDataPtr());
+        return new JSONNumber(text.getDataPtr(), floatValue);
+      } else {
+        int64_t intValue = std::stoll(text.getDataPtr());
+        return new JSONNumber(text.getDataPtr(), intValue);
+      }
   }
 
 
@@ -311,9 +333,38 @@ char		commonCArray[COMMON_ARRAY_LEN];
     JSONObject*		toReturn	= new JSONObject();
 
     //  YOUR CODE HERE
+    JSONSyntacticElement* nextElement = tokenizer.peek();
+    if (nextElement->getType() == END_JSON_BRACE) { 
+      tokenizer.advance();
+      return toReturn;
+    }
 
-    //  III.  Finished:
-    return(toReturn);
+    while (true) {
+      readPtr = parseValue(tokenizer); 
+      readPtr->serialize(key, false);
+      delete readPtr; 
+
+      if (tokenizer.peek()->getType() != JSON_MAPPER) {
+        throw "Expected ':' while reading JSON";
+      }
+      tokenizer.advance(); 
+
+      readPtr = parseValue(tokenizer); 
+      toReturn->add(key.getDataPtr(), readPtr); 
+
+      nextElement = tokenizer.peek();
+      if (nextElement->getType() == JSON_SEPARATOR) {
+        tokenizer.advance(); 
+        key.clear(); 
+      } else if (nextElement->getType() != END_JSON_BRACE) {
+        throw "Expected '}' or ',' while reading JSON object";
+      } else {
+        break; 
+      }
+    }
+
+    tokenizer.advance(); 
+    return toReturn;
   }
 
 
@@ -329,9 +380,26 @@ char		commonCArray[COMMON_ARRAY_LEN];
     JSONArray*	toReturn	= new JSONArray();
 
     //  YOUR CODE HERE
+    JSONSyntacticElement* nextElement = tokenizer.peek();
+    if (nextElement->getType() == END_JSON_ARRAY) { 
+      tokenizer.advance(); 
+      return toReturn;
+    }
 
-    //  III.  Finished:
-    return(toReturn);
+    do {
+      readPtr = parseValue(tokenizer); 
+      toReturn->add(readPtr); 
+
+      nextElement = tokenizer.peek();
+      if (nextElement->getType() == JSON_SEPARATOR) {
+        tokenizer.advance(); 
+      } else if (nextElement->getType() != END_JSON_ARRAY) {
+        throw "Expected ']' or ',' while parsing JSON array";
+      }
+    } while (nextElement->getType() != END_JSON_ARRAY);
+
+    tokenizer.advance(); 
+    return toReturn;
   }
 
 
