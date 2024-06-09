@@ -1,0 +1,6 @@
+exception_handling:
+   path: /exception/handling
+   defaults:
+      _controller: Drupal\exception_handling\Controller\ExceptionHandlingController::except
+   requirements:
+      _permission: 'access content'

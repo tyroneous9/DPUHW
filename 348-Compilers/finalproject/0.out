@@ -1,0 +1,1 @@
+{"address":{"city":"New York","postal_code":"10021-3100","state":"NY","street_address":"21 2nd Street"},"age":27,"children":["Catherine","Thomas","Trevor"],"first_name":"John","is_alive":"true","last_name":"Smith","phone_numbers":[{"number":"212 555-1234","type":"home"},{"number":"646 555-4567","type":"office"}],"spouse":"null"}

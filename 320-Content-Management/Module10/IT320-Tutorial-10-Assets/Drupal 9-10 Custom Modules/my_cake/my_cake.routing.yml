@@ -1,0 +1,6 @@
+my_cake:
+   path: /my/cake
+   defaults:
+      _controller: Drupal\my_cake\Controller\MyCakeController::cake
+   requirements:
+      _permission: 'access content'

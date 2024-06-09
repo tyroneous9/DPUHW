@@ -1,0 +1,58 @@
+STAFF RECORD FIELDS and CONTENT
+
+Title: Staff 1
+Staff name: Alice Smith
+Job Description: Full-time photographer specializing in music, product, event, TV, media, fine art, fashion, and street photography. 
+Handles all contracts with clients. As well as, shooting, editing, retouching all work as needed.
+Profile picture: AliceSmith.png
+Picture Alternate text: Alice Smith, Photographer. 
+Eye Color: Amber
+Telephone: 312-111-1111
+Salary: $49,000
+
+Title: Staff 2
+Staff name: Jane Jones
+Job description: Freelance Photographer, Retoucher, Curator, Social Media, Production-Assistant 
+Profile picture: JaneJones.png
+Picture Alternate text: Jane Jones, Photographer. 
+Eye Color: Hazel
+Telephone: 312-555-5555
+Salary: $57,000
+
+Title: Staff 3
+Staff  name: Laura Nactham
+Job description: Works for Chuck allows me to improve images with post-production editing. 
+Profile picture: LauraNactham.png
+Picture Alternate text: Laura Nactham, Manager of HR.
+Eye Color: Blue
+Telephone: 312-333-3333
+Salary: $67,000
+
+Title: Staff 4
+Staff name: Sue Chase
+Job description: Photographer from Wisconsin.
+Profile profile picture: SueChase.png
+Picture Alternate text: Sue Chase, Photographer. 
+Eye Color: Amber
+Telephone: 312-444-4444
+Salary: $55,000
+
+Title: Staff 5
+Staff Name: Nora Allerton
+Job description:  Freelance photographer from Chicago.
+Profile profile picture: NoraAllerton.png
+Picture Alternate text: Nora Jane Allerton, Photographer. 
+Eye Color: Hazel
+Telephone: 312-555-5555
+Salary: $57,000
+
+Title: Staff 6
+Staff Name: Mr. Jay Allen Nuts
+Job description: What can I say, I’m all about the nuts.
+Profile picture: MrNuts.png
+Picture Alternate text: Jay Allen Nuts, Spokesperson for our company. 
+Eye Color: Black
+Telephone: 312-666-6666
+Salary: $45,000
+
+

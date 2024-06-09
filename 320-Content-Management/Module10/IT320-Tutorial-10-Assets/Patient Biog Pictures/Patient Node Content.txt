@@ -1,0 +1,65 @@
+PATIENT RECORD FIELDS and CONTENT
+
+Title: Patient 1
+Patient name: Alice Smith
+Job Description: Full-time photographer specializing in music, product, event, TV, media, fine art, fashion, and street photography. 
+Handles all contracts with clients. As well as, shooting, editing, retouching all work as needed.
+Profile picture: AliceSmith.png
+Picture Alternate text: Alice Smith, Photographer. 
+Food allergy: Apple
+Patient address:
+444 Maine St.
+Chicago IL 60606
+
+
+Title: Patient 2
+Patient name: Jane Jones
+Job description: Freelance Photographer, Retoucher, Curator, Social Media, Production-Assistant 
+Profile picture: JaneJones.png
+Picture Alternate text: Jane Jones, Photographer. 
+Food Allergy: Cherry
+Patient address:
+444 Maine St.
+Chicago IL 60606
+
+Title: Patient 3
+Patient name: Laura Nactham
+Job description: Works for Chuck allows me to improve images with post-production editing. 
+Profile picture: LauraNactham.png
+Picture Alternate text: Laura Nactham, Manager of HR.
+Food Allergy: Banana
+Patient address:
+444 Maine St.
+Chicago IL 60606
+
+Title: Patient 4
+Patient name: Sue Chase
+Job description: Photographer from Wisconsin.
+Profile profile picture: SueChase.png
+Picture Alternate text: Sue Chase, Photographer. 
+Food-allergy: Pomegranate
+Patient address:
+444 Maine St.
+Chicago IL 60606
+
+Title: Patient 5
+Patient name: Nora Allerton
+Job description:  Freelance photographer from Chicago.
+Profile profile picture: NoraAllerton.png
+Picture Alternate text: Nora Jane Allerton, Photographer. 
+Food Allergy: Blackberries
+Patient address:
+444 Maine St.
+Chicago IL 60606
+
+Title: Patient 6
+Patient name: Mr. Jay Allen Nuts
+Job description: What can I say, I’m all about the nuts.
+Profile picture: MrNuts.png
+Picture Alternate text: Jay Allen Nuts, Spokesperson for our company. 
+Food Allergy: Oranges
+Patient address:
+444 Maine St.
+Chicago IL 60606
+
+

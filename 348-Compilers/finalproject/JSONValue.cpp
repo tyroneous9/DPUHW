@@ -326,44 +326,45 @@ char		commonCArray[COMMON_ARRAY_LEN];
 				)
   {
     //  I.  Application validity check:
-
     //  II.  Parse the JSON object:
     WriterBuffer	key;
     JSONValue*		readPtr;
     JSONObject*		toReturn	= new JSONObject();
 
     //  YOUR CODE HERE
-    JSONSyntacticElement* nextElement = tokenizer.peek();
-    if (nextElement->getType() == END_JSON_BRACE) { 
-      tokenizer.advance();
-      return toReturn;
+    int nextElementType = tokenizer.peek();
+    if (nextElementType == END_JSON_BRACE) {
+        tokenizer.advance();
+        return toReturn;
     }
 
     while (true) {
-      readPtr = parseValue(tokenizer); 
-      readPtr->serialize(key, false);
-      delete readPtr; 
+        readPtr = parseValue(tokenizer);
+        readPtr->serialize(key, false);
+        delete readPtr;
 
-      if (tokenizer.peek()->getType() != JSON_MAPPER) {
-        throw "Expected ':' while reading JSON";
-      }
-      tokenizer.advance(); 
+        if (tokenizer.peek() != JSON_MAPPER) {
+            throw "expected ':' while reading JSON";
+        }
+        tokenizer.advance();
 
-      readPtr = parseValue(tokenizer); 
-      toReturn->add(key.getDataPtr(), readPtr); 
+        readPtr = parseValue(tokenizer);
+        toReturn->add(key.getDataPtr(), readPtr);
 
-      nextElement = tokenizer.peek();
-      if (nextElement->getType() == JSON_SEPARATOR) {
-        tokenizer.advance(); 
-        key.clear(); 
-      } else if (nextElement->getType() != END_JSON_BRACE) {
-        throw "Expected '}' or ',' while reading JSON object";
-      } else {
-        break; 
-      }
+        nextElementType = tokenizer.peek();
+        if (nextElementType == JSON_SEPARATOR) {
+            tokenizer.advance();
+            key.clear();
+        }
+        else if (nextElementType != END_JSON_BRACE) {
+            throw "expected '}' or ',' while reading JSON object";
+        }
+        else {
+            break;
+        }
     }
 
-    tokenizer.advance(); 
+    tokenizer.advance();
     return toReturn;
   }
 
@@ -380,25 +381,30 @@ char		commonCArray[COMMON_ARRAY_LEN];
     JSONArray*	toReturn	= new JSONArray();
 
     //  YOUR CODE HERE
-    JSONSyntacticElement* nextElement = tokenizer.peek();
-    if (nextElement->getType() == END_JSON_ARRAY) { 
-      tokenizer.advance(); 
-      return toReturn;
+    int nextElementType = tokenizer.peek(); 
+    if (nextElementType == END_JSON_ARRAY) {
+        tokenizer.advance();
+        return toReturn;
     }
 
-    do {
-      readPtr = parseValue(tokenizer); 
-      toReturn->add(readPtr); 
+    while (true) {
+        nextElementType = tokenizer.peek(); 
+        if (nextElementType == END_JSON_ARRAY) {
+            tokenizer.advance(); 
+            break;
+        }
+        readPtr = parseValue(tokenizer);
+        toReturn->add(readPtr); 
 
-      nextElement = tokenizer.peek();
-      if (nextElement->getType() == JSON_SEPARATOR) {
-        tokenizer.advance(); 
-      } else if (nextElement->getType() != END_JSON_ARRAY) {
-        throw "Expected ']' or ',' while parsing JSON array";
-      }
-    } while (nextElement->getType() != END_JSON_ARRAY);
+        nextElementType = tokenizer.peek(); 
+        if (nextElementType == JSON_SEPARATOR) {
+            tokenizer.advance(); 
+        }
+        else if (nextElementType != END_JSON_ARRAY) {
+            throw "expected ']' or ',' while parsing JSON array";
+        }
+    }
 
-    tokenizer.advance(); 
     return toReturn;
   }
 

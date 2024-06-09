@@ -1,0 +1,5 @@
+name: My Cake
+type: module
+description: Display My Cake
+package: Custom
+core_version_requirement: ^9.2 || ^10
